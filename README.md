@@ -42,34 +42,40 @@ https://getcomposer.org/download/
 
 ## Installation
 
-Clone Project
+Clone Project into htdos Folder (Clone Project vào thư mục htdocs)
 ```bash
-git clone https://github.com/tesol-association/viettesol.git
+git clone https://github.com/NamTong1998/LapTrinhWeb.git
 ```
 
-Cd Project
+Cd Project (Truy cập Root Folder của Project)
 ```bash
-cd viettelsol
+cd LapTrinhWeb
 ```
+Some files are ignored to be cloned due to .gitignore contents. In order for this project to be runnable, do:
+(Một số file bị bỏ qua trong quá trình clone do nội dung quy định trong file .gitignore. Để project hoạt động được, thực hiện các bước sau:)
 
-Install php composer package
+Install php composer package (Cài gói php composer, sẽ tạo thư mục vendor)
 ```bash
 composer install
 ```
-Copy file .env
+Copy file .env (copy file .env bị thiếu)
 ```bash
 cp .env.example .env
 ```
-Run
+Generate the project key (Tạo key project)
 ```bash
 php artisan key:generate
 ```
-Run
+Update the database if there are any new .sql files in database Folder (Cập nhật cơ sở dữ liệu nếu có từ file .sql mới trong thư mục database)
+```bash
+Hmmm
+```
+Initialize the virtual host (Tạo host ảo chạy thử)
 ```bash
 php artisan serve
 ```
 
-Go to 
+Go to (Truy cập)
 ```bash
 localhost:8000
 ```
