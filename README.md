@@ -42,7 +42,7 @@ https://getcomposer.org/download/
 
 ## Installation
 
-Clone Project into htdos Folder (Clone Project vào thư mục htdocs)
+Clone Project into htdocs Folder (Clone Project vào thư mục htdocs)
 ```bash
 git clone https://github.com/NamTong1998/LapTrinhWeb.git
 ```
