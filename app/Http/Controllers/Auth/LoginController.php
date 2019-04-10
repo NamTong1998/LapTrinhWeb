@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\UserHistory;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -27,7 +31,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/home/index';
 
     /**
      * Create a new controller instance.
@@ -39,20 +43,32 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function redirectTo()
+    protected function redirectTo()
     {
-        $isAdmin = Auth::user()->is_admin;
+        //User History
+        $userHistory = new UserHistory();
+        $userHistory->user_id = Auth::user()->id;
+        $userHistory->ip = \Request::ip();
+        $userHistory->user_agent = \Request::userAgent();
+        $userHistory->save();
 
-        if ( $isAdmin == true )
+        //user
+        $user = Auth::user();
+        $user->last_login = Carbon::now();
+        $user->save();
+
+        //Role
+        $isAdmin = Auth::user()->is_admin;
+        if ($isAdmin == 1) {
             return '/admin/index';
-        else
+        } else {
             return '/home/index';
+        }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
-
         return redirect('/home/index');
     }
 
@@ -60,4 +76,19 @@ class LoginController extends Controller
     {
         return view('auth.login');
     }
+
+    /**
+   * Validate the user login request.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return void
+   */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+        $this->username() => ['required', 'string'],
+        'password' => ['required', 'string'],
+        'g-recaptcha-response' => ['required', new \App\Rules\ValidRecaptcha]
+    ]);
+  }
 }

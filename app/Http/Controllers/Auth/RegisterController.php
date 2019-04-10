@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/home/index';
 
     /**
      * Create a new controller instance.
@@ -49,11 +50,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255', 'unique: users'],
-            'pass' => ['required', 'string', 'max:6', 'confirmed'],
-            'is_admin' => ['required'],
-        ])
-    
+            'user_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'affiliation' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'g-recaptcha-response' => ['required', new \App\Rules\ValidRecaptcha]
+        ]);
+    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -64,9 +69,18 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'pass' => Hash::make($data['pass']),
-            'is_admin' => $data['is_admin'],
+            'user_name' => $data['user_name'],
+            'first_name' => $data['first_name'],
+            'middle_name' => $data['middle_name'],
+            'last_name' => $data['last_name'],
+            'affiliation' => $data['affiliation'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'image' => env('AVATAR_DEFAULT'),
         ]);
+    }
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
     }
 }

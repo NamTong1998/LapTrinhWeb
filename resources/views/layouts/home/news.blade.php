@@ -1,13 +1,13 @@
-@extends('layouts.admin.layout')
+@extends('layouts.home.layout')
 
-@section('title','User Management')
+@section('title','News')
 
 @section('css')
 
 @endsection
 
 @section('content')
-
+	
 @endsection
 
 @section('js')
