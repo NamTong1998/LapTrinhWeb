@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Models\User;
+use App\Models\User;
 use Session;
 
 class UserManagement extends Controller
@@ -17,7 +17,7 @@ class UserManagement extends Controller
     public function index()
     {
         $users = User::all();
-        return view('layouts.admin.user_management.list', ['users' => $users])
+        return view('layouts.admin.user_management.list', ['users' => $users]);
     }
 
     /**
