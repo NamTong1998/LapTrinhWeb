@@ -4,6 +4,6 @@
 	<title> Testing Route</title>
 </head>
 <body>
-	<h1> Hello Motherfucker! </h1>
+	<h1> Hello My Friends! </h1>
 </body>
 </html>
