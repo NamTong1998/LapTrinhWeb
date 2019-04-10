@@ -27,7 +27,7 @@ Laravel has the most extensive and thorough [documentation](https://laravel.com/
 
 If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
-## Viettesol WepApp
+## Group 10's WepApp
 ## Pre-require
 
 Install XAMPP PHP 7.2
