@@ -81,7 +81,7 @@ class UserManagement extends Controller
         //
         $user = User::find($id);
 
-        return view('admin.user_management.edit', ['user' => $user]);
+        return view('layouts.admin.user_management.edit', ['user' => $user]);
     }
 
     /**
@@ -94,6 +94,8 @@ class UserManagement extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::find($id);
+        return view('layouts.admin.user_management.edit', ['user' => $user]);
     }
 
     /**

@@ -21,6 +21,9 @@ Route::get('admin/index', function() {
     return view('layouts.admin.layout');
 });
 Route::get('admin/users/list', 'Admin\UserManagement@index')->name('admin_users_list');
+Route::get('admin/users/edit/{id}', 'Admin\UserManagement@edit')->name('admin_users_edit');
+Route::get('admin/users/update/{id}', 'Admin\UserManagement@update')->name('admin_users_update');
+Route::get('admin/users/create', 'Admin\UserManagement@create')->name('admin_users_create');
 
 //Home Routing
 Route::get('home/index', 'Home\MainController@index')->name('home_page');

@@ -49,7 +49,7 @@
                                         <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin_users_edit',['id'=> $user->id] )}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#}"><i class="fa fa-trash"></i></button>
