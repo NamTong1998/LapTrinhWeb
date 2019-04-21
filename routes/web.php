@@ -13,7 +13,7 @@
 Auth::routes();
 
 Route::get('/', function() {
-	return view('hello');
+	return redirect()->route('home_index');
 });
 
 //Admin Routing
