@@ -17,6 +17,13 @@ Route::get('/', function() {
 });
 
 //Admin Routing
+Route::get('article','Article\ArticleController@index');
+
+
+
+
+
+
 Route::get('admin/index', function() {
     return view('layouts.admin.layout');
 });

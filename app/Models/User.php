@@ -46,14 +46,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function news()
+    public function comment()
     {
-        return $this->hasMany('App\Models\News');
+        return $this->hasMany('App\Models\Comment','user_id','id');
     }
 
-    public function conferenceRoles()
+    public function role()
     {
-        return $this->belongsToMany('App\Models\ConferenceRole', 'user_conference_roles', 'user_id', 'conference_role_id');
+        return $this->hasOne('App\Models\Role', 'user_id', 'id');
     }
 }
 
