@@ -30,7 +30,6 @@ class User extends Authenticatable
         'phone',
         'country',
         'image',
-        'disable',
         'fax',
         'email',
         'password',
@@ -46,14 +45,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function news()
+    public function role()
     {
-        return $this->hasMany('App\Models\News');
-    }
-
-    public function conferenceRoles()
-    {
-        return $this->belongsToMany('App\Models\ConferenceRole', 'user_conference_roles', 'user_id', 'conference_role_id');
+        return $this->belongsTo('App\Models\Role', 'role_id');
     }
 }
 

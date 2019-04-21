@@ -83,10 +83,10 @@ desired effect
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <span class="label label-success">0</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header">You have 0 message</li>
               <li>
                 <!-- inner menu: contains the messages -->
                 <ul class="menu">
@@ -119,16 +119,16 @@ desired effect
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
+              <span class="label label-warning">0</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+              <li class="header">You have 0 notification</li>
               <li>
                 <!-- Inner Menu: contains the notifications -->
                 <ul class="menu">
                   <li><!-- start notification -->
                     <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      <i class="fa fa-users text-aqua"></i> No new members joined today
                     </a>
                   </li>
                   <!-- end notification -->
@@ -142,10 +142,10 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
+              <span class="label label-danger">0</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
+              <li class="header">You have 0 tasks</li>
               <li>
                 <!-- Inner menu: contains the tasks -->
                 <ul class="menu">
@@ -269,23 +269,18 @@ desired effect
         <li class="header">HEADER</li>
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-cogs"></i> <span>Site Management</span>
+          <a href="#"><i class="fa fa-hand-o-left"></i> <span> Redirect Home </span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="glyphicon glyphicon-menu-hamburger"></i><span> Menu Management</span></a></li>
-            <li><a href="#"><i class="fa fa-shirtsinbulk"></i><span>Banner Management</span></a></li>
-            <li><a href="#"><i class="fa fa-file-image-o"></i><span>Adv Management</span></a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-retweet"></i><span>Partner Management</span></a></li>
+            <li><a href="{{ route('home_index') }}"><i class="fa fa-home"></i><span> Home Index </span></a></li>
+            <li><a href="{{ route('home_main') }}"><i class="fa fa-home"></i><span> Home Main </span></a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-commenting-o"></i> <span>Comment Management</span>
-            <span class="pull-right-container"></span>
-          </a>
-        </li>
+
+        
         <li class="treeview">
           <a href="#"><i class="fa fa-file-text-o"></i> <span>Content Management</span>
             <span class="pull-right-container">
@@ -293,24 +288,19 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-newspaper-o"></i><span>News Management</span></a></li>
-            <li><a href="#"><i class="fa fa-file-text"></i><span>News Category Management</span></a></li>
-            <li><a href="#"><i class="fa fa-volume-up"></i><span>Events Management</span></a></li>
-            <li><a href="#"><i class="fa fa-hand-paper-o"></i><span>Events Category Manager</span></a></li>
+            <li><a href="#"><i class="fa fa-newspaper-o"></i><span>Article Management</span></a></li>
+            <li><a href="{{ route('admin_category_list') }}"><i class="fa fa-file-text"></i><span>Article Category Management</span></a></li>
           </ul>
         </li>
+
         <li class="treeview">
-          <a href="#"><i class="fa fa-fax"></i><span>Contact Form Management</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+          <a href="#"><i class="fa fa-commenting-o"></i> <span>Comment Management</span>
+            <span class="pull-right-container"></span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list"></i><span> Contact Form List</span></a></li>
-          </ul>
         </li>
+        
         <li class="treeview">
-          <a href="#"><i class="fa fa-th"></i> <span>Category Management</span>
+          <a href="#"><i class="fa fa-th"></i> <span>Video Management</span>
             <span class="pull-right-container"></span>
           </a>
         </li>
@@ -321,166 +311,10 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list"></i><span>List</span></a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-plus-sign"></i><span>Create</span></a></li>
-            <li><a href="#"><i class="fa fa-lock"></i><span>Role Management</span></a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-object-group"></i> <span>Conference Management</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list"></i><span>List</span></a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-plus-sign"></i><span>Create</span></a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <ul class="treeview-menu">
-            <li><a href="#">Announcement</a></li>
-            <li><a href="#">Fee</a></li>
-            <li><a href="#">Track</a></li>
-            <li class="treeview">
-                <a href="#"> <span>Review Form</span>
-                  <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-                </a>
-                 <ul class="treeview-menu">
-                     <li><a href="#">Critea Review</a></li>
-                 </ul>
-            </li>
-            <li><a href="#">Prepaired email</a></li>
-            <li><a href="#">Registration</a></li>
-            <li><a href="#">Speaker</a></li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Paper Management</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-list"></i><span>List Paper</span></a></li>
-                <li><a href="#">Paper File</a></li>
-                <li><a href="#">Paper author</a></li>
-                <li><a href="#">Review Assignment</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Schedule Management</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#">Schedule</a></li>
-                <li><a href="#">Time Block</a></li>
-                <li><a href="#">Room</a></li>
-                <li><a href="#">Building</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Conference Role</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Special Event</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Payment</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Conference Gallery</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-recycle"></i> <span>Proceeding Management</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list"></i><span>List Issue</span></a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-plus-sign"></i><span>Create Issue</span></a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-question-circle"></i> <span>ISSUE 1</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Announcement</a></li>
-            <li><a href="#">Sections</a></li>
-            <li class="treeview">
-                <a href="#"> <span>Review Form</span>
-                  <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-                </a>
-                 <ul class="treeview-menu">
-                     <li><a href="#">Critea Review</a></li>
-                 </ul>
-            </li>
-            <li><a href="#">Prepaired email</a></li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Paper Management</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-list"></i><span>List Paper</span></a></li>
-                <li><a href="#">Paper File</a></li>
-                <li><a href="#">Paper author</a></li>
-                <li><a href="#">Review Assignment</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>ISSUE Role</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-users"></i> <span> Membership Management </span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-tty"></i><span> Contact Management </span></a></li>
-            <li><a href="#"><i class="fa fa-list-ol"></i><span> Contact Type Management </span></a></li>
-            <li><a href="#"><i class="fa fa-user"></i><span> Membership </span></a></li>
-            <li><a href="#"><i class="fa fa-hand-o-right"></i><span> Contribution </span></a></li>
-            <li><a href="#"><i class="fa fa-credit-card"></i><span> Member Payment </span></a></li>
-            <li><a href="#"><i class="fa fa-sticky-note-o"></i><span> Notification </span></a></li>
+            <li><a href="{{ route('admin_users_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
+            <li><a href="{{ route('admin_users_create') }}"><i class="glyphicon glyphicon-plus-sign"></i><span>Create</span></a></li>
+            <li><a href="{{ route('admin_role_list') }}"><i class="fa fa-lock"></i><span> User's Role Management</span></a></li>
+            <li><a href="{{ route('admin_users_role') }}"><i class="fa fa-lock"></i><span>Role Management</span></a></li>
           </ul>
         </li>
 
