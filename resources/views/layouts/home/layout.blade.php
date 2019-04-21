@@ -145,7 +145,7 @@
                 @yield('content')
             </div>
             <div class="col-md-4">
-                <h3 class="module-title "><span>VIC 2018 Sponsors</span></h3>
+                <h3 class="module-title "><span> Slideshow </span></h3>
                 <!-- Right Side Of Navbar -->
                 <div id="slideshow">
                     

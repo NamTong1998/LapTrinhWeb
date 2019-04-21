@@ -64,6 +64,22 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+                            &nbsp;&nbsp;&nbsp;
+                            <select id="gender" type="text" class="{{ $errors->has('gender') ? 'is-invalid' : '' }}" name="gender">
+                                <option value="Male" selected="selected"> Male </option>
+                                <option value="Female"> Female </option>
+                                <option value="Other"> Other </option>
+                            </select>
+
+                            @if ($errors->has('gender'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('gender') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Affiliation') }}</label>
 
                             <div class="col-md-6">

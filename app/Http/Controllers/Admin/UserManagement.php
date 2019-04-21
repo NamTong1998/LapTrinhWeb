@@ -40,23 +40,37 @@ class UserManagement extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'username' => 'required|string|max: 255|unique: users',
-            'pass' => 'required|string|min: 6|confirmed',
-            'is_admin' => 'required'
+         $request->validate([
+            'user_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'affiliation' => ['required', 'string', 'max:255'],
+            'is_admin' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
 
-        $user = new User();
-        $user->username = $request->get('username');
-        $user->pass = $request->pass('pass');
-        $user->is_admin = $request->pass('is_admin');
-        $user->is_author = $request->pass('is_author');
-        $user->is_reviewer = $request->pass('is_reviewer');
+        $users = new User([
+            'user_name' => $request->get('user_name'),
+            'first_name' => $request->get('first_name'),
+            'middle_name' => $request->get('middle_name'),
+            'last_name' => $request->get('last_name'),
+            'gender' => $request->get('gender'),
+            'initals' => $request->get('initals'),
+            'affiliation' => $request->get('affiliation'),
+            'is_admin'=> $request->get('is_admin'),
+            'phone' => $request->get('phone'),
+            'fax' => $request->get('fax'),
+            'country' => $request->get('country'),
+            'email' => $request->get('email'),
+            'password' => Hash::make($request->get('password')),
+            'image' => env('AVATAR_DEFAULT'),
+        ]);
 
         if ($user->save())
-            return redirect()->route('admin_user_list')->with('success', $user->username.' has been added as an user.');
+            return redirect()->route('admin_users_list')->with('success', $user->username.' has been added as an user.');
         else
-            return redirect()->route('admin_user_create')->with('error', 'Error in creating a new user.');
+            return redirect()->route('admin_users_create')->with('error', 'Error in creating a new user.');
     }
 
     /**
@@ -81,7 +95,7 @@ class UserManagement extends Controller
         //
         $user = User::find($id);
 
-        return view('admin.user_management.edit', ['user' => $user]);
+        return view('layouts.admin.user_management.edit', ['user' => $user]);
     }
 
     /**
@@ -105,5 +119,20 @@ class UserManagement extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function role()
+    {
+        $users = User::all();
+        return view('layouts.admin.user_management.role', ['users' => $users]);
+    }
+
+    public function setAdmin($id)
+    {
+        $user = User::find($id);
+        $user->is_admin = 1;
+        $user->save();
+
+        return redirect()->route('admin_users_role')->with('success', $user->user_name.' has been altered as an Admin.');
     }
 }

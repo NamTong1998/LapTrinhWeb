@@ -15,9 +15,7 @@
                     <div class="col-md-4">
                         <h3 class="box-title">User List</h3>
                     </div>
-                    <div class="col-md-2 col-md-offset-6">
-                        <a href="{{ route('admin_users_create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Create New User </a>
-                    </div>
+                    
                 </div>
                 <div class="box-body">
                     <div class="table-responsive">
@@ -25,14 +23,10 @@
                             <thead>
                                 <tr>
                                     <th> ID </th>
-                                    <th>Username</th>
-                                    <th>Name</th>
-                                    <th> Gender </th>
-                                    <th>Affiliation</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Country</th>
-                                    <th>Delete</th>
+                                    <th> Username </th>
+                                    <th> Name </th>
+                                    <th> Is Admin </th>
+                                    <th> Role </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,41 +34,40 @@
                                 
                                 <tr>
                                     <td> {{ $user->id }} </td>
-                                    <td>{{ $user->user_name }}</td>
-                                    <td>{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</td>
-                                    <td> {{ $user->gender }} </td>
-                                    <td>{{ $user->affiliation }}</td>
-                                    <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->country }}</td>
+                                    <td> {{ $user->user_name }} </td>
+                                    <td> {{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }} </td>
                                     <td>
-                                        @if( $user->id != Auth::user()->id )
-                                        <form method="post" action="{{ route('admin_users_delete',['id'=> $user->id ]) }}">
+                                        @if( $user->is_admin === 1 )
+                                        <i> Already an Admin </i>
+                                        @else
+                                        <form method="post" action="{{ route('admin_users_setAdmin',['id'=> $user->id ]) }}">
                                             @csrf
-                                            <div class="modal fade" id="delete_user_{{ $user->id }}" role="dialog">
+                                            <div class="modal fade" id="setAdmin_user_{{ $user->id }}" role="dialog">
                                               <div class="modal-dialog">
 
                                                 <!-- Modal content-->
                                                 <div class="modal-content">
                                                   <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Are you sure delete user {{ $user->user_name }} ?</h4>
+                                                    <h4 class="modal-title">Are you sure to make user {{ $user->user_name }} a new Admin?</h4>
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-primary">Yes</button>
                                                   </div>
                                                 </div>
                                               </div>
                                             </div>
                                         </form>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_user_{{ $user->id }}"><i class="fa fa-trash"></i></button>
-                                        @else
-                                        <i> Cannot delete yourself </i>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#setAdmin_user_{{ $user->id }}"><i class="fa fa-thumbs-o-up"> {{ __('Make Admin') }} </i></button>
+                                    </td>>
                                         @endif
                                     </td>
+                                    <td>
+                                        
+                                    </td>
                                 </tr>
-                                
+                               
                                 @endforeach
                             </tbody>
                         </table>

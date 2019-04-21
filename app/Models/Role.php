@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-     protected $table ='user';
-    public function user()
+    //
+    protected $table = "role";
+
+    public function users()
     {
-    	return $this->hasOne('App\Models\User','user_id','id');
+    	return $this->hasMany('App\Models\User', 'role_id');
     }
-   
+
 }
