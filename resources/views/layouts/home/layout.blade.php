@@ -70,6 +70,7 @@
                                         Change Password
                                     </a>
                                 </div>
+
                                 @if(Auth::user()->is_admin === 1)
                                 <div>
                                     <a class="dropdown-item" href="{{ route('admin_index') }}">
@@ -77,6 +78,7 @@
                                     </a>
                                 </div>
                                 @endif
+
                                 <div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
