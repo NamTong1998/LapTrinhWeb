@@ -13,20 +13,13 @@
 Auth::routes();
 
 Route::get('/', function() {
-	return redirect()->route('home_index');
+    return redirect()->route('home_index');
 });
 
 //Admin Routing
-Route::get('article','Article\ArticleController@index');
-
-
-
-
-
-
 Route::get('admin/index', function() {
     return view('layouts.admin.layout');
-});
+})->name('admin_index');
 Route::get('admin/users/list', 'Admin\UserManagement@index')->name('admin_users_list');
 Route::get('admin/users/create', 'Admin\UserManagement@create')->name('admin_users_create');
 Route::post('admin/users/store', 'Admin\UserManagement@store')->name('admin_users_store');
@@ -42,13 +35,31 @@ Route::post('admin/role/store', 'Admin\RoleController@store')->name('admin_role_
 Route::get('admin/role/edit/{id}', 'Admin\RoleController@edit')->name('admin_role_edit');
 Route::post('admin/role/update/{id}', 'Admin\RoleController@update')->name('admin_role_update');
 Route::post('admin/role/delete/{id}', 'Admin\RoleController@destroy')->name('admin_role_delete');
+//Category
+Route::get('admin/category/list', 'Admin\CategoryController@index')->name('admin_category_list');
+Route::get('admin/category/create', 'Admin\CategoryController@create')->name('admin_category_create');
+Route::post('admin/category/store', 'Admin\CategoryController@store')->name('admin_category_store');
+Route::get('admin/category/edit/{id}', 'Admin\CategoryController@edit')->name('admin_category_edit');
+Route::post('admin/category/update/{id}', 'Admin\CategoryController@update')->name('admin_category_update');
+Route::post('admin/category/delete/{id}', 'Admin\CategoryController@destroy')->name('admin_category_delete');
 
-Route::get('admin/category/list', 'Admin\ArticleCategoryController@index')->name('admin_category_list');
-Route::get('admin/category/create', 'Admin\ArticleCategoryController@create')->name('admin_category_create');
-Route::post('admin/category/store', 'Admin\ArticleCategoryController@store')->name('admin_category_store');
-Route::get('admin/category/edit/{id}', 'Admin\ArticleCategoryController@edit')->name('admin_category_edit');
-Route::post('admin/category/update/{id}', 'Admin\ArticleCategoryController@update')->name('admin_category_update');
-Route::post('admin/category/delete/{id}', 'Admin\ArticleCategoryController@destroy')->name('admin_category_delete');
+//Article
+Route::get('admin/article/list', 'Admin\ArticleController@index')->name('admin_article_list');
+Route::get('admin/article/create', 'Admin\ArticleController@create')->name('admin_article_create');
+Route::post('admin/article/store', 'Admin\ArticleController@store')->name('admin_article_store');
+Route::get('admin/article/edit/{id}', 'Admin\ArticleController@edit')->name('admin_article_edit');
+Route::post('admin/article/update/{id}', 'Admin\ArticleController@update')->name('admin_article_update');
+Route::post('admin/article/delete/{id}', 'Admin\ArticleController@destroy')->name('admin_article_delete');
+//Comment
+Route::get('admin/comment/list', 'Admin\CommentController@index')->name('admin_comment_list');
+Route::get('admin/comment/create', 'Admin\CommentController@create')->name('admin_comment_create');
+Route::post('admin/comment/store', 'Admin\CommentController@store')->name('admin_comment_store');
+Route::get('admin/comment/edit/{id}', 'Admin\CommentController@edit')->name('admin_comment_edit');
+Route::post('admin/comment/update/{id}', 'Admin\CommentController@update')->name('admin_comment_update');
+Route::post('admin/comment/delete/{id}', 'Admin\CommentController@destroy')->name('admin_comment_delete');
+
+
+
 
 //Home Routing
 Route::get('home/index', 'Home\MainController@index')->name('home_index');
@@ -68,13 +79,13 @@ Route::post('home/changepass/save','Home\ChangePasswordController@store')->name(
 
 /*
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
-	Route::get('/index', function() {
-		return view('layouts.admin.layout');
-	});
+    Route::get('/index', function() {
+        return view('layouts.admin.layout');
+    });
 
-	Route::get(['prefix' => 'users'], function() {
-		Route::get('/list', 'Admin\UserManagement@index')->name('admin_users_list');
-	});
+    Route::get(['prefix' => 'users'], function() {
+        Route::get('/list', 'Admin\UserManagement@index')->name('admin_users_list');
+    });
 });
 
 Auth::routes();

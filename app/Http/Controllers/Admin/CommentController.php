@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Comment;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Session;
+use App\Models\Comment;
+
 
 class CommentController extends Controller
 {
@@ -14,8 +17,10 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+         $comment = Comment::all();
+         return view('layouts.admin.comments.list',['comment'=>$comment]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +29,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +40,19 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+            'summary' => 'required|unique:comments',
+            'content' =>'required|min:20'
+        ]);
+
+        $comment = new Comment();
+        $comment->category_id = $request->get('category');
+        $comment->summary = $request->get('summary');
+        $comment->content = $request->get('content');
+
+        $comment->save();
+
+        return redirect()->route('admin_comment_list')->with('success', 'A new comment has been created.');
     }
 
     /**
@@ -57,7 +74,9 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+         $categories = Category::all();
+        $comment = comment::find($id);
+        return view('layouts.admin.comments.edit', ['comment' => $comment,'categories' => $categories]);
     }
 
     /**
@@ -69,7 +88,18 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $request->validate([
+            'summary' => 'required|unique:comments',
+            'content' =>'required|min:20'
+        ]);
+        $comment= comment::find($id);
+        $comment->category_id = $request->get('category');
+        $comment->summary = $request->get('summary');
+        $comment->content = $request->get('content');
+
+        $comment->save();
+
+        return redirect()->route('admin_article_list')->with('success', 'A new comment has been edited.');
     }
 
     /**
@@ -80,6 +110,9 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $comment = comment::find($id);
+        $comment->delete();
+
+        return redirect()->route('admin_article_list')->with('success', 'A comment has been removed.');
     }
 }

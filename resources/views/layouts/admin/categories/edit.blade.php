@@ -13,7 +13,7 @@ Create a New Category
 <div class="box box-primary">
     <div class="box-header with-border">
         <div class="col-md-4">
-                <h3 class="box-title">Create a New Category</h3>
+                <h3 class="box-title">Edit a Category</h3>
         </div>
         <div class="col-md-2 col-md-offset-6">
             <a href="{{ route('admin_category_list') }}" class="btn btn-block btn-info">
@@ -21,7 +21,7 @@ Create a New Category
             </a>
         </div>
     </div>
-    <form method="post" action="{{ route('admin_role_store') }}">
+    <form method="post" action="{{ route('admin_category_update',$ac->id )}}">
         @csrf
         <div class="box-body">
 
