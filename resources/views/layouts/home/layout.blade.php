@@ -66,7 +66,7 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <a class="dropdown-item" href="{{ route('home_changepassword_view') }}">
+                                    <a class="dropdown-item" href="{{ rout  e('home_changepassword_view') }}">
                                         Change Password
                                     </a>
                                 </div>
