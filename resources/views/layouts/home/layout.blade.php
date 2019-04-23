@@ -66,7 +66,7 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <a class="dropdown-item" href="{{ rout  e('home_changepassword_view') }}">
+                                    <a class="dropdown-item" href="{{ route('home_changepassword_view') }}">
                                         Change Password
                                     </a>
                                 </div>
@@ -124,7 +124,18 @@
             <div class="container">
                 <!-- nav -->
                 <ul class="nav-menu">
-                    
+                    @foreach($categories as $category)
+                    <li class="has-dropdown">
+                            <a href="#">{{ $category->name }}</a>
+                            <div class="dropdown">
+                                <div class="dropdown-body">
+                                    <ul class="dropdown-list">
+                                         
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
                 <!-- /nav -->
             </div>

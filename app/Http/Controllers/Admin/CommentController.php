@@ -18,7 +18,7 @@ class CommentController extends Controller
     public function index()
     {
          $comment = Comment::all();
-         return view('layouts.admin.comments.list',['comment'=>$comment]);
+         return view('layouts.admin.comments.list', ['comment' => $comment]);
     }
     
 

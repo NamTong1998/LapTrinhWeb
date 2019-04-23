@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\UserHistory;
 use Carbon\Carbon;
+use App\Models\Category;
+use App\Models\Article;
 
 class LoginController extends Controller
 {
@@ -74,7 +76,9 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login');
+      $categories = Category::all();
+      $articles = Article::all();
+      return view('auth.login', ['categories' => $categories, 'articles' => $articles]);
     }
 
     /**

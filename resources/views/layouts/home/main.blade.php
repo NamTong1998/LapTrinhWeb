@@ -26,51 +26,29 @@
 		<a class="post-img" href="blog-post.html"><img src="./img/post-13.jpg" alt=""></a>
 		<div class="post-body">
 			<div class="post-category">
-				<a href="category.html">Travel</a>
-				<a href="category.html">Lifestyle</a>
+				<a href="#">Travel</a>
+				<a href="#">Lifestyle</a>
 			</div>
-			<h3 class="post-title"><a href="blog-post.html">Mel ut impetus suscipit tincidunt. Cum id ullum laboramus persequeris.</a></h3>
+			<h3 class="post-title"><a href="blog-post.html"> Hello World </a></h3>
 			<ul class="post-meta">
-				<li><a href="author.html">John Doe</a></li>
+				<li>John Doe</li>
 				<li>20 April 2018</li>
 			</ul>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+			<p> Hello. I'm fine.Thank you. And you? </p>
 		</div>
 	</div>
 </div>
 @endsection
+
 @section('content')
 <div class="col-md-12" style="margin-bottom: 50px; margin-left: -15px;">
 	<div class="section-title">
-		<h2 class="title"><a href="">Tin tức nổi bật</a></h2>
+		<h2 class="title"><a href=""> Headlight </a></h2>
 	</div>
 
 </div>
 
-<div class="col-md-12" style="margin-bottom: 50px; margin-left: -15px;">
-	<div class="section-title">
-		<h2 class="title"><a href="">Sự kiện nổi bật</a></h2>
-	</div>
-	
-</div>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12 khoito" >
-			<div class="col-md-3 khoinho">
-				Link
-			</div>
-			<div class="col-md-3 khoinho">
-				Other Menu
-			</div>
-			<div class="col-md-3 khoinho">
-				Contact us
-			</div>
-			<div class="col-md-3 khoinho">
-				Facebook
-			</div>
-		</div>
-	</div>
-</div>
+
 
 @endsection
 

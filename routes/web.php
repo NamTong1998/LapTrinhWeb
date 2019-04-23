@@ -63,7 +63,9 @@ Route::post('admin/comment/delete/{id}', 'Admin\CommentController@destroy')->nam
 
 
 //Author Routing
-Route::get('author/index', 'Author\AuthorController@index')->name('author_index');
+Route::get('author/index', function(){
+    return view('layouts.author.layout');
+})->name('author_index');
 Route::get('author/list', 'Author\AuthorController@index')->name('author_list');
 Route::get('author/create', 'Author\AuthorController@create')->name('author_create');
 Route::post('author/store', 'Author\AuthorController@store')->name('author_store');
