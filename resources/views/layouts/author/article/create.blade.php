@@ -21,11 +21,11 @@ Create a New Article
 		</div>
 
 		<div class="box-body">
-			<div class="form-group {{ $errors->first('title') ? 'has-error' : ''}}">
-				<label for="title"> Title*: </label>
-				<input class="form-control" type="text" name="title" id="title" required value="{{ old('title')}}">
-				@if ($errors->has('title'))
-                    <span class="help-block">{{ $errors->first('title') }}</span>
+			<div class="form-group {{ $errors->first('summary') ? 'has-error' : ''}}">
+				<label for="summary"> Summary*: </label>
+				<input class="form-control" type="text" name="summary" id="summary" required value="{{ old('summary')}}">
+				@if ($errors->has('summary'))
+                    <span class="help-block">{{ $errors->first('summary') }}</span>
                 @endif
 			</div>
 

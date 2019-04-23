@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Author;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
-use App\Models\ArticleCategory;
+use App\Models\Category;
 
 class CreationController extends Controller
 {
@@ -17,8 +17,7 @@ class CreationController extends Controller
     public function index()
     {
         //
-        $acs = ArticleCategory::all();
-        return view('layouts.author.article.create', ['acs' => $acs]);
+        return view('layouts.author.layout');
     }
 
     /**
@@ -29,6 +28,8 @@ class CreationController extends Controller
     public function create()
     {
         //
+        $acs = Category::all();
+        return view('layouts.author.article.create', ['acs' => $acs]);
     }
 
     /**

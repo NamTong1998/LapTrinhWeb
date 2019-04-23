@@ -25,7 +25,7 @@
                             <thead>
                                 <tr>
                                     <th> ID</th>
-                                    
+                                    <th> Author </th>
                                     <th> Summary </th>
                                     <th> Content </th>
                                     <th> Image</th>
@@ -38,11 +38,13 @@
                                 @foreach($article as $ar)
                                 <tr>
 
-                                    <td> {{$ar->id }} </td>
-                                    
+                                    <td> {{ $ar->id }} </td>
+                                    <td> {{ $ar->user->user_name }} </td>
                                     <td> {{ $ar->summary }} </td>
                                     <td> {{ $ar->content }} </td>
-                                    <td> <img style="width: 50px; height: auto;" src="{{ asset('/storage/'.$ar->image) }}" /> </td>
+                                    <td> 
+                                        <img style="width: 50px; height: auto;" src="{{ asset('/storage/'.$ar->image) }}" /> 
+                                    </td>
                                     
                                     <td> 
                                         <a class="btn btn-primary" href="{{ route('admin_article_edit', ['id' => $ar->id]) }}"> <i class="fa fa-edit">  </i> </a>

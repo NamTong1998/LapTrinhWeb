@@ -50,6 +50,7 @@ Route::post('admin/article/store', 'Admin\ArticleController@store')->name('admin
 Route::get('admin/article/edit/{id}', 'Admin\ArticleController@edit')->name('admin_article_edit');
 Route::post('admin/article/update/{id}', 'Admin\ArticleController@update')->name('admin_article_update');
 Route::post('admin/article/delete/{id}', 'Admin\ArticleController@destroy')->name('admin_article_delete');
+
 //Comment
 Route::get('admin/comment/list', 'Admin\CommentController@index')->name('admin_comment_list');
 Route::get('admin/comment/create', 'Admin\CommentController@create')->name('admin_comment_create');
@@ -62,10 +63,8 @@ Route::post('admin/comment/delete/{id}', 'Admin\CommentController@destroy')->nam
 
 
 //Author Routing
-Route::get('author/index', function(){
-    return view('layouts.author.layout');
-})->name('author_index');
-Route::get('author/article/create', 'Author\CreationController@index')->name('author_article_create');
+Route::get('author/index', 'Author\CreationController@index')->name('author_index');
+Route::get('author/article/create', 'Author\CreationController@create')->name('author_article_create');
 
 //Home Routing
 Route::get('home/index', 'Home\MainController@index')->name('home_index');
