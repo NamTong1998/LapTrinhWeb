@@ -289,13 +289,13 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-newspaper-o"></i><span>Article Management</span></a></li>
+            <li><a href="{{ route('admin_article_list') }}"><i class="fa fa-newspaper-o"></i><span>Article Management</span></a></li>
             <li><a href="{{ route('admin_category_list') }}"><i class="fa fa-file-text"></i><span>Article Category Management</span></a></li>
           </ul>
         </li>
 
         <li class="treeview">
-          <a href="#"><i class="fa fa-commenting-o"></i> <span>Comment Management</span>
+          <a href="{{ route('admin_comment_list') }}"><i class="fa fa-commenting-o"></i> <span>Comment Management</span>
             <span class="pull-right-container"></span>
           </a>
         </li>

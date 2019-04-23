@@ -45,9 +45,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    public function comment()
+    {
+        return $this->hasMany('App\Models\Comment','user_id','id');
+    }
+
     public function role()
     {
-        return $this->belongsTo('App\Models\Role', 'role_id');
+        return $this->hasOne('App\Models\Role', 'user_id', 'id');
     }
 }
 

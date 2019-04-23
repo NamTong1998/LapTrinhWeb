@@ -36,7 +36,7 @@
                                 <tr>
                                     <td> {{ $ac->id }} </td>
                                     <td> {{ $ac->name }} </td>
-                                    <td>  </td>
+                                    <td> {{ count($ac->article) }} </td>
                                     <td> 
                                         <a class="btn btn-primary" href="{{ route('admin_category_edit', ['id' => $ac->id]) }}"> <i class="fa fa-edit">  </i> </a>
                                     </td>

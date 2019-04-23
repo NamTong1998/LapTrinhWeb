@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
-use App\Models\ArticleCategory;
+use App\Models\Category;
 
-class ArticleCategoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class ArticleCategoryController extends Controller
     public function index()
     {
         //
-        $acs = ArticleCategory::all();
-        return view('layouts.admin.article_categories.list', ['acs' => $acs]);
+        $acs = Category::all();
+        return view('layouts.admin.categories.list', ['acs' => $acs]);
     }
 
     /**
@@ -29,7 +29,7 @@ class ArticleCategoryController extends Controller
     public function create()
     {
         //
-        return view('layouts.admin.article_categories.create');
+        return view('layouts.admin.categories.create');
     }
 
     /**
@@ -42,11 +42,11 @@ class ArticleCategoryController extends Controller
     {
         //
         $request->validate([
-            'name' => 'required|unique:article_categories',
+            'name' => 'required|unique:categories',
         ]);
 
-        $ac = new ArticleCategory();
-        $ac->name = $request->get('name');
+        $ac = new Category(); 
+        $ac->name = $request->name;
 
         $ac->save();
 
@@ -73,8 +73,8 @@ class ArticleCategoryController extends Controller
     public function edit($id)
     {
         //
-        $ac = ArticleCategory::find($id);
-        return view('layouts.admin.article_categories.edit', ['ac' => $ac]);
+        $ac = Category::find($id);
+        return view('layouts.admin.categories.edit', ['ac' => $ac]);
     }
 
     /**
@@ -86,17 +86,17 @@ class ArticleCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
         $request->validate([
-            'name' => 'required|unique:article_categories' .$id,
+            'name' => 'required|unique:categories' .$id,
         ]);
-
-        $ac = new ArticleCategory();
-        $ac->name = $request->get('name');
+        $ac= Category::find($id);
+        
+        $ac->name = $request->name;
 
         $ac->save();
 
-        return redirect()->route('admin_category_list')->with('success', 'A new Category has been created.');
+        return redirect()->route('admin_category_list')->with('success', 'A new Category has been edited.');
     }
 
     /**
@@ -108,7 +108,7 @@ class ArticleCategoryController extends Controller
     public function destroy($id)
     {
         //
-        $ac = ArticleCategory::find($id);
+        $ac = Category::find($id);
         $ac->delete();
 
         return redirect()->route('admin_category_list')->with('success', 'A Category has been removed.');
