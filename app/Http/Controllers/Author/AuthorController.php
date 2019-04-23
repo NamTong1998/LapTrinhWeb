@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Article;
 
 
+
 class AuthorController extends Controller
 {
     /**

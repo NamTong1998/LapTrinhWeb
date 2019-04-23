@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -107,6 +108,11 @@ class ArticleController extends Controller
         $article->category_id = $request->get('category');
         $article->summary = $request->get('summary');
         $article->content = $request->get('content');
+        if($request->hasFile('image'))
+        {
+            $path = Storage::disk('public')->put(self::IMG_ART, $request->image);
+            $article->image = $path;
+        }
 
         $article->save();
 
