@@ -25,14 +25,15 @@
                             <thead>
                                 <tr>
                                     <th> ID </th>
-                                    <th>Username</th>
-                                    <th>Name</th>
+                                    <th> Profile Picture </th>
+                                    <th> Username </th>
+                                    <th> Name </th>
                                     <th> Gender </th>
-                                    <th>Affiliation</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Country</th>
-                                    <th>Delete</th>
+                                    <th> Affiliation </th>
+                                    <th> Phone </th>
+                                    <th> Email </th>
+                                    <th> Country </th>
+                                    <th> Delete </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,6 +41,7 @@
                                 
                                 <tr>
                                     <td> {{ $user->id }} </td>
+                                    <td> <img style="width: 30%; height: 30%;" src="{{ asset('/storage/'.$user->image) }}" /> </td>
                                     <td>{{ $user->user_name }}</td>
                                     <td>{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</td>
                                     <td> {{ $user->gender }} </td>

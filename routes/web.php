@@ -43,6 +43,12 @@ Route::get('admin/category/edit/{id}', 'Admin\ArticleCategoryController@edit')->
 Route::post('admin/category/update/{id}', 'Admin\ArticleCategoryController@update')->name('admin_category_update');
 Route::post('admin/category/delete/{id}', 'Admin\ArticleCategoryController@destroy')->name('admin_category_delete');
 
+//Author Routing
+Route::get('author/index', function(){
+    return view('layouts.author.layout');
+})->name('author_index');
+Route::get('author/article/create', 'Author\CreationController@index')->name('author_article_create');
+
 //Home Routing
 Route::get('home/index', 'Home\MainController@index')->name('home_index');
 Route::get('home/main', 'Home\MainController@getData')->name('home_main');

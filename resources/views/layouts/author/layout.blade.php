@@ -66,7 +66,7 @@ desired effect
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Author</b>Page</span>
     </a>
 
     <!-- Header Navbar -->
@@ -277,45 +277,21 @@ desired effect
           <ul class="treeview-menu">
             <li><a href="{{ route('home_index') }}"><i class="fa fa-home"></i><span> Home Index </span></a></li>
             <li><a href="{{ route('home_main') }}"><i class="fa fa-home"></i><span> Home Main </span></a></li>
-            <li><a href="{{ route('author_index') }}"><i class="fa fa-text-height"></i><span> Author Creation </span></a></li>
+            @if( Auth::user()->is_admin === 1 )
+            <li><a href="{{ route('admin_index') }}"><i class="fa fa-thumbs-o-up"></i><span> Admin Page </span></a></li>
+            @endif
           </ul>
         </li>
 
-        
         <li class="treeview">
-          <a href="#"><i class="fa fa-file-text-o"></i> <span>Content Management</span>
+          <a href="#"><i class="fa fa-text-height"></i> <span> Article </span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-newspaper-o"></i><span>Article Management</span></a></li>
-            <li><a href="{{ route('admin_category_list') }}"><i class="fa fa-file-text"></i><span>Article Category Management</span></a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-commenting-o"></i> <span>Comment Management</span>
-            <span class="pull-right-container"></span>
-          </a>
-        </li>
-        
-        <li class="treeview">
-          <a href="#"><i class="fa fa-th"></i> <span>Video Management</span>
-            <span class="pull-right-container"></span>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>User Management</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('admin_users_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
-            <li><a href="{{ route('admin_users_create') }}"><i class="glyphicon glyphicon-plus-sign"></i><span>Create</span></a></li>
-            <li><a href="{{ route('admin_role_list') }}"><i class="fa fa-lock"></i><span> User's Role Management</span></a></li>
-            <li><a href="{{ route('admin_users_role') }}"><i class="fa fa-lock"></i><span>Role Management</span></a></li>
+            <li><a href="{{ route('author_article_create') }}"><i class="fa fa-file"></i><span> Create </span></a></li>
+            <li><a href="#"><i class="fa fa-list-ol"></i><span> List </span></a></li>
           </ul>
         </li>
 

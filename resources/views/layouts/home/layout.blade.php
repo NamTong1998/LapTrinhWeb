@@ -77,6 +77,14 @@
                                     </a>
                                 </div>
                                 @endif
+
+                                @if(Auth::user()->role->name === "Author")
+                                <div>
+                                    <a class="dropdown-item" href="{{ route('author_index') }}">
+                                        Go to Author Page
+                                    </a>
+                                </div>
+                                @endif
                                 <div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
