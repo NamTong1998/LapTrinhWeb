@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Session;
 use App\Models\Category;
 
-class CreationController extends Controller
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
