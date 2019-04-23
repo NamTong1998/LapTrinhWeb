@@ -20,12 +20,13 @@
 </div>
 <div class="col-md-12" style="margin-top: 50px; margin-left: -15px;">
 	<div class="section-title">
-		<h2 class="title"><a href=""> Headlight </a></h2>
+		<h2 class="title"><a href=""> Newest </a></h2>
 	</div>
 	<div class="post post-row">
 		<a class="post-img" href="blog-post.html"><img src="./img/post-13.jpg" alt=""></a>
 		<div class="post-body">
 			<div class="post-category">
+
 				<a href="#">Travel</a>
 				<a href="#">Lifestyle</a>
 			</div>
@@ -35,17 +36,44 @@
 				<li>20 April 2018</li>
 			</ul>
 			<p> Hello. I'm fine.Thank you. And you? </p>
+
+				
+				<a href="category.html">{{ $article1->category->name }}</a>
+			</div>
+			<h3 class="post-title"><a href="{{route('')}}">{{$article1->summary}}</a></h3>
+			<ul class="post-meta">
+				<li><a href="author.html">{{$article1->user->user_name}}</a></li>
+				<li>{{$article1->created_at}}</li>
+			</ul>
+			<p>{!! $article1->content !!} </p>
+
 		</div>
 	</div>
 </div>
 @endsection
 
 @section('content')
-<div class="col-md-12" style="margin-bottom: 50px; margin-left: -15px;">
+<div class="col-md-12" style="margin-bottom: 50px;  margin-left: -10px;">
 	<div class="section-title">
-		<h2 class="title"><a href=""> Headlight </a></h2>
+		<h2 class="title"><a href=""> Highlight </a></h2>
 	</div>
 
+	@foreach( $article2 as $item )
+	<a href="blog-post.html"><img style="width: 85% ;height: auto;" src="./img/post-13.jpg" alt=""></a>
+	<div class="panel-body">
+		<div class="post-category">
+				
+				<a href="category.html">{{ $item->category->name }}</a>
+			</div>
+			<h3 class="post-title"><a href="#">{{$item->summary}}</a></h3>
+			<ul class="post-meta">
+				<li><a href="author.html">{{$item->user->user_name}}</a></li>
+				<li>{{$item->created_at}}</li>
+			</ul>
+		
+		
+	</div>
+	@endforeach
 </div>
 
 

@@ -60,6 +60,14 @@ Create a New Category
                 <input type="file" name= "image" accept="image/*" class="form-control"  />
             </div>
 
+            <div class="form-group">
+                <label> Article Highlight </label>
+                <select class="form-control" name="is_highlight">
+                    <option value="0"> No</option>
+                    <option value="1">Yes</option>
+                </select>         
+            </div>
+
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary"> Create </button>
             </div>

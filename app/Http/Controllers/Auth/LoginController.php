@@ -9,9 +9,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\UserHistory;
+<<<<<<< HEAD
 use Carbon\Carbon;
 use App\Models\Category;
 use App\Models\Article;
+=======
+use Carbon\Carbon;// time
+use App\Models\Category;
+
+>>>>>>> ce8bc8c52a777f221a38f6109bbcfea6b9a62960
 
 class LoginController extends Controller
 {
@@ -43,6 +49,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+       
     }
 
     protected function redirectTo()
@@ -76,9 +83,15 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
+<<<<<<< HEAD
       $categories = Category::all();
       $articles = Article::all();
       return view('auth.login', ['categories' => $categories, 'articles' => $articles]);
+=======
+      $categories= Category::all();
+        return view('auth.login',['categories'=>$categories]);
+
+>>>>>>> ce8bc8c52a777f221a38f6109bbcfea6b9a62960
     }
 
     /**
