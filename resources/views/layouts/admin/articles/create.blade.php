@@ -56,8 +56,8 @@ Create a New Category
             </div>
 
             <div class="form-group">
-                <label> Image</label>
-                <input type="file" name= "image" class="form-control"  />
+                <label> Image: </label>
+                <input type="file" name= "image" accept="image/*" class="form-control"  />
             </div>
 
             <div class="box-footer">

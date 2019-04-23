@@ -20,9 +20,9 @@
 </div>
 <div class="col-md-12" style="margin-top: 50px; margin-left: -15px;">
 	<div class="section-title">
-		<h2 class="title"><a href="">Giới thiệu hiệp hội</a></h2>
+		<h2 class="title"><a href=""> Headlight </a></h2>
 	</div>
-	<div class="post post-row" ">
+	<div class="post post-row">
 		<a class="post-img" href="blog-post.html"><img src="./img/post-13.jpg" alt=""></a>
 		<div class="post-body">
 			<div class="post-category">

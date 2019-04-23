@@ -41,7 +41,7 @@
                                 
                                 <tr>
                                     <td> {{ $user->id }} </td>
-                                    <td> <img style="width: 30%; height: 30%;" src="{{ asset('/storage/'.$user->image) }}" /> </td>
+                                    <td> <img style="width: 50px; height: auto;" src="{{ asset('/storage/'.$user->image) }}" /> </td>
                                     <td>{{ $user->user_name }}</td>
                                     <td>{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</td>
                                     <td> {{ $user->gender }} </td>

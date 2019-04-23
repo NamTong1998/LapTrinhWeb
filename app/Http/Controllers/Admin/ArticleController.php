@@ -4,16 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\Article;
 use App\Models\Category;
+
 use App\Models\User;
+
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Storage;
 
 
 class ArticleController extends Controller
 {
-    const IMG_ART = "article_image";
+    const IMG_ART = 'article_image';
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +27,7 @@ class ArticleController extends Controller
     { 
         
         $article = Article::all();
-         return view('layouts.admin.articles.list',['article'=>$article]);
+        return view('layouts.admin.articles.list',['article'=>$article]);
     }
 
     /**
@@ -45,26 +49,26 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        
         $request->validate([
-            'summary' => 'required|unique:articles',
-            'content' =>'required|min:20'
+            'summary' => 'required',
+            'content' => 'required',
         ]);
 
         $article = new Article();
-        $article->category_id = $request->get('category');
         $article->summary = $request->get('summary');
         $article->content = $request->get('content');
+        $article->category_id = $request->get('category');
+        $article->user_id = Auth::user()->id;
 
-        if($request->hasFile('image'))
-        {
-            $path = Storage::disk('public')->put(self::IMG_ART, $request->image);
+        if( $request->hasFile('image') )
+        { 
+            $path = Storage::disk('public')->put( self::IMG_ART, $request->image );
             $article->image = $path;
         }
 
         $article->save();
 
-        return redirect()->route('admin_article_list')->with('success', 'A new Article has been created.');
+        return redirect()->route('admin_article_list')->with('success', 'A new Article has been created');
     }
 
     /**
