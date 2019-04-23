@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\UserHistory;
-use Carbon\Carbon;
+use Carbon\Carbon;// time
+use App\Models\Category;
+
 
 class LoginController extends Controller
 {
@@ -41,6 +43,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+       
     }
 
     protected function redirectTo()
@@ -74,7 +77,9 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login');
+      $categories= Category::all();
+        return view('auth.login',['categories'=>$categories]);
+
     }
 
     /**

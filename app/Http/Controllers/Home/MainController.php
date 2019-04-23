@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Session;
+use App\Models\Category;
+use App\Models\Article;
+use Illuminate\Database\Eloquent\Builder;
+
+
 
 class MainController extends HomeController
 {
@@ -16,7 +21,12 @@ class MainController extends HomeController
 
 	public function getData()
 	{
-		return view('layouts.home.main');
+		$category = Category::all();
+		$article1 = Article::all()->last();
+		$article2 = Article::all()->where('is_highlight', '1')->take(2);
+		
+
+		return view('layouts.home.main',[ 'category'=>$category,'article1'=>$article1,'article2'=>$article2]);
 	}
 
 	public function getNews()
@@ -24,9 +34,10 @@ class MainController extends HomeController
 		return view('layouts.home.news');
 	}
 
-	public function getNewsDetail($slug)
+	public function getNewsDetail($id)
 	{
-		return view('layouts.home.news_detail');
+		$article = Article::find($id);
+		return view('layouts.home.news_detail', ['article' => $article]);
 	}
 
 	public function getNewsByCategory($slug)

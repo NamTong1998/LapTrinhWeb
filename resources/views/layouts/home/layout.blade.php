@@ -66,7 +66,7 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <a class="dropdown-item" href="{{ rout  e('home_changepassword_view') }}">
+                                    <a class="dropdown-item" href="{{ route('home_changepassword_view') }}">
                                         Change Password
                                     </a>
                                 </div>
@@ -124,7 +124,18 @@
             <div class="container">
                 <!-- nav -->
                 <ul class="nav-menu">
-                    
+                    @foreach($categories as $category)
+                    <li class="has-dropdown">
+                            <a href="#">{{ $category->name }}</a>
+                            <div class="dropdown">
+                                <div class="dropdown-body">
+                                    <ul class="dropdown-list">
+                                         
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
                 <!-- /nav -->
             </div>
@@ -160,19 +171,24 @@
     <div class="container">
         <!-- row -->
         <div class="row">
+
             <div class="col-md-8">
                 @yield('content')
             </div>
+
+
+
             <div class="col-md-4">
-                <h3 class="module-title "><span> Slideshow </span></h3>
-                <!-- Right Side Of Navbar -->
+                <h3 class="module-title "><span> Other News </span></h3>
+                
                 <div id="slideshow">
-                    
+                    <ul>
+                        @foreach( $articles as $item )
+                        <li> <a> <i class="fa fa-share-alt"> </i> {{ $item->summary }} </a> </li> <br/>
+                        @endforeach
+                    </ul>
                 </div>
 
-                <div id="slideshow_1">
-                
-                </div>
             </div>
         </div>
         <!-- /row -->
@@ -189,15 +205,7 @@
 
         <!-- row -->
         <div class="footer-bottom row">
-            <!-- <div class="col-md-6 col-md-push-6">
-                <ul class="footer-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contacts</a></li>
-                    <li><a href="#">Advertise</a></li>
-                    <li><a href="#">Privacy</a></li>
-                </ul>
-            </div> -->
+          
             <div class="col-md-6 col-md-push-3 text-center">
                 <div class="footer-copyright">
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

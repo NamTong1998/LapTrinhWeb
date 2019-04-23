@@ -57,6 +57,19 @@ Create a New Category
                 <input type="file" name= "image" class="form-control"  />
             </div>
 
+            <div class="form-group">
+                <label> Article Highlight </label>
+                <select class="form-control" name="is_highlight">
+                    @if($article->is_highlight === 1)
+                    <option value="0"> No </option>
+                    <option value="1" selected="selected"> Yes </option>
+                    @else
+                    <option value="0" selected="selected"> No </option>
+                    <option value="1"> Yes </option>
+                    @endif
+                </select>         
+            </div>
+
 
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary"> Update </button>
@@ -65,6 +78,7 @@ Create a New Category
 
     </form>
 </div>
+@endsection
 
 @section('js')
 <script src="{{ asset('js/lib/summernote/dist/summernote.min.js') }}"></script>

@@ -49,7 +49,7 @@ class CommentController extends Controller
         $comment->category_id = $request->get('category');
         $comment->summary = $request->get('summary');
         $comment->content = $request->get('content');
-
+        //$comment->user_id = Auth::user()->id;
         $comment->save();
 
         return redirect()->route('admin_comment_list')->with('success', 'A new comment has been created.');
