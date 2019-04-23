@@ -283,30 +283,30 @@ desired effect
 
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-file-text-o"></i> <span>Content Management</span>
+          <a href="#"><i class="fa fa-file-text-o"></i> <span>Content </span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('admin_article_list') }}"><i class="fa fa-newspaper-o"></i><span>Article Management</span></a></li>
-            <li><a href="{{ route('admin_category_list') }}"><i class="fa fa-file-text"></i><span>Article Category Management</span></a></li>
+            <li><a href="{{ route('admin_article_list') }}"><i class="fa fa-newspaper-o"></i><span>Article</span></a></li>
+            <li><a href="{{ route('admin_category_list') }}"><i class="fa fa-file-text"></i><span> Category </span></a></li>
           </ul>
         </li>
 
         <li class="treeview">
-          <a href="{{ route('admin_comment_list') }}"><i class="fa fa-commenting-o"></i> <span>Comment Management</span>
+          <a href="{{ route('admin_comment_list') }}"><i class="fa fa-commenting-o"></i> <span>Comment</span>
             <span class="pull-right-container"></span>
           </a>
         </li>
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-th"></i> <span>Video Management</span>
+          <a href="#"><i class="fa fa-th"></i> <span>Video </span>
             <span class="pull-right-container"></span>
           </a>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>User Management</span>
+          <a href="#"><i class="fa fa-user"></i> <span>User </span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -314,8 +314,8 @@ desired effect
           <ul class="treeview-menu">
             <li><a href="{{ route('admin_users_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
             <li><a href="{{ route('admin_users_create') }}"><i class="glyphicon glyphicon-plus-sign"></i><span>Create</span></a></li>
-            <li><a href="{{ route('admin_role_list') }}"><i class="fa fa-lock"></i><span> User's Role Management</span></a></li>
-            <li><a href="{{ route('admin_users_role') }}"><i class="fa fa-lock"></i><span>Role Management</span></a></li>
+            <li><a href="{{ route('admin_role_list') }}"><i class="fa fa-lock"></i><span> User's Role </span></a></li>
+            <li><a href="{{ route('admin_users_role') }}"><i class="fa fa-lock"></i><span>Role </span></a></li>
           </ul>
         </li>
 

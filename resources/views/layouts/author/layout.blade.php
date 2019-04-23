@@ -290,8 +290,8 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('author_article_create') }}"><i class="fa fa-file"></i><span> Create </span></a></li>
-            <li><a href="#"><i class="fa fa-list-ol"></i><span> List </span></a></li>
+            <li><a href="{{ route('author_create') }}"><i class="fa fa-file"></i><span> Create </span></a></li>
+            <li><a href="{{ route('author_list') }}"><i class="fa fa-list-ol"></i><span> List </span></a></li>
           </ul>
         </li>
 

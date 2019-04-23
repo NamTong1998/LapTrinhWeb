@@ -1,34 +1,27 @@
-@extends('layouts.admin.layout')
+@extends('layouts.author.layout')
 @section('title','Category Management')
 
 @section('css')
-
+<link href="{{ asset('js/lib/summernote/dist/summernote.css') }}" rel="stylesheet">
+<link href="{{ asset('admin/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet">
+<link href="{{ asset('admin/dist/css/AdminLTE.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('page-header')
-Create a New Category
+Create a Article
 @endsection
 
 @section('content')
 <div class="box box-primary">
-    <div class="box-header with-border">
-        <div class="col-md-4">
-                <h3 class="box-title">Edit a Article</h3>
-        </div>
-        <div class="col-md-2 col-md-offset-6">
-            <a href="{{ route('admin_article_list') }}" class="btn btn-block btn-info">
-                Article List
-            </a>
-        </div>
-    </div>
-    <form method="post" action="{{ route('admin_article_update', ['id' => $article->id] )}}">
+   
+    <form method="post" action="{{ route('author_store') }}">
         @csrf
         <div class="box-body">
 
             <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
                 <label for="cat"> Category*: </label>
                 <select class = "form-control {{ $errors->has('category') ? 'has-error' : '' }}" name = "category">
-                    @foreach($categories as $item)
+                    @foreach($category as $item)
                     <option value="{{ $item->id }}"> {{ $item->name }} </option> 
                     @endforeach
                 </select>
@@ -36,17 +29,18 @@ Create a New Category
                     <span class="help-block">{{ $errors->first('category') }}</span>
                 @endif
             </div>
+
             <div class="form-group {{ $errors->has('summary') ? 'has-error' : '' }}">
                 <label for="sum"> Summary*: </label>
-                <input id="sum" type="text" class="form-control" name="summary" required value="{{ $article->summary }}">
+                <input id="sum" type="text" class="form-control" name="summary" required value="{{ old('summary')}}">
                 @if ($errors->has('summary'))
                     <span class="help-block">{{ $errors->first('summary') }}</span>
                 @endif
             </div>
             
-            <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
-                <label for="cont"> Content*: </label>
-                <textarea id="cont" type="text" class="form-control" name="content" required value="{{ $article->content }}"> </textarea>
+            <div class="form-group {{ $errors->first('content') ? 'has-error' : ''}}">
+                <label for="content"> Content*: </label>
+                <textarea name="content" id="content" class="form-control" rows="10" placeholder="Enter content ..."> {{ old('content') }} </textarea>
                 @if ($errors->has('content'))
                     <span class="help-block">{{ $errors->first('content') }}</span>
                 @endif
@@ -57,14 +51,14 @@ Create a New Category
                 <input type="file" name= "image" class="form-control"  />
             </div>
 
-
             <div class="box-footer">
-                <button type="submit" class="btn btn-primary"> Update </button>
+                <button type="submit" class="btn btn-primary"> Create </button>
             </div>
         </div>
 
     </form>
 </div>
+@endsection
 
 @section('js')
 <script src="{{ asset('js/lib/summernote/dist/summernote.min.js') }}"></script>
