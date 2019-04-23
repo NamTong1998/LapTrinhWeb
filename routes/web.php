@@ -63,7 +63,6 @@ Route::post('admin/comment/delete/{id}', 'Admin\CommentController@destroy')->nam
 
 
 //Author Routing
-
 Route::get('author/index', 'Author\AuthorController@index')->name('author_index');
 Route::get('author/list', 'Author\AuthorController@index')->name('author_list');
 Route::get('author/create', 'Author\AuthorController@create')->name('author_create');
@@ -71,9 +70,6 @@ Route::post('author/store', 'Author\AuthorController@store')->name('author_store
 Route::get('author/edit/{id}', 'Author\AuthorController@edit')->name('author_edit');
 Route::post('author/update/{id}', 'Author\AuthorController@update')->name('author_update');
 Route::post('author/delete/{id}', 'Author\AuthorController@destroy')->name('author_delete');
-
-
-
 
 //Home Routing
 Route::get('home/index', 'Home\MainController@index')->name('home_index');

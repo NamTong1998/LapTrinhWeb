@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
 use App\Models\Category;
+
 use App\Models\Article;
-
-
 
 class AuthorController extends Controller
 {
@@ -19,7 +18,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        
+
         return view('layouts.author.layout');
     }
 
@@ -30,6 +29,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
+
         $category = Category::all();
         return view('layouts.author.create', ['category' => $category]);
     }
@@ -42,6 +42,7 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'summary' => 'required|unique:articles',
             'content' =>'required|min:20'
@@ -61,6 +62,7 @@ class AuthorController extends Controller
         $author->save();
 
         return redirect()->route('author_list')->with('success', 'A new Article has been created.');
+
     }
 
     /**
@@ -82,6 +84,7 @@ class AuthorController extends Controller
      */
     public function edit($id)
     {
+
         $categories = Category::all();
         $author = Article::find($id);
         return view('layouts.author.edit', ['author' => $author,'categories' => $categories]);
@@ -96,6 +99,7 @@ class AuthorController extends Controller
      */
     public function update(Request $request, $id)
     {
+
          $request->validate([
             'summary' => 'required|unique:articles',
             'content' =>'required|min:20'
@@ -125,6 +129,7 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
+
         $article = Article::find($id);
         $article->delete();
 
