@@ -18,8 +18,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-
-        return view('layouts.author.layout');
+        $author= Article::all();
+        return view('layouts.author.list',['author' =>$author]);
     }
 
     /**
@@ -52,6 +52,7 @@ class AuthorController extends Controller
         $author->category_id = $request->get('category');
         $author->summary = $request->get('summary');
         $author->content = $request->get('content');
+        $author->is_highlight= 0;
 
         if($request->hasFile('image'))
         {

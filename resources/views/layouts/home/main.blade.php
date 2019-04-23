@@ -20,57 +20,51 @@
 </div>
 <div class="col-md-12" style="margin-top: 50px; margin-left: -15px;">
 	<div class="section-title">
-		<h2 class="title"><a href=""> Headlight </a></h2>
+		<h2 class="title"><a href=""> Newest </a></h2>
 	</div>
 	<div class="post post-row">
 		<a class="post-img" href="blog-post.html"><img src="./img/post-13.jpg" alt=""></a>
 		<div class="post-body">
 			<div class="post-category">
-				<a href="category.html">Travel</a>
-				<a href="category.html">Lifestyle</a>
+				
+				<a href="category.html">{{ $article1->category->name }}</a>
 			</div>
-			<h3 class="post-title"><a href="blog-post.html">Mel ut impetus suscipit tincidunt. Cum id ullum laboramus persequeris.</a></h3>
+			<h3 class="post-title"><a href="{{route('')}}">{{$article1->summary}}</a></h3>
 			<ul class="post-meta">
-				<li><a href="author.html">John Doe</a></li>
-				<li>20 April 2018</li>
+				<li><a href="author.html">{{$article1->user->user_name}}</a></li>
+				<li>{{$article1->created_at}}</li>
 			</ul>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+			<p>{!! $article1->content !!} </p>
 		</div>
 	</div>
 </div>
 @endsection
+
 @section('content')
-<div class="col-md-12" style="margin-bottom: 50px; margin-left: -15px;">
+<div class="col-md-12" style="margin-bottom: 50px;  margin-left: -10px;">
 	<div class="section-title">
-		<h2 class="title"><a href="">Tin tức nổi bật</a></h2>
+		<h2 class="title"><a href=""> Highlight </a></h2>
 	</div>
 
+	@foreach( $article2 as $item )
+	<a href="blog-post.html"><img style="width: 85% ;height: auto;" src="./img/post-13.jpg" alt=""></a>
+	<div class="panel-body">
+		<div class="post-category">
+				
+				<a href="category.html">{{ $item->category->name }}</a>
+			</div>
+			<h3 class="post-title"><a href="#">{{$item->summary}}</a></h3>
+			<ul class="post-meta">
+				<li><a href="author.html">{{$item->user->user_name}}</a></li>
+				<li>{{$item->created_at}}</li>
+			</ul>
+		
+		
+	</div>
+	@endforeach
 </div>
 
-<div class="col-md-12" style="margin-bottom: 50px; margin-left: -15px;">
-	<div class="section-title">
-		<h2 class="title"><a href="">Sự kiện nổi bật</a></h2>
-	</div>
-	
-</div>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12 khoito" >
-			<div class="col-md-3 khoinho">
-				Link
-			</div>
-			<div class="col-md-3 khoinho">
-				Other Menu
-			</div>
-			<div class="col-md-3 khoinho">
-				Contact us
-			</div>
-			<div class="col-md-3 khoinho">
-				Facebook
-			</div>
-		</div>
-	</div>
-</div>
+
 
 @endsection
 

@@ -58,12 +58,31 @@ class ArticleController extends Controller
         $article->summary = $request->get('summary');
         $article->content = $request->get('content');
         $article->category_id = $request->get('category');
+        $article->is_highlight = $request->get('is_highlight');
         $article->user_id = Auth::user()->id;
 
-        if( $request->hasFile('image') )
-        { 
-            $path = Storage::disk('public')->put( self::IMG_ART, $request->image );
-            $article->image = $path;
+        
+        if($request->hasFile('image'))
+        {
+            $file= $request->file('image');
+            $duoi=$file->getClientOriginalExtension();
+            if( $duoi !='jpg'&& $duoi !='png'&& $duoi !='jpeg')
+            {
+                redirect()->route('admin_article_create')->with('thongbao','Bạn chỉ được thêm ảnh .jpg ,png,jpeg');
+            }
+            $name= $file->getClientOriginalName();//lấy tên ảnh
+            $image=str_random(4)."_".$name;// gán random tên ảnh
+            // khÔng trùng tên ảnh
+            while(file_exists("public/upload/articles/".$image))
+            {
+                $image=str_random(4)."_".$name;
+            }
+            $file->move("upload/articles",$image);
+            $article->image=$image;
+        }
+        else
+        {
+            $article->image= "";
         }
 
         $article->save();
@@ -112,6 +131,7 @@ class ArticleController extends Controller
         $article->category_id = $request->get('category');
         $article->summary = $request->get('summary');
         $article->content = $request->get('content');
+        $article->is_highlight = $request->get('is_highlight');
         if($request->hasFile('image'))
         {
             $path = Storage::disk('public')->put(self::IMG_ART, $request->image);

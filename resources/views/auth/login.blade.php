@@ -1,4 +1,4 @@
-@extends('layouts.home.layout')
+ @extends('layouts.home.layout')
 @section('css')
     <script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>
 @endsection
