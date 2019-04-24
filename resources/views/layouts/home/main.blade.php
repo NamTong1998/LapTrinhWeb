@@ -26,27 +26,15 @@
 		<a class="post-img" href="blog-post.html"><img src="./img/post-13.jpg" alt=""></a>
 		<div class="post-body">
 			<div class="post-category">
-
-				<a href="#">Travel</a>
-				<a href="#">Lifestyle</a>
-			</div>
-			<h3 class="post-title"><a href="blog-post.html"> Hello World </a></h3>
-			<ul class="post-meta">
-				<li>John Doe</li>
-				<li>20 April 2018</li>
-			</ul>
-			<p> Hello. I'm fine.Thank you. And you? </p>
-
 				
 				<a href="category.html">{{ $article1->category->name }}</a>
 			</div>
-			<h3 class="post-title"><a href="{{route('')}}">{{$article1->summary}}</a></h3>
+			<h3 class="post-title"><a href="">{{$article1->summary}}</a></h3>
 			<ul class="post-meta">
 				<li><a href="author.html">{{$article1->user->user_name}}</a></li>
 				<li>{{$article1->created_at}}</li>
 			</ul>
 			<p>{!! $article1->content !!} </p>
-
 		</div>
 	</div>
 </div>

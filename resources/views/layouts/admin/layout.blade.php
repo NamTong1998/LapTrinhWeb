@@ -299,7 +299,6 @@ desired effect
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
-
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('admin_comment_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
