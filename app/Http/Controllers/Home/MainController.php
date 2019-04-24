@@ -25,7 +25,7 @@ class MainController extends HomeController
 	{
 		$category = Category::all();
 		$article1 = Article::all()->last();
-		$article2 = Article::all()->where('is_highlight', '1')->take(2);
+		$article2 = Article::all()->where('is_highlight', '1')->take(3);
 		
 
 		return view('layouts.home.main',[ 'category'=>$category,'article1'=>$article1,'article2'=>$article2]);
@@ -40,6 +40,7 @@ class MainController extends HomeController
 	{
 		$article = Article::find($id);
 		$comment= Comment::all()->where('article_id', $id);
+		
 		return view('layouts.home.news_detail', ['article' => $article,'comment'=>$comment]);
 	}
 
