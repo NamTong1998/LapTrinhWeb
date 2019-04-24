@@ -41,7 +41,11 @@
             <div class="container">
                 <!-- logo -->
                 <div class="nav-logo">
+<<<<<<< HEAD
                     <a href="{{ route('home_main') }}" class="logo"><img src="{{ asset('home/img/banner.jpg') }}" alt=""></a>
+=======
+                    <a href="{{route('home_main')}}" class="logo"><img src="{{ asset('home/img/banner.jpg') }}" alt=""></a>
+>>>>>>> 7f107b97361172ba1715f3757c11d4a835236130
                 </div>
                 <!-- /logo -->
 
@@ -56,25 +60,25 @@
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->user_name }} <span class="caret"></span>
+                             <i class="fa fa-user"></i>   {{ Auth::user()->user_name }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <div>
                                     <a class="dropdown-item" href="{{ route('home_profile_view') }}">
-                                        My Profile
+                                         <i class="fa fa-folder-open"> </i> &nbsp;&nbsp; My Profile
                                     </a>
                                 </div>
                                 <div>
                                     <a class="dropdown-item" href="{{ route('home_changepassword_view') }}">
-                                        Change Password
+                                        <i class="fa fa-lock"> </i> &nbsp;&nbsp; Change Password
                                     </a>
                                 </div>
 
                                 @if(Auth::user()->is_admin === 1)
                                 <div>
                                     <a class="dropdown-item" href="{{ route('admin_index') }}">
-                                        Go to Admin Page
+                                        <i class="fa  fa-thumbs-o-up"> </i> &nbsp;&nbsp; Go to Admin Page
                                     </a>
                                 </div>
                                 @endif
@@ -83,7 +87,7 @@
                                 @if(Auth::user()->role->name === "Author")
                                 <div>
                                     <a class="dropdown-item" href="{{ route('author_index') }}">
-                                        Go to Author Page
+                                        <i class="fa   fa-pencil"> </i> &nbsp;&nbsp; Go to Author Page
                                     </a>
                                 </div>
                                 @endif
@@ -93,7 +97,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                       <i class="fa fa-power-off"> </i> &nbsp;&nbsp; {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -123,15 +127,23 @@
         <div id="nav-bottom">
             <div class="container">
                 <!-- nav -->
+               
                 <ul class="nav-menu">
+
                     <li><a class="btn btn-primary" href="{{ route('home_main') }}"><i class="fa fa-home"></i> Home </a>  </li>
+
                     @foreach($categories as $category)
                     <li class="has-dropdown">
                             <a href="#">{{ $category->name }}</a>
                             <div class="dropdown">
                                 <div class="dropdown-body">
                                     <ul class="dropdown-list">
-                                         
+                                        @foreach($articles as $item )
+                                            @if($item->category_id === $category->id)
+                                            <li> <a href="{{route('home_newsDetail', ["id" => $item->id]) }}"> {{$item -> summary}}   </a> </li>
+                                            @endif
+                                        @endforeach
+                                       
                                     </ul>
                                 </div>
                             </div>
@@ -185,7 +197,7 @@
                 <div id="slideshow">
                     <ul>
                         @foreach( $articles as $item )
-                        <li> <a> <i class="fa fa-share-alt"> </i> {{ $item->summary }} </a> </li> <br/>
+                        <li> <a href="{{ route('home_newsDetail', ["id" => $item->id]) }}"> <i class="fa fa-tags"> </i> {{ $item->summary }} </a> </li> <br/>
                         @endforeach
                     </ul>
                 </div>
