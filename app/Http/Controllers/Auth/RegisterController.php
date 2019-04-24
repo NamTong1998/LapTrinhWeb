@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Article;
 
-
 class RegisterController extends Controller
 {
     /*
@@ -87,6 +86,6 @@ class RegisterController extends Controller
     {
         $categories = Category::all();
         $articles = Article::all();
+
         return view('auth.register',['categories'=>$categories, 'articles' => $articles]);
-    }
 }
