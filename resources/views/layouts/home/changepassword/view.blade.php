@@ -82,7 +82,7 @@
                             </button>
                         </div>
                         <div class="col-md-2 col-md-offset-2">
-                            <a href="{{ route('home_page') }}" class="btn btn-danger btn-block rounded-0 py-2">
+                            <a href="{{ route('home_index') }}" class="btn btn-danger btn-block rounded-0 py-2">
                                 Cancel
                             </a>
                         </div>
