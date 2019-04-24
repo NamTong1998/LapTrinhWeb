@@ -76,10 +76,9 @@ Route::get('home/index', 'Home\MainController@index')->name('home_index');
 Route::get('home/main', 'Home\MainController@getData')->name('home_main');
 Route::post('home/main/search', 'Home\MainController@searchPost')->name('home_search');
 
-Route::get('home/news', 'Home\MainController@getNews')->name('home-news');
+Route::get('home/news/category/{id}', 'Home\MainController@getNewsByCategory')->name('home_news_byCategory');
 Route::get('home/news/{id}', 'Home\MainController@getNewsDetail')->name('home_newsDetail');
-Route::get('home/news_category/{slug}', 'Home\MainController@getNewsByCategory')->name('home-news_category');
-Route::get('home/news_tags/{tag}', 'Home\MainController@getNewsByTag')->name('home_news_tag');
+Route::get('home/news/comment_delete/{id}', 'Admin\CommentController@deleteByUser')->name('home_newsDetail_comment_delete');
 
 Route::get('home/profile/view', 'Home\UserProfileController@index')->name('home_profile_view');
 Route::get('home/profile/edit/{id}', 'Home\UserProfileController@edit')->name('home_profile_edit');

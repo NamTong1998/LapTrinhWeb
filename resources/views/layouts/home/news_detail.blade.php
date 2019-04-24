@@ -21,7 +21,9 @@
 	<div class="section-title">
 		<h3 class="title"> Comments</h3>
 	</div>
-	<div style="overflow-y:scroll; height:210px;">
+
+	<div  style="overflow-y: scroll; height: 210px;">
+
 		<div class="post-comments">
 	        @foreach( $comment as $cm)
 	      
@@ -30,12 +32,42 @@
 				
 				<div class="media-body">
 					<div class="media-heading">
-						<img class="align-self-start mr-3" style="width: 30px; height: auto;" src="{{ asset('/storage/'.$cm->user->image) }}" >
-					
+
+						<img style="width: 30px; height:auto;" src="{{ asset('/storage/'.$cm->user->image) }}" alt="">
 						<h4 class="text-primary">{{ $cm->user->user_name }}</h4>
-						<small class="time">{{ $cm->created_at }}</small>
+						<span class="time"> {{ $cm->created_at }} </span>
+
 					</div>
-					 <p  class="text">{{ $cm->content }}</p>
+					<p>{{ $cm->content }}</p>
+					@if( $cm->user_id === Auth::user()->id )
+						<form method="post" action="{{ route('admin_comment_update', ['id'=> $cm->id ]) }}">
+                            @csrf
+                            <div class="modal fade" id="edit_comment_{{ $cm->id }}" role="dialog">
+                              <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <input type="hidden" name="article_id" value="{{ $article->id }}">
+									<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                    <textarea class="form-control" name="content"> {{ $cm->content }} </textarea>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary"> Save </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </form>
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_comment_{{ $cm->id }}"> Edit </button>
+
+						<a class="btn btn-danger" href="{{ route('home_newsDetail_comment_delete', ["id" => $cm->id]) }}"> Delete </a>
+					@endif
+
+					<h4> -------------------------------------------------------------------- </h4>
 				</div>
 			</div>
 			

@@ -31,11 +31,6 @@ class MainController extends HomeController
 		return view('layouts.home.main',[ 'category'=>$category,'article1'=>$article1,'article2'=>$article2]);
 	}
 
-	public function getNews()
-	{
-		return view('layouts.home.news');
-	}
-
 	public function getNewsDetail($id)
 	{
 		$article = Article::find($id);
@@ -44,18 +39,16 @@ class MainController extends HomeController
 		return view('layouts.home.news_detail', ['article' => $article,'comment'=>$comment]);
 	}
 
-	public function getNewsByCategory($slug)
+	public function getNewsByCategory($id)
 	{
-		return view('layouts.home.news_category');
+		$category1 = Category::find($id);
+		$articles1 = Article::all()->where('category_id', $category1->id);
+
+		return view('layouts.home.news_byCategory', ['articles1' => $articles1, 'category1' => $category1]);
 	}
 
-	public function getNewsByTag($tag)
+	public function search(Request $request)
 	{
-		return view('layouts.home.news_tag'); 
-	} 
 
-	public function searchPost(Request $request)
-	{
-        return view('layouts.home.search'); 
 	}
 }

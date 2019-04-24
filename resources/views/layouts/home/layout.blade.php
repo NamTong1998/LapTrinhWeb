@@ -41,7 +41,8 @@
             <div class="container">
                 <!-- logo -->
                 <div class="nav-logo">
-                    <a href="{{route('home_main')}}" class="logo"><img src="{{ asset('home/img/banner.jpg') }}" alt=""></a>
+
+                    <a href="{{ route('home_main') }}" class="logo"><img src="{{ asset('home/img/banner.jpg') }}" alt=""></a>
                 </div>
                 <!-- /logo -->
 
@@ -125,19 +126,18 @@
                 <!-- nav -->
                
                 <ul class="nav-menu">
-                    <li><a class="btn btn-primary" href="{{ route('home_main') }}"><i class="fa fa-home"> </i> Home </a></li>
+
+                    <li><a class="btn btn-primary" href="{{ route('home_main') }}"><i class="fa fa-home"></i> Home </a>  </li>
+
                     @foreach($categories as $category)
                     <li class="has-dropdown">
-                            <a href="#">{{ $category->name }}</a>
+                            <a href="{{ route('home_news_byCategory', ["id" => $category->id]) }}"> {{ $category->name }} </a>
                             <div class="dropdown">
                                 <div class="dropdown-body">
                                     <ul class="dropdown-list">
-                                        @foreach($articles as $item )
-                                            @if($item->category_id === $category->id)
-                                            <li> <a href="{{route('home_newsDetail', ["id" => $item->id]) }}"> {{$item -> summary}}   </a> </li>
-                                            @endif
+                                        @foreach($articles->where('category_id', $category->id)->take(4) as $item )
+                                            <li> <a href="{{route('home_newsDetail', ["id" => $item->id]) }}"> {{$item -> summary}} </a> </li>
                                         @endforeach
-                                       
                                     </ul>
                                 </div>
                             </div>
