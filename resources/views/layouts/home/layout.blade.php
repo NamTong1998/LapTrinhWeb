@@ -135,7 +135,7 @@
                             <div class="dropdown">
                                 <div class="dropdown-body">
                                     <ul class="dropdown-list">
-                                        @foreach($articles->where('category_id', $category->id)->shuffle()->take(4) as $item )
+                                        @foreach($articles->where('category_id', $category->id)->take(4) as $item )
                                             <li> <a href="{{route('home_newsDetail', ["id" => $item->id]) }}"> {{$item -> summary}} </a> </li>
                                         @endforeach
                                     </ul>
