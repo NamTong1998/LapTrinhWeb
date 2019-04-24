@@ -41,11 +41,8 @@
             <div class="container">
                 <!-- logo -->
                 <div class="nav-logo">
-<<<<<<< HEAD
+
                     <a href="{{ route('home_main') }}" class="logo"><img src="{{ asset('home/img/banner.jpg') }}" alt=""></a>
-=======
-                    <a href="{{route('home_main')}}" class="logo"><img src="{{ asset('home/img/banner.jpg') }}" alt=""></a>
->>>>>>> 7f107b97361172ba1715f3757c11d4a835236130
                 </div>
                 <!-- /logo -->
 
@@ -134,16 +131,13 @@
 
                     @foreach($categories as $category)
                     <li class="has-dropdown">
-                            <a href="#">{{ $category->name }}</a>
+                            <a href="{{ route('home_news_byCategory', ["id" => $category->id]) }}"> {{ $category->name }} </a>
                             <div class="dropdown">
                                 <div class="dropdown-body">
                                     <ul class="dropdown-list">
-                                        @foreach($articles as $item )
-                                            @if($item->category_id === $category->id)
-                                            <li> <a href="{{route('home_newsDetail', ["id" => $item->id]) }}"> {{$item -> summary}}   </a> </li>
-                                            @endif
+                                        @foreach($articles->where('category_id', $category->id)->shuffle()->take(4) as $item )
+                                            <li> <a href="{{route('home_newsDetail', ["id" => $item->id]) }}"> {{$item -> summary}} </a> </li>
                                         @endforeach
-                                       
                                     </ul>
                                 </div>
                             </div>

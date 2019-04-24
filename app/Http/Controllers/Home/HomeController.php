@@ -14,7 +14,8 @@ class HomeController extends Controller
 	public function __construct()
 	{
 		$categories = Category::all();
-		$articles = Article::all();
+		$articles = Article::all()->shuffle()->take(5);
+
 		View::share(['categories' => $categories, 'articles' => $articles]);
 	}
 

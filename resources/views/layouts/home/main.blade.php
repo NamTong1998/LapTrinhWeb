@@ -32,7 +32,7 @@
 
 			<h3 class="post-title"><a href="{{ route('home_newsDetail', ["id" => $article1->id]) }}">{{$article1->summary}}</a></h3>
 			<ul class="post-meta">
-				<li><a href="#">{{$article1->user->user_name}}</a></li>
+				<li>{{$article1->user->user_name}}</li>
 				<li>{{$article1->created_at}}</li>
 			</ul>
 			<p>{!! $article1->content !!} </p>

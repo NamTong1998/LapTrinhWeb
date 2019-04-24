@@ -40,8 +40,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-           
+        $request->validate([
             'content' =>'required'
         ]);
 
@@ -88,7 +87,17 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $request->validate([
+            'content' => 'required'
+        ]);
+
+        $comment = Comment::find($id);
+        $comment->content = $request->get('content');
+        $comment->article_id = $request->get('article_id');
+        $comment->user_id = $request->get('user_id');
+        $comment->save();
+
+        return redirect()->route('home_newsDetail', ["id" => $comment->article_id]);
     }
 
     /**
@@ -99,9 +108,17 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-         $comment = comment::find($id);
+        $comment = Comment::find($id);
         $comment->delete();
 
-        return redirect()->route('admin_article_list')->with('success', 'A comment has been removed.');
+        return redirect()->route('admin_comment_list')->with('success', 'A comment has been removed.');
+    }
+
+    public function deleteByUser($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
+
+        return redirect()->route('home_newsDetail', ["id" => $comment->article_id]);
     }
 }
