@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Session;
 use App\Models\Category;
 use App\Models\Article;
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
 
@@ -37,7 +39,8 @@ class MainController extends HomeController
 	public function getNewsDetail($id)
 	{
 		$article = Article::find($id);
-		return view('layouts.home.news_detail', ['article' => $article]);
+		$comment= Comment::all()->where('article_id', $id);
+		return view('layouts.home.news_detail', ['article' => $article,'comment'=>$comment]);
 	}
 
 	public function getNewsByCategory($slug)

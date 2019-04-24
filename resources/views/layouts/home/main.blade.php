@@ -29,7 +29,8 @@
 				
 				<a href="category.html">{{ $article1->category->name }}</a>
 			</div>
-			<h3 class="post-title"><a href="">{{$article1->summary}}</a></h3>
+
+			<h3 class="post-title"><a href="{{ route('home_newsDetail', ["id" => $article1->id]) }}">{{$article1->summary}}</a></h3>
 			<ul class="post-meta">
 				<li><a href="author.html">{{$article1->user->user_name}}</a></li>
 				<li>{{$article1->created_at}}</li>
