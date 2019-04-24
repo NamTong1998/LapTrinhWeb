@@ -41,10 +41,10 @@ class MainController extends HomeController
 
 	public function getNewsByCategory($id)
 	{
-		$category = Category::find($id);
-		$articles = Article::all()->where('category_id', $category->id);
+		$category1 = Category::find($id);
+		$articles1 = Article::all()->where('category_id', $category1->id);
 
-		return view('layouts.home.news_byCategory', ['articles' => $articles, 'category' => $category]);
+		return view('layouts.home.news_byCategory', ['articles1' => $articles1, 'category1' => $category1]);
 	}
 
 	public function search(Request $request)

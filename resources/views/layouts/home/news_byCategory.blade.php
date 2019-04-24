@@ -1,5 +1,5 @@
 @extends('layouts.home.layout')
-@section('title','News in '.$category->name)
+@section('title','News in '.$category1->name)
 @section('css')
 
 @endsection
@@ -7,11 +7,11 @@
 
 <div class="col-md-12" style="margin-top: 50px; margin-left: -15px;">
 	<div class="section-title">
-		<h2 class="title"> Articles in <i style="color:red"> {{ $category->name }} </i> category </h2>
+		<h2 class="title"> Articles in <i style="color:red"> {{ $category1->name }} </i> category </h2>
 	</div>
 
 	<div class="post post-row">
-		@foreach($articles as $article)
+		@foreach($articles1 as $article)
 		<h4 class="post-title"><a href="{{ route('home_newsDetail', ["id" => $article->id]) }}"> <i class="fa fa-tags"> </i> &nbsp;{{$article->summary}} </a></h4>
 		@endforeach
 	</div>
