@@ -15,8 +15,9 @@ class HomeController extends Controller
 	{
 		$categories = Category::all();
 		$articles = Article::all()->shuffle()->take(5);
+		$articles_m = Article::all();
 
-		View::share(['categories' => $categories, 'articles' => $articles]);
+		View::share(['categories' => $categories, 'articles' => $articles, 'articles_m' => $articles_m]);
 	}
 
 }
