@@ -32,7 +32,7 @@
 
 			<h3 class="post-title"><a href="{{ route('home_newsDetail', ["id" => $article1->id]) }}">{{$article1->summary}}</a></h3>
 			<ul class="post-meta">
-				<li><a href="author.html">{{$article1->user->user_name}}</a></li>
+				<li><a href="#">{{$article1->user->user_name}}</a></li>
 				<li>{{$article1->created_at}}</li>
 			</ul>
 			<p>{!! $article1->content !!} </p>
@@ -52,11 +52,11 @@
 	<div class="panel-body">
 		<div class="post-category">
 				
-				<a href="category.html">{{ $item->category->name }}</a>
+				<a href="#">{{ $item->category->name }}</a>
 			</div>
-			<h3 class="post-title"><a href="#">{{$item->summary}}</a></h3>
+			<h3 class="post-title"><a href="{{ route('home_newsDetail', ["id" => $item->id]) }}">{{$item->summary}}</a></h3>
 			<ul class="post-meta">
-				<li><a href="author.html">{{$item->user->user_name}}</a></li>
+				<li><a href="#">{{$item->user->user_name}}</a></li>
 				<li>{{$item->created_at}}</li>
 			</ul>
 		
