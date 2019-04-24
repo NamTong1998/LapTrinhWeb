@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\UserHistory;
 use Carbon\Carbon;// time
 use App\Models\Category;
+use App\Models\Article;
 
 
 class LoginController extends Controller
@@ -77,8 +78,9 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-      $categories= Category::all();
-        return view('auth.login',['categories'=>$categories]);
+      $categories = Category::all();
+      $articles = Article::all();
+      return view('auth.login',['categories' => $categories, 'articles' => $articles]);
 
     }
 

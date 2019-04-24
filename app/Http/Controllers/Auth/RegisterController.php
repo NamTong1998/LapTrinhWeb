@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
+use App\Models\Article;
 
 class RegisterController extends Controller
 {
@@ -84,6 +85,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $categories = Category::all();
-        return view('auth.register',['categories'=>$categories]);
+        $articles = Article::all();
+        return view('auth.register',['categories' => $categories, 'articles' => $articles]);
     }
 }
