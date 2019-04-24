@@ -6,68 +6,52 @@
 @section('content')
 
 <div class="section-row">
-	<h3>{{ $newsDetail->title }}</h3>
+	<h3>{{ $article->summary }}</h3>
 	<div class="post-body">
 		<ul class="post-meta">
-			<li>{{ $newsDetail->createdBy->user_name }}</li>
-			<li>{{ \Carbon\Carbon::parse($newsDetail->created_at)->format('d/m/Y') }}</li>
-			@foreach($newsDetail->categoryLinks as $categoryLink)
-			   <li><a href="{{ route('home-news_category',['slug'=>$categoryLink->category->slug]) }}">{{ $categoryLink->category->name }}</a></li>
-			@endforeach
+			<li>{{ $article->user->user_name }}</li>
+			<li>{{ $article->created_at }}</li>
 		</ul>
 		<br>
-		{!! $newsDetail->body !!}
+		{!! $article->content !!}
 	</div>
 </div>
-@if(!empty($tags))
-<div class="section-row">
-	<div class="post-tags">
-		<ul>
-			<li>TAGS:</li>
-			@foreach($tags as $tag)
-			  <li><a href="{{ route('home-news_tag',['tag'=>$tag]) }}">{{ $tag }}</a></li>
-			@endforeach  
-		</ul>
-	</div>
-</div>
-@endif
+
 <div class="section-row">
 	<div class="section-title">
-		<h3 class="title">{{ $sizeComment }} Comments</h3>
+		<h3 class="title"> Comments</h3>
 	</div>
 	<div class="post-comments">
-        @foreach( $comments as $comment)
-        @if($comment->status=='approved')
+        @foreach( $comment as $cm)
+      
 		<!-- comment -->
 		<div class="media">
-			<div class="media-left">
-				<img class="media-object" src="{{ asset('storage/'.$comment->createdBy->image) }}" alt="">
-			</div>
+			
 			<div class="media-body">
 				<div class="media-heading">
-					<h4>{{ $comment->createdBy->user_name }}</h4>
-					<span class="time">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
+					<h4>{{ $cm->user->user_name }}</h4>
+					<span class="time">{{ $cm->created_at }}</span>
 				</div>
-				<p>{{ $comment->body }}</p>
+				<p>{{ $cm->content }}</p>
 			</div>
 		</div>
-		<!-- /comment -->
-		@endif
+		
 		@endforeach
 	</div>
 </div>
 @if(!empty(Auth::id()))
 <div class="section-row">
 	<div class="section-title">
-		<h3 class="title">Leave a reply</h3>
+		<h3 class="title"> <small>Leave a reply</small></h3>
 	</div>
 	<form class="post-reply" action="{{ route('admin_comment_store') }}" method="post">
 		@csrf
 		<div class="row">
 			<div class="col-md-12">
 				<div class="form-group">
-					<input type="hidden" name="news_id" value="{{ $idNews }}">
-					<textarea class="input" name="comment" placeholder="Comment" required></textarea>
+					<input type="hidden" name="article_id" value="{{ $article->id }}">
+					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+					<textarea class="input" name="content" placeholder="Comment..." required></textarea>
 				</div>
 			</div>
 			<div class="col-md-12">
