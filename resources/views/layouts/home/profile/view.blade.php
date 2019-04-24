@@ -26,7 +26,7 @@
                             <div class="box box-default">
                                 <div class="box-body box-profile">
                                     <div class="row">
-                                        <img class="profile-user-img img-responsive img-circle" src="{{ asset('/storage/' . $user->image) }}" alt="My avatar">
+                                        <img class="profile-user-img img-responsive img-circle" src="{{ asset('/storage/'.$user->image) }}" alt="My avatar">
                                     </div>
                                 </div>
                             </div>

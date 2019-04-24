@@ -41,7 +41,7 @@
             <div class="container">
                 <!-- logo -->
                 <div class="nav-logo">
-                    <a href="index.html" class="logo"><img src="{{ asset('home/img/banner.jpg') }}" alt=""></a>
+                    <a href="{{ route('home_main') }}" class="logo"><img src="{{ asset('home/img/banner.jpg') }}" alt=""></a>
                 </div>
                 <!-- /logo -->
 
@@ -124,6 +124,7 @@
             <div class="container">
                 <!-- nav -->
                 <ul class="nav-menu">
+                    <li><a class="btn btn-primary" href="{{ route('home_main') }}"><i class="fa fa-home"></i> Home </a>  </li>
                     @foreach($categories as $category)
                     <li class="has-dropdown">
                             <a href="#">{{ $category->name }}</a>

@@ -21,22 +21,25 @@
 	<div class="section-title">
 		<h3 class="title"> Comments</h3>
 	</div>
-	<div class="post-comments">
-        @foreach( $comment as $cm)
-      
-		<!-- comment -->
-		<div class="media">
-			
-			<div class="media-body">
-				<div class="media-heading">
-					<h4>{{ $cm->user->user_name }}</h4>
-					<span class="time">{{ $cm->created_at }}</span>
+	<div  style="overflow-y: scroll; height: 210px;">
+		<div class="post-comments">
+	        @foreach( $comment as $cm)
+	      
+			<!-- comment -->
+			<div class="media">
+				
+				<div class="media-body">
+					<div class="media-heading">
+						<img style="width: 30px; height:auto;" src="{{ asset('/storage/'.$cm->user->image) }}" alt="">
+						<h4 class="text-primary">{{ $cm->user->user_name }}</h4>
+						<span class="time">{{ $cm->created_at }}</span>
+					</div>
+					<p>{{ $cm->content }}</p>
 				</div>
-				<p>{{ $cm->content }}</p>
 			</div>
+			
+			@endforeach
 		</div>
-		
-		@endforeach
 	</div>
 </div>
 @if(!empty(Auth::id()))
