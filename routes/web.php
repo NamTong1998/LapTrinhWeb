@@ -63,7 +63,9 @@ Route::post('admin/comment/delete/{id}', 'Admin\CommentController@destroy')->nam
 
 
 //Author Routing
-Route::get('author/index', 'Author\AuthorController@index')->name('author_index');
+Route::get('author/index', function() {
+	return view('layouts.author.layout');
+})->name('author_index');
 Route::get('author/list', 'Author\AuthorController@index')->name('author_list');
 Route::get('author/create', 'Author\AuthorController@create')->name('author_create');
 Route::post('author/store', 'Author\AuthorController@store')->name('author_store');
@@ -74,7 +76,7 @@ Route::post('author/delete/{id}', 'Author\AuthorController@destroy')->name('auth
 //Home Routing
 Route::get('home/index', 'Home\MainController@index')->name('home_index');
 Route::get('home/main', 'Home\MainController@getData')->name('home_main');
-Route::post('home/main/search', 'Home\MainController@searchPost')->name('home_search');
+Route::post('home/main/search', 'Home\MainController@search')->name('home_search');
 
 Route::get('home/news/category/{id}', 'Home\MainController@getNewsByCategory')->name('home_news_byCategory');
 Route::get('home/news/{id}', 'Home\MainController@getNewsDetail')->name('home_newsDetail');

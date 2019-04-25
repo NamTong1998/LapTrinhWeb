@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
 use App\Models\Category;
-
 use App\Models\Article;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Storage;
 
 class AuthorController extends Controller
 {
@@ -52,6 +54,7 @@ class AuthorController extends Controller
         $author->category_id = $request->get('category');
         $author->summary = $request->get('summary');
         $author->content = $request->get('content');
+        $author->user_id = Auth::user()->id;
         $author->is_highlight= 0;
 
         if($request->hasFile('image'))
@@ -110,6 +113,7 @@ class AuthorController extends Controller
         $author->category_id = $request->get('category');
         $author->summary = $request->get('summary');
         $author->content = $request->get('content');
+        $author->user_id = Auth::user()->id;
 
         if($request->hasFile('image'))
         {

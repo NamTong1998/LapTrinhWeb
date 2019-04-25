@@ -49,6 +49,20 @@ class MainController extends HomeController
 
 	public function search(Request $request)
 	{
+		$search = $request->get('search');
+		$count = 0;
 
+		$articles = Article::all();
+		$results = array();
+		foreach( $articles as $item )
+		{
+			if( strpos($item->summary, $search) > -1 ) //return the first position of $search in $item->summary
+			{
+				$results[] = $item;
+				$count++;
+			}
+		}
+
+		return view('layouts.home.search', ['search' => $search, 'count' => $count, 'results' => $results]);
 	}
 }
