@@ -10,7 +10,7 @@
 		<h2 class="title"> Search results for  <i style="color:red"> {{ $search }} </i>  </h2> 
 	</div>
 
-	<b> <i style="font-size: 14px; color: red;"> Result: {{ $count }} found </i> </b>
+	<b> <i style="font-size: 16px; color: black;"> Result: {{ $count }} found for <i style="font-size: 19px; color: red;"> " {{ $search }} " </i> </i> </b>
 
 	<div class="post post-row">
 		@foreach($results as $result)
