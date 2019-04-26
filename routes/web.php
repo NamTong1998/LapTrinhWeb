@@ -28,6 +28,7 @@ Route::post('admin/users/update/{id}', 'Admin\UserManagement@update')->name('adm
 Route::post('admin/users/delete/{id}', 'Admin\UserManagement@destroy')->name('admin_users_delete');
 Route::get('admin/users/role', 'Admin\UserManagement@role')->name('admin_users_role');
 Route::post('admin/users/setAdmin/{id}', 'Admin\UserManagement@setAdmin')->name('admin_users_setAdmin');
+Route::post('admin/users/setRole/{id}', 'Admin\UserManagement@setRole')->name('admin_users_setRole');
 
 Route::get('admin/role/list', 'Admin\RoleController@index')->name('admin_role_list');
 Route::get('admin/role/create', 'Admin\RoleController@create')->name('admin_role_create');
@@ -59,8 +60,11 @@ Route::get('admin/comment/edit/{id}', 'Admin\CommentController@edit')->name('adm
 Route::post('admin/comment/update/{id}', 'Admin\CommentController@update')->name('admin_comment_update');
 Route::post('admin/comment/delete/{id}', 'Admin\CommentController@destroy')->name('admin_comment_delete');
 
-
-
+//Notification
+Route::get('admin/noti/list', 'Admin\NotificationController@index')->name('admin_noti_list');
+Route::get('admin/noti/allread', 'Admin\NotificationController@setAllAsRead')->name('admin_noti_allread');
+Route::get('admin/noti/read/{id}', 'Admin\NotificationController@setAsRead')->name('admin_noti_read');
+Route::get('admin/noti/delete/{id}', 'Admin\NotificationController@destroy')->name('admin_noti_delete');
 
 //Author Routing
 Route::get('author/index', function() {

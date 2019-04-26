@@ -10,6 +10,7 @@ use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Admin\NotificationController;
 
 class AuthorController extends Controller
 {
@@ -64,6 +65,9 @@ class AuthorController extends Controller
         }
 
         $author->save();
+
+        $noti = new NotificationController();
+        $noti->saveNoti(Auth::user()->user_name, "created a new article called", $author->summary);
 
         return redirect()->route('author_list')->with('success', 'A new Article has been created.');
 
@@ -123,7 +127,10 @@ class AuthorController extends Controller
 
         $author->save();
 
-        return redirect()->route('author_list')->with('success', 'A new Article has been created.');
+        $noti = new NotificationController();
+        $noti->saveNoti(Auth::user()->user_name, "edited the article called", $article->summary);
+
+        return redirect()->route('author_list')->with('success', 'A new Article has been changed.');
     }
 
     /**

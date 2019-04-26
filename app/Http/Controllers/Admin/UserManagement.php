@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
 use Session;
+use App\Http\Controllers\Admin\NotificationController;
+use Illuminate\Support\Facades\Hash;
 
 class UserManagement extends Controller
 {
@@ -67,8 +70,13 @@ class UserManagement extends Controller
             'image' => env('AVATAR_DEFAULT'),
         ]);
 
-        if ($user->save())
-            return redirect()->route('admin_users_list')->with('success', $user->username.' has been added as an user.');
+        if ($users->save())
+        {
+            $noti = new NotificationController();
+            $noti->saveNoti($users->user_name, "joined as an user", "");
+
+            return redirect()->route('admin_users_list')->with('success', $users->username.' has been added as an user.');
+        }
         else
             return redirect()->route('admin_users_create')->with('error', 'Error in creating a new user.');
     }
@@ -93,9 +101,7 @@ class UserManagement extends Controller
     public function edit($id)
     {
         //
-        $user = User::find($id);
-
-        return view('layouts.admin.user_management.edit', ['user' => $user]);
+        
     }
 
     /**
@@ -119,12 +125,20 @@ class UserManagement extends Controller
     public function destroy($id)
     {
         //
+        $user = User::find($id);
+        $user->delete();
+
+        $noti = new NotificationController();
+        $noti->saveNoti($user->user_name, "was removed from users", "");
+
+        return redirect()->route('admin_users_list')->with('success', $user->username.' has been removed.');
     }
 
     public function role()
     {
         $users = User::all();
-        return view('layouts.admin.user_management.role', ['users' => $users]);
+        $roles = Role::all();
+        return view('layouts.admin.user_management.role', ['users' => $users, 'roles' => $roles]);
     }
 
     public function setAdmin($id)
@@ -133,6 +147,21 @@ class UserManagement extends Controller
         $user->is_admin = 1;
         $user->save();
 
+        $noti = new NotificationController();
+        $noti->saveNoti($user->user_name, "was promoted as an Admin", "");
+
         return redirect()->route('admin_users_role')->with('success', $user->user_name.' has been altered as an Admin.');
+    }
+
+    public function setRole(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->role_id = $request->get('role_id');
+        $user->save();
+
+        $noti = new NotificationController();
+        $noti->saveNoti($user->user_name, "was promoted as an ".$user->role->name, "");
+
+        return redirect()->route('admin_users_role');
     }
 }

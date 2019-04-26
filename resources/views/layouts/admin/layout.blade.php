@@ -119,22 +119,24 @@ desired effect
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">0</span>
+              <span class="label label-warning"> {{ count( DB::table('notifications')->where('is_read', '0')->get() ) }} </span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 0 notification</li>
+              <li class="header">You have {{ count( DB::table('notifications')->where('is_read', '0')->get() ) }} notification(s)</li>
               <li>
                 <!-- Inner Menu: contains the notifications -->
                 <ul class="menu">
-                  <li><!-- start notification -->
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> No new members joined today
-                    </a>
-                  </li>
-                  <!-- end notification -->
+                  @foreach( DB::table('notifications')->get() as $noti )
+                    @if( $noti->is_read == 0 )
+                      <li><!-- start notification -->
+                        <i class="fa fa-bookmark"></i>&nbsp;&nbsp;{{ $noti->head }} {{ $noti->body }} {{ $noti->tail }}
+                      </li><!-- end notification -->
+                    @endif
+                  @endforeach
                 </ul>
               </li>
-              <li class="footer"><a href="#">View all</a></li>
+              <li class="footer"><a href="{{ route('admin_noti_list') }}">View all</a></li>
+              <li class="footer"><a href="{{ route('admin_noti_allread') }}"> Mark All as Read </a></li>
             </ul>
           </li>
           <!-- Tasks Menu -->
@@ -317,6 +319,17 @@ desired effect
             <li><a href="{{ route('admin_users_create') }}"><i class="glyphicon glyphicon-plus-sign"></i><span>Create</span></a></li>
             <li><a href="{{ route('admin_role_list') }}"><i class="fa fa-lock"></i><span> User's Role </span></a></li>
             <li><a href="{{ route('admin_users_role') }}"><i class="fa fa-lock"></i><span>Role </span></a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-bookmark"></i> <span> Notifications </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('admin_noti_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
           </ul>
         </li>
 
