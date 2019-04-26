@@ -1,6 +1,6 @@
 @extends('layouts.admin.layout')
 
-@section('title','User Management')
+@section('title','User Role Management')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
@@ -13,7 +13,7 @@
             <div class="box">
                 <div class="box-header with-border">
                     <div class="col-md-4">
-                        <h3 class="box-title">User List</h3>
+                        <h3 class="box-title">User Role List</h3>
                     </div>
                     
                 </div>
