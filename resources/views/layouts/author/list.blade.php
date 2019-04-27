@@ -33,9 +33,11 @@
 
                                     <td> {{$au->id }} </td>
                                     
-                                    <td> {{ $au->summary }} </td>
+                                    <td> 
+                                        {{ $au->summary }} 
+                                        <p><img src="{{asset('')}}upload/{{$au->image}}" width="100px" height="100px" /> </p>
+                                    </td>
                                     <td> {{ $au->content }} </td>
-                                    <td> <img style="width: 50px; height: auto;" src="{{ asset('/storage/'.$au->image) }}" /> </td>
                                     
                                     <td> 
                                         <a class="btn btn-primary" href="{{ route('author_edit', ['id' => $au->id]) }}"> <i class="fa fa-edit">  </i> </a>

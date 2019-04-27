@@ -9,22 +9,22 @@
 <script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js') }}"></script>
 <script src="{{ asset('admin/bower_components/ckeditor/style.js') }}"></script>
 @section('page-header')
-Create a New Category
+Create a New Article
 @endsection
 
 @section('content')
 <div class="box box-primary">
     <div class="box-header with-border">
         <div class="col-md-4">
-                <h3 class="box-title">Create a New Article</h3>
+                <h3 class="box-title"></h3>
         </div>
         <div class="col-md-2 col-md-offset-6">
-            <a href="{{ route('admin_category_list') }}" class="btn btn-block btn-info">
+            <a href="{{ route('admin_article_list') }}" class="btn btn-block btn-info">
                 Article List
             </a>
         </div>
     </div>
-    <form method="post" action="{{ route('admin_article_store') }}">
+    <form method="post" action="{{ route('admin_article_store')}}" enctype= "multipart/form-data"  >
         @csrf
         <div class="box-body">
 
@@ -58,7 +58,7 @@ Create a New Category
 
             <div class="form-group">
                 <label> Image: </label>
-                <input type="file" name= "image" accept="image/*" class="form-control"  />
+                <input type="file" name= "image" class="form-control"  />
             </div>
 
             <div class="form-group">
