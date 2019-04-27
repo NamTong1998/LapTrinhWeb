@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
 use App\Models\Comment;
+use App\Http\Controllers\Admin\NotificationController;
+use Illuminate\Support\Facades\Auth;
 
 
 class CommentController extends Controller
@@ -52,6 +54,9 @@ class CommentController extends Controller
         $comment->user_id = $request->get('user_id');
         //$comment->user_id = Auth::user()->id;
         $comment->save();
+
+        $noti = new NotificationController();
+        $noti->saveNoti(Auth::user()->user_name, "added a comment on", $comment->article->summary);
 
         return redirect()->route('home_newsDetail',["id" => $comment->article_id]);
     }

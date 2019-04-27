@@ -80,11 +80,12 @@ class LoginController extends Controller
     {
 
       $categories= Category::all();
-      $articles = Article::all();
-      $articles_m = Article::all();
-      return view('auth.login',['categories'=>$categories, 'articles' => $articles,'articles_m' => $articles_m ]);
-    }
 
+      $articles = Article::all()->shuffle()->take(5);
+      $articles_m = Article::all();
+      return view('auth.login',['categories'=>$categories, 'articles' => $articles, 'articles_m' => $articles_m]);
+
+    }
     /**
    * Validate the user login request.
    *

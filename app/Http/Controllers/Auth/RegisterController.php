@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Article;
+use App\Http\Controllers\Admin\NotificationController;
 
 class RegisterController extends Controller
 {
@@ -70,6 +71,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $noti = new NotificationController();
+        $noti->saveNoti($data['user_name'], "joined as an user", "");
+
         return User::create([
             'user_name' => $data['user_name'],
             'first_name' => $data['first_name'],
@@ -82,11 +86,19 @@ class RegisterController extends Controller
             'image' => env('AVATAR_DEFAULT'),
         ]);
     }
+
     public function showRegistrationForm()
     {
+
         $categories = Category::all();
         $articles = Article::all();
         $articles_m = Article::all();
         return view('auth.register',['categories'=>$categories, 'articles' => $articles,'articles_m' => $articles_m  ]);
+
+/*      $categories= Category::all();
+      $articles = Article::all()->shuffle()->take(5);
+      $articles_m = Article::all();
+      return view('auth.register',['categories'=>$categories, 'articles' => $articles, 'articles_m' => $articles_m]);*/
+
     }
 }

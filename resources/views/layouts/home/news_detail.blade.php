@@ -1,5 +1,5 @@
 @extends('layouts.home.layout')
-@section('title','News Detail')
+@section('title', $article->summary)
 @section('css')
 
 @endsection

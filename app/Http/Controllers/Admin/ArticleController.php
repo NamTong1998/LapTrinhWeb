@@ -13,7 +13,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Controllers\Admin\NotificationController;
 
 class ArticleController extends Controller
 {
@@ -87,6 +87,9 @@ class ArticleController extends Controller
 
         $article->save();
 
+        $noti = new NotificationController();
+        $noti->saveNoti(Auth::user()->user_name, "created a new article called", $article->summary);
+
         return redirect()->route('admin_article_list')->with('success', 'A new Article has been created');
     }
 
@@ -139,6 +142,9 @@ class ArticleController extends Controller
         }
 
         $article->save();
+
+        $noti = new NotificationController();
+        $noti->saveNoti(Auth::user()->user_name, "edited the article called", $article->summary);
 
         return redirect()->route('admin_article_list')->with('success', 'A new Article has been edited.');
     }
