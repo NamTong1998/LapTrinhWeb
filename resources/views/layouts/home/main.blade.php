@@ -35,7 +35,7 @@
 				<li>{{$article1->user->user_name}}</li>
 				<li>{{$article1->created_at}}</li>
 			</ul>
-			<p>{!! $article1->content !!} </p>
+			<p>{!! substr($article1->content, 0, 400) !!} </p>
 		</div>
 	</div>
 </div>

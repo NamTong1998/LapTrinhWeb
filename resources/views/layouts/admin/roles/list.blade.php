@@ -13,7 +13,7 @@
             <div class="box">
                 <div class="box-header with-border">
                     <div class="col-md-4">
-                        <h3 class="box-title">User List</h3>
+                        <h3 class="box-title">Role List</h3>
                     </div>
                     <div class="col-md-2 col-md-offset-6">
                         <a href="{{ route('admin_role_create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Create New Role </a>

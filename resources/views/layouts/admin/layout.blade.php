@@ -300,8 +300,8 @@ desired effect
           <ul class="treeview-menu">
             <li><a href="{{ route('admin_users_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
             <li><a href="{{ route('admin_users_create') }}"><i class="glyphicon glyphicon-plus-sign"></i><span>Create</span></a></li>
-            <li><a href="{{ route('admin_role_list') }}"><i class="fa fa-lock"></i><span> User's Role </span></a></li>
-            <li><a href="{{ route('admin_users_role') }}"><i class="fa fa-lock"></i><span>Role </span></a></li>
+            <li><a href="{{ route('admin_role_list') }}"><i class="fa fa-lock"></i><span> Role </span></a></li>
+            <li><a href="{{ route('admin_users_role') }}"><i class="fa fa-lock"></i><span> Users with Roles </span></a></li>
           </ul>
         </li>
 

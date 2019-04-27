@@ -58,7 +58,7 @@ class AuthorController extends Controller
         $author->user_id = Auth::user()->id;
         $author->is_highlight= 0;
 
-          if($request->hasFile('image'))
+        if($request->hasFile('image'))
         {
             $file= $request->file('image');
             $duoi=$file->getClientOriginalExtension();
