@@ -9,6 +9,18 @@ CKEDITOR.editorConfig = function( config ) {
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
+$config[\'authentication\'] = function () {
+	   return true;
+};
+$config[\'backends\'][] = array(
+    \'name\'         => \'default\',
+    \'adapter\'      => \'local\',
+    \'baseUrl\'      => \'/laravel5/uploads/\',  
+//  \'root\'         => \'\', // Can be used to explicitly set the CKFinder user files directory.
+    \'chmodFiles\'   => 0777,
+    \'chmodFolders\' => 0755,
+    \'filesystemEncoding\' => \'UTF-8\',
+);
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
 		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },

@@ -6,7 +6,8 @@
 <link href="{{ asset('admin/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet">
 <link href="{{ asset('admin/dist/css/AdminLTE.min.css') }}" rel="stylesheet">
 @endsection
-
+<script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('admin/bower_components/ckeditor/style.js') }}"></script>
 @section('page-header')
 Create a New Category
 @endsection
@@ -49,7 +50,7 @@ Create a New Category
             
             <div class="form-group {{ $errors->first('content') ? 'has-error' : ''}}">
                 <label for="content"> Content*: </label>
-                <textarea name="content" id="content" class="form-control" rows="10" placeholder="Enter content ..."> {{ old('content') }} </textarea>
+                <textarea name="content" id="content" class="ckeditor" rows="10" placeholder="Enter content ..."> {{ old('content') }} </textarea>
                 @if ($errors->has('content'))
                     <span class="help-block">{{ $errors->first('content') }}</span>
                 @endif
@@ -84,6 +85,6 @@ Create a New Category
 <script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js') }}"></script>
 <script src="{{ asset('admin/bower_components/ckeditor/style.js') }}"></script>
 <script>
-    CKEDITOR.replace('content');
+    CKEDITOR.replace('content')
 </script>
 @endsection

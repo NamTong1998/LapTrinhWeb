@@ -86,6 +86,7 @@ class RegisterController extends Controller
     {
         $categories = Category::all();
         $articles = Article::all();
-
-        return view('auth.register',['categories'=>$categories, 'articles' => $articles]);
+        $articles_m = Article::all();
+        return view('auth.register',['categories'=>$categories, 'articles' => $articles,'articles_m' => $articles_m  ]);
+    }
 }

@@ -52,10 +52,10 @@
                                         @endif
                                     </td>
                                     <td> {{ $ar->content }} </td>
-
-
+                                       
+                           
                                     <td> 
-                                        <img style="width: 50px; height: auto;" src="public/upload/articles/{{$ar->image}}" /> 
+                                        <img style="width: 50px; height: auto;" src="/public/upload/articles/{{$ar->image}}" /> 
                                     </td>
                                     
                                     <td> 

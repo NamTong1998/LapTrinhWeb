@@ -78,7 +78,7 @@ class ArticleController extends Controller
                 $image=str_random(4)."_".$name;
             }
             $file->move("upload/articles",$image);
-            $article->image=$image;
+            
         }
         else
         {
