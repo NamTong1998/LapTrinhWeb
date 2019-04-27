@@ -14,7 +14,7 @@ Create a Article
 @section('content')
 <div class="box box-primary">
    
-    <form method="post" action="{{ route('author_store') }}">
+    <form method="post" action="{{ route('author_store') }}"  enctype= "multipart/form-data">
         @csrf
         <div class="box-body">
 

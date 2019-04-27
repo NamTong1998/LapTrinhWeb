@@ -21,7 +21,7 @@ Create a New Category
             </a>
         </div>
     </div>
-    <form method="post" action="{{ route('admin_article_update', ['id' => $article->id] )}}">
+    <form method="post" action="{{ route('admin_article_update', ['id' => $article->id] )}}"  enctype= "multipart/form-data">
         @csrf
         <div class="box-body">
 
@@ -54,7 +54,7 @@ Create a New Category
 
             <div class="form-group">
                 <label> Image</label>
-                <input type="file" name= "image" class="form-control"  />
+                <input type="file" name="image" class="form-control"  />
             </div>
 
             <div class="form-group">

@@ -23,7 +23,7 @@
 		<h2 class="title"><a href=""> Newest </a></h2>
 	</div>
 	<div class="post post-row">
-		<a class="post-img" href="blog-post.html"><img src="./img/post-13.jpg" alt=""></a>
+		<a class="post-img" href="#"><img src="{{asset('')}}upload/{{$article1->image}}" width=85% height=auto  alt=""></a>
 		<div class="post-body">
 			<div class="post-category">
 				
@@ -48,7 +48,7 @@
 	</div>
 
 	@foreach( $article2 as $item )
-	<a href="blog-post.html"><img style="width: 85% ;height: auto;" src="./img/post-13.jpg" alt=""></a>
+	<a  class="post-img" href="{{ route('home_newsDetail', ["id" => $item->id]) }}"> <img class="post-img" style="width: 85% ;height: 400px;"  src="{{asset('')}}upload/{{$item->image}}" alt="" ></a>
 	<div class="panel-body">
 		<div class="post-category">
 				

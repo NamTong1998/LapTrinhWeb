@@ -1,16 +1,17 @@
 @extends('layouts.home.layout')
 @section('title', $article->summary)
 @section('css')
-
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 @endsection
 @section('content')
 
 <div class="section-row">
-	<h3>{{ $article->summary }}</h3>
+	<h3><p style="font-family: 'Source Sans Pro', sans-serif"> {{ $article->summary }}</p></h3>
 	<div class="post-body">
 		<ul class="post-meta">
 			<li>{{ $article->user->user_name }}</li>
 			<li>{{ $article->created_at }}</li>
+			<li><img src="{{asset('')}}upload/{{$article->image}}" width=600px height=auto  alt=""></li>
 		</ul>
 		<br>
 		{!! $article->content !!}

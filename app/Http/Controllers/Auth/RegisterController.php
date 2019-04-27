@@ -89,9 +89,16 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $categories= Category::all();
+
+        $categories = Category::all();
+        $articles = Article::all();
+        $articles_m = Article::all();
+        return view('auth.register',['categories'=>$categories, 'articles' => $articles,'articles_m' => $articles_m  ]);
+
+/*      $categories= Category::all();
       $articles = Article::all()->shuffle()->take(5);
       $articles_m = Article::all();
-      return view('auth.register',['categories'=>$categories, 'articles' => $articles, 'articles_m' => $articles_m]);
+      return view('auth.register',['categories'=>$categories, 'articles' => $articles, 'articles_m' => $articles_m]);*/
+
     }
 }

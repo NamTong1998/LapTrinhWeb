@@ -58,10 +58,30 @@ class AuthorController extends Controller
         $author->user_id = Auth::user()->id;
         $author->is_highlight= 0;
 
-        if($request->hasFile('image'))
+          if($request->hasFile('image'))
         {
-            $path = Storage::disk('public')->put(self::IMG_ART, $request->image);
-            $author->image = $path;
+            $file= $request->file('image');
+            $duoi=$file->getClientOriginalExtension();
+            if( $duoi !='jpg'&& $duoi !='png'&& $duoi !='jpeg')
+            {
+                redirect()->route('admin_article_create')->with('thongbao','Bạn chỉ được thêm ảnh .jpg ,png,jpeg');
+            }
+            $name= $file->getClientOriginalName();//lấy tên ảnh
+            $image=str_random(4)."_".$name;// gán random tên ảnh
+            // khÔng trùng tên ảnh
+            while(file_exists("upload/".$image))
+            {
+                $image=str_random(4)."_".$name;
+
+            }
+
+
+            $file->move('upload',$image);
+            $author->image= $image;
+        }
+        else
+        {
+            $author->image= "";
         }
 
         $author->save();

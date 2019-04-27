@@ -17,7 +17,7 @@ Create a New Category
         </div>
         
     </div>
-    <form method="post" action="{{ route('author_update', ['id' => $author->id] )}}">
+    <form method="post" action="{{ route('author_update', ['id' => $author->id] )}}"  enctype= "multipart/form-data">
         @csrf
         <div class="box-body">
 
