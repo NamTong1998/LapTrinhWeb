@@ -69,7 +69,7 @@ class MainController extends HomeController
 		$results = array();
 		foreach( $articles as $item )
 		{
-			if( strpos($item->summary, $search) > -1 ) //return the first position of $search in $item->summary
+			if( strpos( strtolower($item->summary), strtolower($search) ) > -1 ) //return the first position of $search in $item->summary
 			{
 				$results[] = $item;
 				$count++;
