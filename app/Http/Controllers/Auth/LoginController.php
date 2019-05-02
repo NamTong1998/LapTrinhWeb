@@ -12,6 +12,7 @@ use App\Models\UserHistory;
 use Carbon\Carbon;// time
 use App\Models\Category;
 use App\Models\Article;
+use App\Models\Video;
 
 
 class LoginController extends Controller
@@ -80,10 +81,11 @@ class LoginController extends Controller
     {
 
       $categories= Category::all();
-
       $articles = Article::all()->shuffle()->take(5);
       $articles_m = Article::all();
-      return view('auth.login',['categories'=>$categories, 'articles' => $articles, 'articles_m' => $articles_m]);
+      $videos = Video::all()->shuffle()->take(4);
+
+      return view('auth.login',['categories'=>$categories, 'articles' => $articles, 'articles_m' => $articles_m, 'videos' => $videos]);
 
     }
     /**

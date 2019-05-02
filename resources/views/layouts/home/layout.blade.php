@@ -131,18 +131,31 @@
 
                     @foreach($categories as $category)
                     <li class="has-dropdown">
-                            <a href="{{ route('home_news_byCategory', ["id" => $category->id]) }}"> {{ $category->name }} </a>
-                            <div class="dropdown">
-                                <div class="dropdown-body">
-                                    <ul class="dropdown-list">
-                                        @foreach($articles_m->where('category_id', $category->id)->take(4) as $item )
-                                            <li> <a href="{{route('home_newsDetail', ["id" => $item->id]) }}"> {{$item -> summary}} </a> </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                        <a href="{{ route('home_news_byCategory', ["id" => $category->id]) }}"> {{ $category->name }} </a>
+                        <div class="dropdown">
+                            <div class="dropdown-body">
+                                <ul class="dropdown-list">
+                                    @foreach($articles_m->where('category_id', $category->id)->take(4) as $item )
+                                        <li> <a href="{{route('home_newsDetail', ["id" => $item->id]) }}"> {{$item -> summary}} </a> </li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        </li>
+                        </div>
+                    </li>
                     @endforeach
+
+                    <li class="has-dropdown">
+                        <a href="{{ route('home_video_list') }}"> Videos </a>
+                        <div class="dropdown">
+                            <div class="dropdown-body">
+                                <ul class="dropdown-list">
+                                    @foreach( $videos as $video )
+                                        <li> <a href="{{ route('home_video_show', ["id" => $video->id]) }}"> {{ $video->title }} </a> </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
                 <!-- /nav -->
             </div>

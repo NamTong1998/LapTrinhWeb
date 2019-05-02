@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Article;
+use App\Models\Video;
 use App\Http\Controllers\Admin\NotificationController;
 
 class RegisterController extends Controller
@@ -93,7 +94,9 @@ class RegisterController extends Controller
         $categories = Category::all();
         $articles = Article::all();
         $articles_m = Article::all();
-        return view('auth.register',['categories'=>$categories, 'articles' => $articles,'articles_m' => $articles_m  ]);
+        $videos = Video::all()->shuffle()->take(4);
+
+        return view('auth.register',['categories'=>$categories, 'articles' => $articles,'articles_m' => $articles_m, 'videos' => $videos]);
 
 /*      $categories= Category::all();
       $articles = Article::all()->shuffle()->take(5);
