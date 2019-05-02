@@ -50,6 +50,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->country }}</td>
                                     <td>
+
                                         @if( $user->id != Auth::user()->id )
                                         <form method="post" action="{{ route('admin_users_delete',['id'=> $user->id ]) }}">
                                             @csrf
@@ -74,6 +75,8 @@
                                         @else
                                         <i> Cannot delete yourself </i>
                                         @endif
+
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
                                 

@@ -21,6 +21,7 @@ Route::get('admin/index', function() {
     return view('layouts.admin.layout');
 })->name('admin_index');
 Route::get('admin/users/list', 'Admin\UserManagement@index')->name('admin_users_list');
+
 Route::get('admin/users/create', 'Admin\UserManagement@create')->name('admin_users_create');
 Route::post('admin/users/store', 'Admin\UserManagement@store')->name('admin_users_store');
 Route::get('admin/users/edit/{id}', 'Admin\UserManagement@edit')->name('admin_users_edit');

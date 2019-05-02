@@ -316,6 +316,7 @@ desired effect
           </ul>
         </li>
 
+<<<<<<< HEAD
         <li class="treeview">
           <a href="#"><i class="fa fa-file-video-o"></i> <span> Video </span>
             <span class="pull-right-container">
@@ -327,6 +328,8 @@ desired effect
           </ul>
         </li>
 
+=======
+>>>>>>> 31c495b4fd322b687fac2b16e3007a294b93ce74
       </ul>
       <!-- /.sidebar-menu -->
     </section>
