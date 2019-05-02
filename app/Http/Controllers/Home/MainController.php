@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Article;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Database\Eloquent\Builder;
 
 
@@ -45,6 +46,18 @@ class MainController extends HomeController
 		$articles1 = Article::all()->where('category_id', $category1->id);
 
 		return view('layouts.home.news_byCategory', ['articles1' => $articles1, 'category1' => $category1]);
+	}
+
+	public function showVideo($id)
+	{
+		$video = Video::find($id);
+		return view('layouts.home.showVideo', ['video' => $video]);
+	}
+
+	public function videoList()
+	{
+		$videos = Video::all();
+		return view('layouts.home.videos', ['videos' => $videos]);
 	}
 
 	public function search(Request $request)

@@ -21,6 +21,7 @@ Route::get('admin/index', function() {
     return view('layouts.admin.layout');
 })->name('admin_index');
 Route::get('admin/users/list', 'Admin\UserManagement@index')->name('admin_users_list');
+
 Route::get('admin/users/create', 'Admin\UserManagement@create')->name('admin_users_create');
 Route::post('admin/users/store', 'Admin\UserManagement@store')->name('admin_users_store');
 Route::get('admin/users/edit/{id}', 'Admin\UserManagement@edit')->name('admin_users_edit');
@@ -66,6 +67,14 @@ Route::get('admin/noti/allread', 'Admin\NotificationController@setAllAsRead')->n
 Route::get('admin/noti/read/{id}', 'Admin\NotificationController@setAsRead')->name('admin_noti_read');
 Route::get('admin/noti/delete/{id}', 'Admin\NotificationController@destroy')->name('admin_noti_delete');
 
+//Video
+Route::get('admin/video/list', 'Admin\VideoController@index')->name('admin_video_list');
+Route::get('admin/video/create', 'Admin\VideoController@create')->name('admin_video_create');
+Route::post('admin/video/store', 'Admin\VideoController@store')->name('admin_video_store');
+Route::get('admin/video/edit/{id}', 'Admin\VideoController@edit')->name('admin_video_edit');
+Route::post('admin/video/update/{id}', 'Admin\VideoController@update')->name('admin_video_update');
+Route::post('admin/video/delete/{id}', 'Admin\VideoController@destroy')->name('admin_video_delete');
+
 //Author Routing
 Route::get('author/index', function() {
 	return view('layouts.author.layout');
@@ -85,6 +94,9 @@ Route::post('home/main/search', 'Home\MainController@search')->name('home_search
 Route::get('home/news/category/{id}', 'Home\MainController@getNewsByCategory')->name('home_news_byCategory');
 Route::get('home/news/{id}', 'Home\MainController@getNewsDetail')->name('home_newsDetail');
 Route::get('home/news/comment_delete/{id}', 'Admin\CommentController@deleteByUser')->name('home_newsDetail_comment_delete');
+
+Route::get('home/video/{id}', 'Home\MainController@showVideo')->name('home_video_show');
+Route::get('home/videolist', 'Home\MainController@videoList')->name('home_video_list');
 
 Route::get('home/profile/view', 'Home\UserProfileController@index')->name('home_profile_view');
 Route::get('home/profile/edit/{id}', 'Home\UserProfileController@edit')->name('home_profile_edit');
