@@ -31,8 +31,8 @@
                                     <th> Category</th>
                                     <th> Summary </th>
                                     <th> Highlight </th>
-                                    <th> Content </th>
-                                    
+                                    <th style="width=10px  "> Content </th>
+                                    <th> Video</th>
 
                                     <th> Edit </th>
                                     <th> Delete </th>
@@ -57,8 +57,13 @@
                                         @endif
                                     </td>
                                     <td> {{ $ar->content }} </td>
-                                   
-                                    
+                                     <td>
+                                        @if($ar->video !=null)
+                                            <video src="{{ asset('/storage/'.$ar->video) }}" autobuffer autoplay="true" autoloop loop controls 
+                                            poster="/images/video.png"> Format Unsupported </video>
+                                        
+                                        @endif
+                                      </td>
                                     <td> 
                                         <a class="btn btn-primary" href="{{ route('admin_article_edit', ['id' => $ar->id]) }}"> <i class="fa fa-edit">  </i> </a>
                                     </td>

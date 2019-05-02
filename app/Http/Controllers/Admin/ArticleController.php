@@ -17,7 +17,8 @@ use App\Http\Controllers\Admin\NotificationController;
 
 class ArticleController extends Controller
 {
-    const IMG_ART = 'article_image';
+    const VIDEO = 'video';
+    
     /**
      * Display a listing of the resource.
      *
@@ -61,6 +62,7 @@ class ArticleController extends Controller
         $article->is_highlight = $request->get('is_highlight');
         $article->user_id = Auth::user()->id;
 
+        //image
         
         if($request->hasFile('image'))
         {
@@ -87,6 +89,18 @@ class ArticleController extends Controller
         {
             $article->image= "";
         }
+        //video
+
+         if($request->hasFile('video'))
+         {
+            $video = Storage::disk('public')->put(self::VIDEO, $request->file('video'));
+            $article->video = $video;
+         }
+         else
+        {
+            $article->video= "";
+        }
+
   
         $article->save();
 
@@ -139,6 +153,7 @@ class ArticleController extends Controller
         $article->content = $request->get('content');
         $article->is_highlight = $request->get('is_highlight');
         $article->image= $request->image;
+        $article->video= $request->video;
           
         if($request->hasFile('image'))
         {
@@ -156,12 +171,18 @@ class ArticleController extends Controller
                 $image=str_random(4)."_".$name;
 
             }
-
-
             $file->move('upload',$image);
             //unlink("upload/".$article->image);
             $article->image= $image;
         }
+        //video
+        if($request->hasFile('video'))
+         {
+            $video = Storage::disk('public')->put(self::VIDEO, $request->file('video'));
+            $article->video = $video;
+         }
+       
+
       
 
         $article->save();

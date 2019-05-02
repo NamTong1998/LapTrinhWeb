@@ -58,6 +58,11 @@ Create a New Category
             </div>
 
             <div class="form-group">
+                <label> Video</label>
+                <input type="file" name="video" accept="video/*">
+            </div>
+
+            <div class="form-group">
                 <label> Article Highlight </label>
                 <select class="form-control" name="is_highlight">
                     @if($article->is_highlight === 1)
