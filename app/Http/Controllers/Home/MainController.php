@@ -66,7 +66,10 @@ class MainController extends HomeController
 		$count = 0;
 
 		$articles = Article::all();
+		$videos = Video::all();
 		$results = array();
+		$results2 = array();
+
 		foreach( $articles as $item )
 		{
 			if( strpos( strtolower($item->summary), strtolower($search) ) > -1 ) //return the first position of $search in $item->summary
@@ -76,6 +79,15 @@ class MainController extends HomeController
 			}
 		}
 
-		return view('layouts.home.search', ['search' => $search, 'count' => $count, 'results' => $results]);
+		foreach( $videos as $item )
+		{
+			if( strpos( strtolower($item->title), strtolower($search) ) > -1 ) //return the first position of $search in $item->summary
+			{
+				$results2[] = $item;
+				$count++;
+			}
+		}
+
+		return view('layouts.home.search', ['search' => $search, 'count' => $count, 'results' => $results, 'results2' => $results2]);
 	}
 }

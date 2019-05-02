@@ -16,6 +16,10 @@
 		@foreach($results as $result)
 		<h4 class="post-title"><a href="{{ route('home_newsDetail', ["id" => $result->id]) }}"> <i class="fa fa-tags"> </i> &nbsp;{{$result->summary}} </a></h4>
 		@endforeach
+
+		@foreach($results2 as $result2)
+		<h4 class="post-title"><a href="{{ route('home_video_show', ["id" => $result2->id]) }}"> <i class="fa fa-file-video-o"> </i> &nbsp;{{ $result2->title }} </a></h4>
+		@endforeach
 	</div>
 </div>
 
