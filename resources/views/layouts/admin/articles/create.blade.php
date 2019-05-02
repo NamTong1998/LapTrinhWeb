@@ -62,6 +62,11 @@ Create a New Article
             </div>
 
             <div class="form-group">
+                <label> Video</label>
+                <input type="file" name="video" accept="video/*">
+            </div>
+
+            <div class="form-group">
                 <label> Article Highlight </label>
                 <select class="form-control" name="is_highlight">
                     <option value="0"> No</option>
