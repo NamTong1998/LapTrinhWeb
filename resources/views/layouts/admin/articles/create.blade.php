@@ -58,12 +58,12 @@ Create a New Article
 
             <div class="form-group">
                 <label> Image: </label>
-                <input type="file" name= "image" class="form-control"  />
+                <input type="file" name="image" class="form-control" accept="image/*" />
             </div>
 
             <div class="form-group">
-                <label> Video</label>
-                <input type="file" name="video" accept="video/*">
+                <label> Video: </label>
+                <input type="file" name="video" accept="video/*" class="form-control" />
             </div>
 
             <div class="form-group">
