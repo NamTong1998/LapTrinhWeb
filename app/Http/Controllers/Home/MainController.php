@@ -81,7 +81,7 @@ class MainController extends HomeController
 
 		foreach( $videos as $item )
 		{
-			if( strpos( strtolower($item->title), strtolower($search) ) > -1 ) //return the first position of $search in $item->summary
+			if( strpos( strtolower($item->title), strtolower($search) ) > -1 ) //return the first position of $search in $item->title
 			{
 				$results2[] = $item;
 				$count++;
