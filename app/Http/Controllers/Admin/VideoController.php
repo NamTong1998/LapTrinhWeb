@@ -96,6 +96,7 @@ class VideoController extends Controller
 
         $video = Video::find($id);
         $video->title = $request->get('title');
+        $video->path = $video->path;
 
         $video->save();
 

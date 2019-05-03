@@ -103,9 +103,4 @@
     <script src="{{ asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
     <script src="{{ asset('admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('admin/bower_components/fastclick/lib/fastclick.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('#user_manager').DataTable();
-        });
-    </script>
 @endsection
