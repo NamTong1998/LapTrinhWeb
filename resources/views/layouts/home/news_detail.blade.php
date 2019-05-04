@@ -12,13 +12,14 @@
 			<li>{{ $article->user->user_name }}</li>
 			<li>{{ $article->created_at }}</li>
 			<li> 
-				@if($article->video !=null)
+				@if($article->video != null)
                     <video style="width: 96%; height: auto;" src="{{ asset('/storage/'.$article->video) }}" autobuffer autoplay="true" autoloop loop controls 
                     poster="/images/video.png"> Format Unsupported </video>
                 
+                @else
+					<img src="{{asset('')}}upload/{{$article->image}}" width=600px height=auto  alt="">
                 @endif
             </li>
-			<li><img src="{{asset('')}}upload/{{$article->image}}" width=600px height=auto  alt=""></li>
 		</ul>
 		<br>
 		{!! $article->content !!}

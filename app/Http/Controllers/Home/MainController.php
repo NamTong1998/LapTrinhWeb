@@ -49,20 +49,26 @@ class MainController extends HomeController
 
 	public function search(Request $request)
 	{
-		$search = $request->get('search');
-		$count = 0;
+		$search = $request->get('search');//lấy giá trị người dùng gõ vào
+		$count = 0;//kết quả tìm được
 
 		$articles = Article::all();
+		
 		$results = array();
+		
+
 		foreach( $articles as $item )
 		{
-			if( strpos($item->summary, $search) > -1 ) //return the first position of $search in $item->summary
+			//kiểm tra xem $child có nằm trong $father hay không		
+			if( strpos( strtolower($item->summary), strtolower($search) ) > -1 ) //return the first position of $search in $item->summary
 			{
-				$results[] = $item;
+				$results[] = $item;//chèn ngay giá trị vừa kiểm tra vào cuối $results ($results[] nghĩa là phần tử cuối)
 				$count++;
 			}
 		}
 
-		return view('layouts.home.search', ['search' => $search, 'count' => $count, 'results' => $results]);
+		
+
+		return view('layouts.home.search', ['search' => $search, 'count' => $count, 'results' => $results, ]);
 	}
 }

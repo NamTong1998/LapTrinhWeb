@@ -50,6 +50,11 @@ Create a Article
                 <label> Image</label>
                 <input type="file" name= "image" class="form-control"  />
             </div>
+             <div class="form-group">
+                <label> Video</label>
+                <input type="file" name="video" accept="video/*">
+            </div>
+
 
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary"> Create </button>

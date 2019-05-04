@@ -1,19 +1,19 @@
 @extends('layouts.author.layout')
-@section('title','Category Management')
+@section('title','Author Management')
 
 @section('css')
 
 @endsection
 
 @section('page-header')
-Create a New Category
+Create a New  Article
 @endsection
 
 @section('content')
 <div class="box box-primary">
     <div class="box-header with-border">
         <div class="col-md-4">
-                <h3 class="box-title">Edit a Article</h3>
+               
         </div>
         
     </div>
@@ -51,7 +51,11 @@ Create a New Category
                 <label> Image</label>
                 <input type="file" name= "image" class="form-control"  />
             </div>
-
+            
+            <div class="form-group">
+                <label> Video</label>
+                <input type="file" name="video" accept="video/*">
+            </div>
 
 
             <div class="box-footer">
@@ -64,5 +68,12 @@ Create a New Category
 @endsection
 
 @section('js')
-
+<script src="{{ asset('js/lib/summernote/dist/summernote.min.js') }}"></script>
+<script src="{{ asset('admin/bower_components/select2/dist/js/select2.full.min.js') }}"></script><!-- làm select đẹp hơn -->
+<script src="{{ asset('js/author/create.js') }}"></script>
+<script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('admin/bower_components/ckeditor/style.js') }}"></script>
+<script>
+    CKEDITOR.replace('content');
+</script>
 @endsection

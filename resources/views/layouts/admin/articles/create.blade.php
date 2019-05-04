@@ -1,5 +1,5 @@
 @extends('layouts.admin.layout')
-@section('title','Category Management')
+@section('title','Article Management')
 
 @section('css')
 <link href="{{ asset('js/lib/summernote/dist/summernote.css') }}" rel="stylesheet">

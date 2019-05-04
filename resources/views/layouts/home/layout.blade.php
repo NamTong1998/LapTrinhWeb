@@ -66,11 +66,7 @@
                                          <i class="fa fa-folder-open"> </i> &nbsp;&nbsp; My Profile
                                     </a>
                                 </div>
-                                <div>
-                                    <a class="dropdown-item" href="{{ route('home_changepassword_view') }}">
-                                        <i class="fa fa-lock"> </i> &nbsp;&nbsp; Change Password
-                                    </a>
-                                </div>
+                               
 
                                 @if(Auth::user()->is_admin === 1)
                                 <div>
@@ -120,6 +116,9 @@
             </div>
         <!-- /Top Nav -->
         </div>
+        <!-- Slide Nav -->
+        
+
         <!-- Main Nav -->
         <div id="nav-bottom">
             <div class="container">

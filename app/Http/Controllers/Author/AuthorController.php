@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\NotificationController;
 
 class AuthorController extends Controller
 {
+      const VIDEO = 'video';
     /**
      * Display a listing of the resource.
      *
@@ -83,6 +84,16 @@ class AuthorController extends Controller
         {
             $author->image= "";
         }
+        if($request->hasFile('video'))
+         {
+            $video = Storage::disk('public')->put(self::VIDEO, $request->file('video'));
+            $author->video = $video;
+         }
+         else
+        {
+            $author->video= "";
+        }
+
 
         $author->save();
 
@@ -137,6 +148,7 @@ class AuthorController extends Controller
         $author->category_id = $request->get('category');
         $author->summary = $request->get('summary');
         $author->content = $request->get('content');
+        $author->video = $request->get('video');
         $author->user_id = Auth::user()->id;
 
         if($request->hasFile('image'))
@@ -144,11 +156,16 @@ class AuthorController extends Controller
             $path = Storage::disk('public')->put(self::IMG_ART, $request->image);
             $author->image = $path;
         }
+         if($request->hasFile('video'))
+         {
+            $video = Storage::disk('public')->put(self::VIDEO, $request->file('video'));
+            $author->video = $video;
+         }
 
         $author->save();
 
         $noti = new NotificationController();
-        $noti->saveNoti(Auth::user()->user_name, "edited the article called", $article->summary);
+        $noti->saveNoti(Auth::user()->user_name, "edited the article called", $author->summary);
 
         return redirect()->route('author_list')->with('success', 'A new Article has been changed.');
     }

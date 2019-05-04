@@ -1,6 +1,6 @@
 @extends('layouts.author.layout')
 
-@section('title','Category Management')
+@section('title','Author Management')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
@@ -21,7 +21,7 @@
                                     
                                     <th> Summary </th>
                                     <th> Content </th>
-                                    <th> Image</th>
+                                    <th> Video</th>
 
                                     <th> Edit </th>
                                     <th> Delete </th>
@@ -35,10 +35,20 @@
                                     
                                     <td> 
                                         {{ $au->summary }} 
-                                        <p><img src="{{asset('')}}upload/{{$au->image}}" width="100px" height="100px" /> </p>
+                                        <p>
+                                            @if($au->image !=null)
+                                            <img src="{{asset('')}}upload/{{$au->image}}" width="100px" height="100px" /> 
+                                            @endif
+                                        </p>
                                     </td>
-                                    <td> {{ $au->content }} </td>
-                                    
+                                    <td> {!! $au->content !!} </td>
+                                     <td>
+                                        @if($au->video !=null)
+                                            <video style="width: 120px; height: auto;" src="{{ asset('/storage/'.$au->video) }}" autobuffer autoplay="true" autoloop loop controls 
+                                            poster="/images/video.png"> Format Unsupported </video>
+                                        
+                                        @endif
+                                      </td>
                                     <td> 
                                         <a class="btn btn-primary" href="{{ route('author_edit', ['id' => $au->id]) }}"> <i class="fa fa-edit">  </i> </a>
                                     </td>
