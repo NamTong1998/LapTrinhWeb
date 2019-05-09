@@ -25,8 +25,8 @@ class MainController extends HomeController
 	public function getData()
 	{
 		$category = Category::all();
-		$article1 = Article::all()->last();
-		$article2 = Article::all()->where('is_highlight', '1')->take(3);
+		$article1 = Article::all()->where('is_qualified', '1')->last();
+		$article2 = Article::all()->where('is_qualified', '1')->where('is_highlight', '1')->take(3);
 		
 
 		return view('layouts.home.main',[ 'category'=>$category,'article1'=>$article1,'article2'=>$article2]);
@@ -43,7 +43,7 @@ class MainController extends HomeController
 	public function getNewsByCategory($id)
 	{
 		$category1 = Category::find($id);
-		$articles1 = Article::all()->where('category_id', $category1->id);
+		$articles1 = Article::all()->where('is_qualified', '1')->where('category_id', $category1->id);
 
 		return view('layouts.home.news_byCategory', ['articles1' => $articles1, 'category1' => $category1]);
 	}
@@ -65,7 +65,7 @@ class MainController extends HomeController
 		$search = $request->get('search');//lấy giá trị người dùng gõ vào
 		$count = 0;//kết quả tìm được
 
-		$articles = Article::all();
+		$articles = Article::all()->where('is_qualified', '1');
 		$videos = Video::all();
 		$results = array();
 		$results2 = array();

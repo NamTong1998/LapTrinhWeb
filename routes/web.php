@@ -71,6 +71,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']],function()
 		Route::get('edit/{id}', 'Admin\ArticleController@edit')->name('admin_article_edit');
 		Route::post('update/{id}', 'Admin\ArticleController@update')->name('admin_article_update');
 		Route::post('delete/{id}', 'Admin\ArticleController@destroy')->name('admin_article_delete');
+		Route::get('change/{id}', 'Admin\ArticleController@changeQualification')->name('admin_article_change');
 	});
 
 	//Comment
@@ -136,4 +137,14 @@ Route::group(['prefix'=>'home'],function()
 
 	Route::get('videolist', 'Home\MainController@videoList')->name('home_video_list');
 	Route::get('video/{id}', 'Home\MainController@showVideo')->name('home_video_show');
+});
+
+//Reviewer Routing
+Route::group(['prefix'=>'reviewer'],function() {
+	Route::get('index', function() {
+		return view('layouts.reviewer.layout');
+	})->name('reviewer_index');
+	Route::get('list', 'Reviewer\ReviewerController@index')->name('reviewer_list');
+	Route::post('delete/{id}', 'Reviewer\ReviewerController@destroy')->name('reviewer_delete');
+	Route::get('change/{id}', 'Reviewer\ReviewerController@changeQualification')->name('reviewer_change');
 });
