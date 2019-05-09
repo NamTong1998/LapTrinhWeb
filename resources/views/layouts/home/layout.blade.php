@@ -68,7 +68,7 @@
                                 </div>
                                
 
-                                @if(Auth::user()->is_admin === 1)
+                                @if(Auth::user()->role_id === 1001)
                                 <div>
                                     <a class="dropdown-item" href="{{ route('admin_index') }}">
                                         <i class="fa  fa-thumbs-o-up"> </i> &nbsp;&nbsp; Go to Admin Page
@@ -77,7 +77,7 @@
                                 @endif
 
 
-                                @if(Auth::user()->role->name === "Author")
+                                @if(Auth::user()->role->id === 1001 || Auth::user()->role->id === 1)
                                 <div>
                                     <a class="dropdown-item" href="{{ route('author_index') }}">
                                         <i class="fa   fa-pencil"> </i> &nbsp;&nbsp; Go to Author Page

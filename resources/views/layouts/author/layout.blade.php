@@ -163,7 +163,7 @@ desired effect
           <ul class="treeview-menu">
             <li><a href="{{ route('home_index') }}"><i class="fa fa-home"></i><span> Home Index </span></a></li>
             <li><a href="{{ route('home_main') }}"><i class="fa fa-home"></i><span> Home Main </span></a></li>
-            @if( Auth::user()->is_admin === 1 )
+            @if( Auth::user()->role_id === 1001 )
             <li><a href="{{ route('admin_index') }}"><i class="fa fa-thumbs-o-up"></i><span> Admin Page </span></a></li>
             @endif
           </ul>

@@ -38,10 +38,16 @@
                                     <td> {{ $role->name }} </td>
                                     <td> {{ count($role->users) }} </td>
                                     <td> 
+                                        @if( $role->id != 1001 || $role->id != 1000 || $role->id != 1 || $role->id != 2 )
                                         <a class="btn btn-primary" href="{{ route('admin_role_edit', ['id' => $role->id]) }}"> <i class="fa fa-edit">  </i> </a>
+                                        @else
+                                        <i> Cannot edit this role </i>
+                                        @endif
                                     </td>
                                     <td>
-                                        @if( count($role->users) === 0)
+                                        @if( $role->id != 1001 || $role->id != 1000 || $role->id != 1 || $role->id != 2 || count($role->users) != 0 )
+                                        <i> Cannot be removed </i>
+                                        @else
                                         <form method="post" action="{{ route('admin_role_delete',['id'=> $role->id ]) }}">
                                             @csrf
                                             <div class="modal fade" id="delete_role_{{ $role->id }}" role="dialog">
@@ -62,8 +68,6 @@
                                             </div>
                                         </form>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_role_{{ $role->id }}"><i class="fa fa-trash"></i></button>
-                                        @else
-                                        <i> Cannot be removed </i>
                                         @endif
                                     </td>
                                 </tr>

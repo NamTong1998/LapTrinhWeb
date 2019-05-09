@@ -101,13 +101,11 @@ class UserManagement extends Controller
     public function edit($id)
     {
         //
-<<<<<<< HEAD
-        
-=======
+
         $user = User::find($id);
 
         return view('layouts.admin.user_management.edit', ['user' => $user]);
->>>>>>> 31c495b4fd322b687fac2b16e3007a294b93ce74
+
     }
 
     /**
@@ -147,18 +145,6 @@ class UserManagement extends Controller
         $users = User::all();
         $roles = Role::all();
         return view('layouts.admin.user_management.role', ['users' => $users, 'roles' => $roles]);
-    }
-
-    public function setAdmin($id)
-    {
-        $user = User::find($id);
-        $user->is_admin = 1;
-        $user->save();
-
-        $noti = new NotificationController();
-        $noti->saveNoti($user->user_name, "was promoted as an Admin", "");
-
-        return redirect()->route('admin_users_role')->with('success', $user->user_name.' has been altered as an Admin.');
     }
 
     public function setRole(Request $request, $id)

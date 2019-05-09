@@ -63,8 +63,8 @@ class LoginController extends Controller
         $user->save();
 
         //Role
-        $isAdmin = Auth::user()->is_admin;
-        if ($isAdmin == 1) {
+        $isAdmin = Auth::user()->role_id;
+        if ($isAdmin == 1001) {
             return '/admin/index';
         } else {
             return '/home/index';
