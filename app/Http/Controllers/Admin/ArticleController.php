@@ -60,6 +60,7 @@ class ArticleController extends Controller
         $article->content = $request->get('content');
         $article->category_id = $request->get('category');
         $article->is_highlight = $request->get('is_highlight');
+        $article->is_qualification = 1;
         $article->user_id = Auth::user()->id;
 
         //image
@@ -205,5 +206,23 @@ class ArticleController extends Controller
         $article->delete();
 
         return redirect()->route('admin_article_list')->with('success', 'A Article has been removed.');
+    }
+
+    public function changeQualification($id)
+    {
+        $article = Article::find($id);
+
+        if( $article->is_qualified == 0)
+        {
+            $article->is_qualified = 1;
+        }
+        elseif( $article->is_qualified == 1)
+        {
+            $article->is_qualified = 0;
+        }
+
+        $article->save();
+
+        return redirect()->route('reviewer_list');
     }
 }

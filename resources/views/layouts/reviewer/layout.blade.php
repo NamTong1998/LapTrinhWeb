@@ -62,11 +62,11 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="#" class="logo">
+    <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Reviewer</b>Page</span>
     </a>
 
     <!-- Header Navbar -->
@@ -78,104 +78,6 @@ desired effect
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">0</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 0 message</li>
-              <li>
-                <!-- inner menu: contains the messages -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <!-- User Image -->
-                        <img src="{{ asset('/storage/' . Auth::User()->image) }}" class="img-circle" alt="User Image">
-                      </div>
-                      <!-- Message title and timestamp -->
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <!-- The message -->
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                </ul>
-                <!-- /.menu -->
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
-          <!-- /.messages-menu -->
-
-          <!-- Notifications Menu -->
-          <li class="dropdown notifications-menu">
-            <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning"> {{ count( DB::table('notifications')->where('is_read', '0')->get() ) }} </span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have {{ count( DB::table('notifications')->where('is_read', '0')->get() ) }} notification(s)</li>
-              <li>
-                <!-- Inner Menu: contains the notifications -->
-                <ul class="menu">
-                  @foreach( DB::table('notifications')->get() as $noti )
-                    @if( $noti->is_read == 0 )
-                      <li><!-- start notification -->
-                        <i class="fa fa-bookmark"></i>&nbsp;&nbsp;{{ $noti->head }} {{ $noti->body }} {{ $noti->tail }}
-                      </li><!-- end notification -->
-                    @endif
-                  @endforeach
-                </ul>
-              </li>
-              <li class="footer"><a href="{{ route('admin_noti_list') }}">View all</a></li>
-              <li class="footer"><a href="{{ route('admin_noti_allread') }}"> Mark All as Read </a></li>
-            </ul>
-          </li>
-          <!-- Tasks Menu -->
-          <li class="dropdown tasks-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">0</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 0 tasks</li>
-              <li>
-                <!-- Inner menu: contains the tasks -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <!-- Task title and progress text -->
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
@@ -192,12 +94,11 @@ desired effect
 
                 <p>
                   {{Auth::User()->user_name}}
-                  <small> Hello, ADMIN </small>
+                  <small> Hello, REVIEWER </small>
                 </p>
               </li>
               
               <li class="user-footer">
-                
                 <div class="pull-right">
                   <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
                     onclick="event.preventDefault();
@@ -262,73 +163,22 @@ desired effect
           <ul class="treeview-menu">
             <li><a href="{{ route('home_index') }}"><i class="fa fa-home"></i><span> Home Index </span></a></li>
             <li><a href="{{ route('home_main') }}"><i class="fa fa-home"></i><span> Home Main </span></a></li>
-            <li><a href="{{ route('author_index') }}"><i class="fa fa-text-height"></i><span> Author Creation </span></a></li>
-            <li><a href="{{ route('reviewer_index') }}"><i class="fa  fa-check-circle"></i><span> Reviewer Checklist </span></a></li>
+            @if( Auth::user()->role_id === 1001 )
+            <li><a href="{{ route('admin_index') }}"><i class="fa fa-thumbs-o-up"></i><span> Admin Page </span></a></li>
+            @endif
           </ul>
         </li>
 
-        
         <li class="treeview">
-          <a href="#"><i class="fa fa-file-text-o"></i> <span> Content </span>
+          <a href="#"><i class="fa fa-text-height"></i> <span> Article </span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('admin_article_list') }}"><i class="fa fa-newspaper-o"></i><span>Article</span></a></li>
-            <li><a href="{{ route('admin_category_list') }}"><i class="fa fa-file-text"></i><span> Category </span></a></li>
+            <li><a href="{{ route('reviewer_list') }}"><i class="fa fa-list-ol"></i><span> List </span></a></li>
           </ul>
         </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-file-video-o"></i> <span> Video </span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('admin_video_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-commenting-o"></i> <span> Comment </span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('admin_comment_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
-          </ul>
-        </li>
-        
-      
-        <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span> User </span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('admin_users_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
-            <li><a href="{{ route('admin_users_create') }}"><i class="glyphicon glyphicon-plus-sign"></i><span>Create</span></a></li>
-            <li><a href="{{ route('admin_role_list') }}"><i class="fa fa-lock"></i><span> Role </span></a></li>
-            <li><a href="{{ route('admin_users_role') }}"><i class="fa fa-lock"></i><span> Users with Roles </span></a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-bookmark"></i> <span> Notifications </span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('admin_noti_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
-          </ul>
-        </li>
-
-        
 
       </ul>
       <!-- /.sidebar-menu -->
