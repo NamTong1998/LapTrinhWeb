@@ -80,11 +80,18 @@
                                 @if(Auth::user()->role->id === 1001 || Auth::user()->role->id === 1)
                                 <div>
                                     <a class="dropdown-item" href="{{ route('author_index') }}">
-                                        <i class="fa   fa-pencil"> </i> &nbsp;&nbsp; Go to Author Page
+                                        <i class="fa fa-pencil"> </i> &nbsp;&nbsp; Go to Author Page
                                     </a>
                                 </div>
                                 @endif
 
+                                @if(Auth::user()->role->id === 1001 || Auth::user()->role->id === 2)
+                                <div>
+                                    <a class="dropdown-item" href="{{ route('author_index') }}">
+                                        <i class="fa fa-check-circle"> </i> &nbsp;&nbsp; Go to Review Page
+                                    </a>
+                                </div>
+                                @endif
 
                                 <div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
