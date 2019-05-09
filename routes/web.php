@@ -17,79 +17,105 @@ Route::get('/', function() {
 });
 
 //Admin Routing
-Route::get('admin/index', function() {
+Route::get('index', function() {
     return view('layouts.admin.layout');
 })->name('admin_index');
-Route::get('admin/users/list', 'Admin\UserManagement@index')->name('admin_users_list');
-Route::get('admin/users/create', 'Admin\UserManagement@create')->name('admin_users_create');
-Route::post('admin/users/store', 'Admin\UserManagement@store')->name('admin_users_store');
-Route::get('admin/users/edit/{id}', 'Admin\UserManagement@edit')->name('admin_users_edit');
-Route::post('admin/users/update/{id}', 'Admin\UserManagement@update')->name('admin_users_update');
-Route::post('admin/users/delete/{id}', 'Admin\UserManagement@destroy')->name('admin_users_delete');
-Route::get('admin/users/role', 'Admin\UserManagement@role')->name('admin_users_role');
-Route::post('admin/users/setAdmin/{id}', 'Admin\UserManagement@setAdmin')->name('admin_users_setAdmin');
-Route::post('admin/users/setRole/{id}', 'Admin\UserManagement@setRole')->name('admin_users_setRole');
+//user
+Route::group(['prefix'=>'admin','middleware'=>['auth']],function()
+{
+	Route::group(['prefix'=>'users'],function()
+	{
+		Route::get('list', 'Admin\UserManagement@index')->name('admin_users_list');
+		Route::get('create', 'Admin\UserManagement@create')->name('admin_users_create');
+		Route::post('store', 'Admin\UserManagement@store')->name('admin_users_store');
+		Route::get('edit/{id}', 'Admin\UserManagement@edit')->name('admin_users_edit');
+		Route::post('update/{id}', 'Admin\UserManagement@update')->name('admin_users_update');
+		Route::post('delete/{id}', 'Admin\UserManagement@destroy')->name('admin_users_delete');
+		Route::get('role', 'Admin\UserManagement@role')->name('admin_users_role');
+		Route::post('setAdmin/{id}', 'Admin\UserManagement@setAdmin')->name('admin_users_setAdmin');
+		Route::post('setRole/{id}', 'Admin\UserManagement@setRole')->name('admin_users_setRole');
+	});
+	//role
+	Route::group(['prefix'=>'role'],function()
+	{
+		Route::get('list', 'Admin\RoleController@index')->name('admin_role_list');
+		Route::get('create', 'Admin\RoleController@create')->name('admin_role_create');
+		Route::post('store', 'Admin\RoleController@store')->name('admin_role_store');
+		Route::get('edit/{id}', 'Admin\RoleController@edit')->name('admin_role_edit');
+		Route::post('update/{id}', 'Admin\RoleController@update')->name('admin_role_update');
+		Route::post('delete/{id}', 'Admin\RoleController@destroy')->name('admin_role_delete');
+	});
+	//Category
+	Route::group(['prefix'=>'category'],function()
+	{
+		Route::get('list', 'Admin\CategoryController@index')->name('admin_category_list');
+		Route::get('create', 'Admin\CategoryController@create')->name('admin_category_create');
+		Route::post('store', 'Admin\CategoryController@store')->name('admin_category_store');
+		Route::get('edit/{id}', 'Admin\CategoryController@edit')->name('admin_category_edit');
+		Route::post('update/{id}', 'Admin\CategoryController@update')->name('admin_category_update');
+		Route::post('delete/{id}', 'Admin\CategoryController@destroy')->name('admin_category_delete');
+	});
 
-Route::get('admin/role/list', 'Admin\RoleController@index')->name('admin_role_list');
-Route::get('admin/role/create', 'Admin\RoleController@create')->name('admin_role_create');
-Route::post('admin/role/store', 'Admin\RoleController@store')->name('admin_role_store');
-Route::get('admin/role/edit/{id}', 'Admin\RoleController@edit')->name('admin_role_edit');
-Route::post('admin/role/update/{id}', 'Admin\RoleController@update')->name('admin_role_update');
-Route::post('admin/role/delete/{id}', 'Admin\RoleController@destroy')->name('admin_role_delete');
-//Category
-Route::get('admin/category/list', 'Admin\CategoryController@index')->name('admin_category_list');
-Route::get('admin/category/create', 'Admin\CategoryController@create')->name('admin_category_create');
-Route::post('admin/category/store', 'Admin\CategoryController@store')->name('admin_category_store');
-Route::get('admin/category/edit/{id}', 'Admin\CategoryController@edit')->name('admin_category_edit');
-Route::post('admin/category/update/{id}', 'Admin\CategoryController@update')->name('admin_category_update');
-Route::post('admin/category/delete/{id}', 'Admin\CategoryController@destroy')->name('admin_category_delete');
+	//Article
+	Route::group(['prefix'=>'article'],function()
+	{
+		Route::get('list', 'Admin\ArticleController@index')->name('admin_article_list');
+		Route::get('create', 'Admin\ArticleController@create')->name('admin_article_create');
+		Route::post('store', 'Admin\ArticleController@store')->name('admin_article_store');
+		Route::get('edit/{id}', 'Admin\ArticleController@edit')->name('admin_article_edit');
+		Route::post('update/{id}', 'Admin\ArticleController@update')->name('admin_article_update');
+		Route::post('delete/{id}', 'Admin\ArticleController@destroy')->name('admin_article_delete');
+	});
 
-//Article
-Route::get('admin/article/list', 'Admin\ArticleController@index')->name('admin_article_list');
-Route::get('admin/article/create', 'Admin\ArticleController@create')->name('admin_article_create');
-Route::post('admin/article/store', 'Admin\ArticleController@store')->name('admin_article_store');
-Route::get('admin/article/edit/{id}', 'Admin\ArticleController@edit')->name('admin_article_edit');
-Route::post('admin/article/update/{id}', 'Admin\ArticleController@update')->name('admin_article_update');
-Route::post('admin/article/delete/{id}', 'Admin\ArticleController@destroy')->name('admin_article_delete');
+	//Comment
+	Route::group(['prefix'=>'comment'],function()
+	{
+		Route::get('list', 'Admin\CommentController@index')->name('admin_comment_list');
+		Route::get('create', 'Admin\CommentController@create')->name('admin_comment_create');
+		Route::post('store', 'Admin\CommentController@store')->name('admin_comment_store');
+		Route::get('edit/{id}', 'Admin\CommentController@edit')->name('admin_comment_edit');
+		Route::post('update/{id}', 'Admin\CommentController@update')->name('admin_comment_update');
+		Route::post('delete/{id}', 'Admin\CommentController@destroy')->name('admin_comment_delete');
+	});
 
-//Comment
-Route::get('admin/comment/list', 'Admin\CommentController@index')->name('admin_comment_list');
-Route::get('admin/comment/create', 'Admin\CommentController@create')->name('admin_comment_create');
-Route::post('admin/comment/store', 'Admin\CommentController@store')->name('admin_comment_store');
-Route::get('admin/comment/edit/{id}', 'Admin\CommentController@edit')->name('admin_comment_edit');
-Route::post('admin/comment/update/{id}', 'Admin\CommentController@update')->name('admin_comment_update');
-Route::post('admin/comment/delete/{id}', 'Admin\CommentController@destroy')->name('admin_comment_delete');
-
-//Notification
-Route::get('admin/noti/list', 'Admin\NotificationController@index')->name('admin_noti_list');
-Route::get('admin/noti/allread', 'Admin\NotificationController@setAllAsRead')->name('admin_noti_allread');
-Route::get('admin/noti/read/{id}', 'Admin\NotificationController@setAsRead')->name('admin_noti_read');
-Route::get('admin/noti/delete/{id}', 'Admin\NotificationController@destroy')->name('admin_noti_delete');
-
-//Author Routing
-Route::get('author/index', function() {
-	return view('layouts.author.layout');
-})->name('author_index');
-Route::get('author/list', 'Author\AuthorController@index')->name('author_list');
-Route::get('author/create', 'Author\AuthorController@create')->name('author_create');
-Route::post('author/store', 'Author\AuthorController@store')->name('author_store');
-Route::get('author/edit/{id}', 'Author\AuthorController@edit')->name('author_edit');
-Route::post('author/update/{id}', 'Author\AuthorController@update')->name('author_update');
-Route::post('author/delete/{id}', 'Author\AuthorController@destroy')->name('author_delete');
+	//Notification
+	Route::group(['prefix'=>'noti'],function()
+	{
+		Route::get('list', 'Admin\NotificationController@index')->name('admin_noti_list');
+		Route::get('allread', 'Admin\NotificationController@setAllAsRead')->name('admin_noti_allread');
+		Route::get('read/{id}', 'Admin\NotificationController@setAsRead')->name('admin_noti_read');
+		Route::get('delete/{id}', 'Admin\NotificationController@destroy')->name('admin_noti_delete');
+	});
+});
+	//Author Routing
+	Route::group(['prefix'=>'author'],function()
+	{
+		Route::get('index', function() {
+			return view('layouts.author.layout');
+		})->name('author_index');
+		Route::get('list', 'Author\AuthorController@index')->name('author_list');
+		Route::get('create', 'Author\AuthorController@create')->name('author_create');
+		Route::post('store', 'Author\AuthorController@store')->name('author_store');
+		Route::get('edit/{id}', 'Author\AuthorController@edit')->name('author_edit');
+		Route::post('update/{id}', 'Author\AuthorController@update')->name('author_update');
+		Route::post('delete/{id}', 'Author\AuthorController@destroy')->name('author_delete');
+	});
 
 //Home Routing
-Route::get('home/index', 'Home\MainController@index')->name('home_index');
-Route::get('home/main', 'Home\MainController@getData')->name('home_main');
-Route::post('home/main/search', 'Home\MainController@search')->name('home_search');
+Route::group(['prefix'=>'home'],function()
+	{
+	Route::get('index', 'Home\MainController@index')->name('home_index');
+	Route::get('main', 'Home\MainController@getData')->name('home_main');
+	Route::post('main/search', 'Home\MainController@search')->name('home_search');
 
-Route::get('home/news/category/{id}', 'Home\MainController@getNewsByCategory')->name('home_news_byCategory');
-Route::get('home/news/{id}', 'Home\MainController@getNewsDetail')->name('home_newsDetail');
-Route::get('home/news/comment_delete/{id}', 'Admin\CommentController@deleteByUser')->name('home_newsDetail_comment_delete');
+	Route::get('news/category/{id}', 'Home\MainController@getNewsByCategory')->name('home_news_byCategory');
+	Route::get('news/{id}', 'Home\MainController@getNewsDetail')->name('home_newsDetail');
+	Route::get('news/comment_delete/{id}', 'Admin\CommentController@deleteByUser')->name('home_newsDetail_comment_delete');
 
-Route::get('home/profile/view', 'Home\UserProfileController@index')->name('home_profile_view');
-Route::get('home/profile/edit/{id}', 'Home\UserProfileController@edit')->name('home_profile_edit');
-Route::post('home/profile/update/{id}', 'Home\UserProfileController@update')->name('home_profile_update');
+	Route::get('profile/view', 'Home\UserProfileController@index')->name('home_profile_view');
+	Route::get('profile/edit/{id}', 'Home\UserProfileController@edit')->name('home_profile_edit');
+	Route::post('profile/update/{id}', 'Home\UserProfileController@update')->name('home_profile_update');
 
-Route::get('home/changepass/view','Home\ChangePasswordController@index')->name('home_changepassword_view');
-Route::post('home/changepass/save','Home\ChangePasswordController@store')->name('home_changepassword_save');
-
+	Route::get('changepass/view','Home\ChangePasswordController@index')->name('home_changepassword_view');
+	Route::post('changepass/save','Home\ChangePasswordController@store')->name('home_changepassword_save');
+});

@@ -23,6 +23,7 @@ class AuthorController extends Controller
     public function index()
     {
         $author= Article::all();
+        
         return view('layouts.author.list',['author' =>$author]);
     }
 
@@ -35,6 +36,7 @@ class AuthorController extends Controller
     {
 
         $category = Category::all();
+
         return view('layouts.author.create', ['category' => $category]);
     }
 

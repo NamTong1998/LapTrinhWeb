@@ -33,7 +33,7 @@
 
 <body>
 <!-- HEADER -->
-<header id="header">
+<header id="header" style=" background-image: linear-gradient(45deg,rgb(2,33,64,0.8) 50%,rgb(45,95,93,0.85)),url(' {{ asset('home/img/hana2.jpg') }} '); ">
     <!-- NAV -->
     <div id="nav">
         <!-- Top Nav -->
@@ -100,8 +100,8 @@
                             </div>
                         </li>
                     @endguest
-                    <button class="aside-btn"><i class="fa fa-bars"></i></button>
-                    <button class="search-btn"><i class="fa fa-search"></i></button>
+                    <button class="aside-btn"><i style="color: #ffffff;" class="fa fa-bars"></i></button>
+                    <button class="search-btn"><i style="color: #ffffff;" class="fa fa-search"></i></button>
                     <div id="nav-search">
                         <form method="post" action="{{ route('home_search') }}">
                             @csrf
@@ -130,7 +130,8 @@
 
                     @foreach($categories as $category)
                     <li class="has-dropdown">
-                            <a href="{{ route('home_news_byCategory', ["id" => $category->id]) }}"> {{ $category->name }} </a>
+                        
+                            <a style="color: white;" href="{{ route('home_news_byCategory', ["id" => $category->id]) }}"> {{ $category->name }} </a> 
                             <div class="dropdown">
                                 <div class="dropdown-body">
                                     <ul class="dropdown-list">

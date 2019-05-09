@@ -50,6 +50,7 @@ class MainController extends HomeController
 	public function search(Request $request)
 	{
 		$search = $request->get('search');//lấy giá trị người dùng gõ vào
+		$search_tolower = strtolower($search);
 		$count = 0;//kết quả tìm được
 
 		$articles = Article::all();
@@ -60,7 +61,7 @@ class MainController extends HomeController
 		foreach( $articles as $item )
 		{
 			//kiểm tra xem $child có nằm trong $father hay không		
-			if( strpos( strtolower($item->summary), strtolower($search) ) > -1 ) //return the first position of $search in $item->summary
+			if( strpos( strtolower($item->summary), $search_tolower ) > -1 ) //return the first position of $search in $item->summary
 			{
 				$results[] = $item;//chèn ngay giá trị vừa kiểm tra vào cuối $results ($results[] nghĩa là phần tử cuối)
 				$count++;
