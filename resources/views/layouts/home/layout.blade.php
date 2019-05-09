@@ -33,7 +33,7 @@
 
 <body>
 <!-- HEADER -->
-<header id="header">
+<header id="header" style=" background-image: linear-gradient(45deg,rgb(2,33,64,0.8) 50%,rgb(45,95,93,0.85)),url(' {{ asset('home/img/hana2.jpg') }} '); ">
     <!-- NAV -->
     <div id="nav">
         <!-- Top Nav -->
@@ -66,11 +66,7 @@
                                          <i class="fa fa-folder-open"> </i> &nbsp;&nbsp; My Profile
                                     </a>
                                 </div>
-                                <div>
-                                    <a class="dropdown-item" href="{{ route('home_changepassword_view') }}">
-                                        <i class="fa fa-lock"> </i> &nbsp;&nbsp; Change Password
-                                    </a>
-                                </div>
+                               
 
                                 @if(Auth::user()->is_admin === 1)
                                 <div>
@@ -104,8 +100,8 @@
                             </div>
                         </li>
                     @endguest
-                    <button class="aside-btn"><i class="fa fa-bars"></i></button>
-                    <button class="search-btn"><i class="fa fa-search"></i></button>
+                    <button class="aside-btn"><i style="color: #ffffff;" class="fa fa-bars"></i></button>
+                    <button class="search-btn"><i style="color: #ffffff;" class="fa fa-search"></i></button>
                     <div id="nav-search">
                         <form method="post" action="{{ route('home_search') }}">
                             @csrf
@@ -120,6 +116,9 @@
             </div>
         <!-- /Top Nav -->
         </div>
+        <!-- Slide Nav -->
+        
+
         <!-- Main Nav -->
         <div id="nav-bottom">
             <div class="container">

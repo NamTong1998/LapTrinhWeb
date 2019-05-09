@@ -6,14 +6,14 @@
 @endsection
 
 @section('page-header')
-Create a New Category
+Edit a Article
 @endsection
 
 @section('content')
 <div class="box box-primary">
     <div class="box-header with-border">
         <div class="col-md-4">
-                <h3 class="box-title">Edit a Article</h3>
+             
         </div>
         <div class="col-md-2 col-md-offset-6">
             <a href="{{ route('admin_article_list') }}" class="btn btn-block btn-info">

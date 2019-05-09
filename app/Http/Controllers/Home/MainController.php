@@ -62,8 +62,8 @@ class MainController extends HomeController
 
 	public function search(Request $request)
 	{
-		$search = $request->get('search');
-		$count = 0;
+		$search = $request->get('search');//lấy giá trị người dùng gõ vào
+		$count = 0;//kết quả tìm được
 
 		$articles = Article::all();
 		$videos = Video::all();
@@ -73,6 +73,7 @@ class MainController extends HomeController
 		foreach( $articles as $item )
 		{
 			if( strpos( strtolower($item->summary), strtolower($search) ) > -1 ) //return the first position of $search in $item->summary
+
 			{
 				$results[] = $item;
 				$count++;

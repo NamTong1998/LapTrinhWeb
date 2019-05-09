@@ -1,6 +1,6 @@
 @extends('layouts.admin.layout')
 
-@section('title','Category Management')
+@section('title','Article Management')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
@@ -56,10 +56,10 @@
                                         <i> NO </i>
                                         @endif
                                     </td>
-                                    <td> {{ $ar->content }} </td>
+                                    <td> {!! $ar->content !!} </td>
                                      <td>
                                         @if($ar->video !=null)
-                                            <video src="{{ asset('/storage/'.$ar->video) }}" autobuffer autoplay="true" autoloop loop controls 
+                                            <video style="width: 120px; height: auto;" src="{{ asset('/storage/'.$ar->video) }}" autobuffer autoplay="true" autoloop loop controls 
                                             poster="/images/video.png"> Format Unsupported </video>
                                         
                                         @endif

@@ -92,16 +92,13 @@ class RegisterController extends Controller
     {
 
         $categories = Category::all();
-        $articles = Article::all();
+        $articles = Article::all()->shuffle()->take(5);
         $articles_m = Article::all();
         $videos = Video::all()->shuffle()->take(4);
 
         return view('auth.register',['categories'=>$categories, 'articles' => $articles,'articles_m' => $articles_m, 'videos' => $videos]);
 
-/*      $categories= Category::all();
-      $articles = Article::all()->shuffle()->take(5);
-      $articles_m = Article::all();
-      return view('auth.register',['categories'=>$categories, 'articles' => $articles, 'articles_m' => $articles_m]);*/
+
 
     }
 }
