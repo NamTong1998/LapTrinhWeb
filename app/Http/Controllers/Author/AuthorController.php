@@ -50,8 +50,8 @@ class AuthorController extends Controller
     {
 
         $request->validate([
-            'summary' => 'required|unique:articles',
-            'content' =>'required|min:20'
+            'summary' => 'required',
+            'content' =>'required'
         ]);
 
         $author = new Article();
@@ -142,8 +142,8 @@ class AuthorController extends Controller
     {
 
          $request->validate([
-            'summary' => 'required|unique:articles',
-            'content' =>'required|min:20'
+            'summary' => 'required',
+            'content' =>'required'
         ]);
 
         $author= Article::find($id);;

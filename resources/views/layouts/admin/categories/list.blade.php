@@ -41,6 +41,7 @@
                                         <a class="btn btn-primary" href="{{ route('admin_category_edit', ['id' => $ac->id]) }}"> <i class="fa fa-edit">  </i> </a>
                                     </td>
                                     <td>
+                                        @if(count($ac->article) == 0)
                                         <form method="post" action="{{ route('admin_category_delete',['id'=> $ac->id ]) }}">
                                             @csrf
                                             <div class="modal fade" id="delete_category_{{ $ac->id }}" role="dialog">
@@ -61,6 +62,9 @@
                                             </div>
                                         </form>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_category_{{ $ac->id }}"><i class="fa fa-trash"></i></button>
+                                        @else
+                                        <i> Article(s) exist(s). No deletion allowed </i>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

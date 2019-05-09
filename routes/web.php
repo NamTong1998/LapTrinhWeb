@@ -24,6 +24,10 @@ Route::get('index', function() {
 //user
 Route::group(['prefix'=>'admin','middleware'=>['auth']],function()
 {
+	Route::get('index', function() {
+	    return view('layouts.admin.layout');
+	})->name('admin_index');
+
 	Route::group(['prefix'=>'users'],function()
 	{
 		Route::get('list', 'Admin\UserManagement@index')->name('admin_users_list');
@@ -88,20 +92,29 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']],function()
 		Route::get('read/{id}', 'Admin\NotificationController@setAsRead')->name('admin_noti_read');
 		Route::get('delete/{id}', 'Admin\NotificationController@destroy')->name('admin_noti_delete');
 	});
+
+	//Videos
+	Route::get('video/list', 'Admin\VideoController@index')->name('admin_video_list');
+	Route::get('video/create', 'Admin\VideoController@create')->name('admin_video_create');
+	Route::post('video/store', 'Admin\VideoController@store')->name('admin_video_store');
+	Route::get('video/edit/{id}', 'Admin\VideoController@edit')->name('admin_video_edit');
+	Route::post('video/update/{id}', 'Admin\VideoController@update')->name('admin_video_update');
+	Route::post('video/delete/{id}', 'Admin\VideoController@destroy')->name('admin_video_delete');
 });
-	//Author Routing
-	Route::group(['prefix'=>'author'],function()
-	{
-		Route::get('index', function() {
-			return view('layouts.author.layout');
-		})->name('author_index');
-		Route::get('list', 'Author\AuthorController@index')->name('author_list');
-		Route::get('create', 'Author\AuthorController@create')->name('author_create');
-		Route::post('store', 'Author\AuthorController@store')->name('author_store');
-		Route::get('edit/{id}', 'Author\AuthorController@edit')->name('author_edit');
-		Route::post('update/{id}', 'Author\AuthorController@update')->name('author_update');
-		Route::post('delete/{id}', 'Author\AuthorController@destroy')->name('author_delete');
-	});
+
+//Author Routing
+Route::group(['prefix'=>'author'],function()
+{
+	Route::get('index', function() {
+		return view('layouts.author.layout');
+	})->name('author_index');
+	Route::get('list', 'Author\AuthorController@index')->name('author_list');
+	Route::get('create', 'Author\AuthorController@create')->name('author_create');
+	Route::post('store', 'Author\AuthorController@store')->name('author_store');
+	Route::get('edit/{id}', 'Author\AuthorController@edit')->name('author_edit');
+	Route::post('update/{id}', 'Author\AuthorController@update')->name('author_update');
+	Route::post('delete/{id}', 'Author\AuthorController@destroy')->name('author_delete');
+});
 
 //Home Routing
 Route::group(['prefix'=>'home'],function()
@@ -120,4 +133,7 @@ Route::group(['prefix'=>'home'],function()
 
 	Route::get('changepass/view','Home\ChangePasswordController@index')->name('home_changepassword_view');
 	Route::post('changepass/save','Home\ChangePasswordController@store')->name('home_changepassword_save');
+
+	Route::get('videolist', 'Home\MainController@videoList')->name('home_video_list');
+	Route::get('video/{id}', 'Home\MainController@showVideo')->name('home_video_show');
 });

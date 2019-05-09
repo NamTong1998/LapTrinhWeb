@@ -130,7 +130,7 @@
 
                     @foreach($categories as $category)
                     <li class="has-dropdown">
-                        <a href="{{ route('home_news_byCategory', ["id" => $category->id]) }}"> {{ $category->name }} </a>
+                        <a style="color: white;" href="{{ route('home_news_byCategory', ["id" => $category->id]) }}"> {{ $category->name }} </a>
                         <div class="dropdown">
                             <div class="dropdown-body">
                                 <ul class="dropdown-list">
@@ -144,7 +144,7 @@
                     @endforeach
 
                     <li class="has-dropdown">
-                        <a href="{{ route('home_video_list') }}"> Videos </a>
+                        <a style="color: white;" href="{{ route('home_video_list') }}"> Videos </a>
                         <div class="dropdown">
                             <div class="dropdown-body">
                                 <ul class="dropdown-list">

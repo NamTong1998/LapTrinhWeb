@@ -144,8 +144,8 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
          $request->validate([
-            'summary' => 'required|unique:articles',
-            'content' =>'required|min:20'
+            'summary' => 'required',
+            'content' => 'required'
         ]);
         $article= Article::find($id);
         $article->category_id = $request->get('category');

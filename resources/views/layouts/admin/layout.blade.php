@@ -268,7 +268,7 @@ desired effect
 
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-file-text-o"></i> <span>Content </span>
+          <a href="#"><i class="fa fa-file-text-o"></i> <span> Content </span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -280,7 +280,18 @@ desired effect
         </li>
 
         <li class="treeview">
-          <a href="#"><i class="fa fa-commenting-o"></i> <span>Comment</span>
+          <a href="#"><i class="fa fa-file-video-o"></i> <span> Video </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('admin_video_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-commenting-o"></i> <span> Comment </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -292,7 +303,7 @@ desired effect
         
       
         <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>User </span>
+          <a href="#"><i class="fa fa-user"></i> <span> User </span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -316,16 +327,7 @@ desired effect
           </ul>
         </li>
 
-        <li class="treeview">
-          <a href="#"><i class="fa fa-file-video-o"></i> <span> Video </span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('admin_video_list') }}"><i class="fa fa-list"></i><span>List</span></a></li>
-          </ul>
-        </li>
+        
 
       </ul>
       <!-- /.sidebar-menu -->

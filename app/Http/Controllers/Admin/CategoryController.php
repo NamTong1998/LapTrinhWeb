@@ -88,7 +88,7 @@ class CategoryController extends Controller
     {
         
         $request->validate([
-            'name' => 'required|unique:categories' .$id,
+            'name' => 'required|unique:categories',
         ]);
         $ac= Category::find($id);
         
