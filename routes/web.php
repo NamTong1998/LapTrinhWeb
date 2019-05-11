@@ -22,7 +22,7 @@ Route::get('index', function() {
 })->name('admin_index');
 
 //user
-Route::group(['prefix'=>'admin','middleware'=>['auth']],function()
+Route::group(['prefix'=>'admin', 'middleware'=>['auth']],function()
 {
 	Route::get('index', function() {
 	    return view('layouts.admin.layout');
@@ -104,7 +104,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']],function()
 });
 
 //Author Routing
-Route::group(['prefix'=>'author'],function()
+Route::group(['prefix'=>'author', 'middleware'=>['auth']],function()
 {
 	Route::get('index', function() {
 		return view('layouts.author.layout');
@@ -118,7 +118,7 @@ Route::group(['prefix'=>'author'],function()
 });
 
 //Home Routing
-Route::group(['prefix'=>'home'],function()
+Route::group(['prefix'=>'home', 'middleware'=>['auth']],function()
 	{
 	Route::get('index', 'Home\MainController@index')->name('home_index');
 	Route::get('main', 'Home\MainController@getData')->name('home_main');
@@ -140,7 +140,7 @@ Route::group(['prefix'=>'home'],function()
 });
 
 //Reviewer Routing
-Route::group(['prefix'=>'reviewer'],function() {
+Route::group(['prefix'=>'reviewer', 'middleware'=>['auth']],function() {
 	Route::get('index', function() {
 		return view('layouts.reviewer.layout');
 	})->name('reviewer_index');

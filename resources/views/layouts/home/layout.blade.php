@@ -87,7 +87,7 @@
 
                                 @if(Auth::user()->role->id === 1001 || Auth::user()->role->id === 2)
                                 <div>
-                                    <a class="dropdown-item" href="{{ route('author_index') }}">
+                                    <a class="dropdown-item" href="{{ route('reviewer_index') }}">
                                         <i class="fa fa-check-circle"> </i> &nbsp;&nbsp; Go to Review Page
                                     </a>
                                 </div>
