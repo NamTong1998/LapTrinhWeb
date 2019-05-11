@@ -39,7 +39,7 @@
                                         {{ $au->summary }} 
                                         <p>
                                             @if($au->image !=null)
-                                            <img src="{{asset('')}}upload/{{$au->image}}" width="100px" height="100px" /> 
+                                            <img src="{{ asset('upload/'.$au->image) }}" width="100px" height="100px" /> 
                                             @endif
                                         </p>
                                     </td>

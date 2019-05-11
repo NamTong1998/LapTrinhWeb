@@ -47,7 +47,7 @@
                                     <td> {{ $ar->category->name }}</td>
                                     <td>
                                     <p>{{ $ar->summary }} </p> 
-                                    <img src="{{asset('')}}upload/{{$ar->image}}" width="100px" width="" ="250px" height="100px" /> 
+                                    <img src="{{ asset('upload/'.$ar->image) }}" width="100px" width="" ="250px" height="100px" /> 
                                     </td>
                                     <td>
                                         @if( $ar->is_highlight === 1 )
