@@ -17,11 +17,7 @@ Route::get('/', function() {
 });
 
 //Admin Routing
-Route::get('index', function() {
-    return view('layouts.admin.layout');
-})->name('admin_index');
 
-//user
 Route::group(['prefix'=>'admin', 'middleware'=>['auth']],function()
 {
 	Route::get('index', function() {
