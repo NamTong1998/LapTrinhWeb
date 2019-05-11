@@ -114,7 +114,7 @@ Route::group(['prefix'=>'author', 'middleware'=>['auth']],function()
 });
 
 //Home Routing
-Route::group(['prefix'=>'home', 'middleware'=>['auth']],function()
+Route::group(['prefix'=>'home'],function()
 	{
 	Route::get('index', 'Home\MainController@index')->name('home_index');
 	Route::get('main', 'Home\MainController@getData')->name('home_main');
