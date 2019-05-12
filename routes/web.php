@@ -18,7 +18,7 @@ Route::get('/', function() {
 
 //Admin Routing
 
-Route::group(['prefix'=>'admin', 'middleware'=>['auth']],function()
+Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'admin']],function()
 {
 	Route::get('index', function() {
 	    return view('layouts.admin.layout');
