@@ -46,7 +46,7 @@ Edit a Article
             
             <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
                 <label for="cont"> Content*: </label>
-                <textarea id="cont" type="text" class="form-control" name="content" required value="{{ $article->content }}"> </textarea>
+                <textarea id="cont" type="text" class="form-control" name="content" > {{ $article->content }} </textarea>
                 @if ($errors->has('content'))
                     <span class="help-block">{{ $errors->first('content') }}</span>
                 @endif
