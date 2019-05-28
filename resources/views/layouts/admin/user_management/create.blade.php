@@ -1,5 +1,4 @@
 @extends('layouts.admin.layout')
-<<<<<<< HEAD
 @section('title','User Management')
 
 @section('css')
@@ -97,20 +96,6 @@
                         <strong>{{ $errors->first('affiliation') }}</strong>
                     </span>
                 @endif
-            </div>
-
-            <div class="form-group">
-                <label for="is_admin">{{ __('Make Admin') }}</label>
-                <select id="is_admin" type="text" class="form-control{{ $errors->has('is_admin') ? ' is-invalid' : '' }}" name="is_admin">
-                    <option value="0"> No. DO NOT make this user a new admin. </option>
-                    <option value="1"> Yes. MAKE this user a new admin. </option>
-                </select>
-
-                @if ($errors->has('is_admin'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('is_admin') }}</strong>
-                    </span>
-                @endif         
             </div>
 
             <div class="form-group">

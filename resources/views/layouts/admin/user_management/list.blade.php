@@ -75,8 +75,6 @@
                                         @else
                                         <i> Cannot delete yourself </i>
                                         @endif
-
-                                        <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
                                 
