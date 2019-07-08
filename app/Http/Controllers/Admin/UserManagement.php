@@ -48,7 +48,7 @@ class UserManagement extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'affiliation' => ['required', 'string', 'max:255'],
-            'is_admin' => ['required', 'string', 'max:255'],
+          
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -61,7 +61,7 @@ class UserManagement extends Controller
             'gender' => $request->get('gender'),
             'initals' => $request->get('initals'),
             'affiliation' => $request->get('affiliation'),
-            'is_admin'=> $request->get('is_admin'),
+            
             'phone' => $request->get('phone'),
             'fax' => $request->get('fax'),
             'country' => $request->get('country'),

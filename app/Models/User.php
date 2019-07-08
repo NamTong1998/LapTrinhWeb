@@ -25,7 +25,6 @@ class User extends Authenticatable
         'affiliation',
         'gender',
         'initals',
-        'is_admin',
         'role_id',
         'phone',
         'country',

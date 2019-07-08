@@ -58,7 +58,8 @@ class CommentController extends Controller
         $noti = new NotificationController();
         $noti->saveNoti(Auth::user()->user_name, "added a comment on", $comment->article->summary);
 
-        return redirect()->route('home_newsDetail',["id" => $comment->article_id]);
+        //return redirect()->route('home_newsDetail',["id" => $comment->article_id]);
+        return redirect()->back();
     }
 
     /**
@@ -102,7 +103,8 @@ class CommentController extends Controller
         $comment->user_id = $request->get('user_id');
         $comment->save();
 
-        return redirect()->route('home_newsDetail', ["id" => $comment->article_id]);
+        //return redirect()->route('home_newsDetail', ["id" => $comment->article_id]);
+        return redirect()->back();
     }
 
     /**
