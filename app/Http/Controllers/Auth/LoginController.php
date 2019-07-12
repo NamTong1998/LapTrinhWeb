@@ -12,6 +12,7 @@ use App\Models\UserHistory;
 use Carbon\Carbon;// time
 use App\Models\Category;
 use App\Models\Article;
+use App\Models\Video;
 
 
 class LoginController extends Controller
@@ -62,8 +63,8 @@ class LoginController extends Controller
         $user->save();
 
         //Role
-        $isAdmin = Auth::user()->is_admin;
-        if ($isAdmin == 1) {
+        $isAdmin = Auth::user()->role_id;
+        if ($isAdmin == 1001) {
             return '/admin/index';
         } else {
             return '/home/index';
@@ -80,10 +81,11 @@ class LoginController extends Controller
     {
 
       $categories= Category::all();
+      $articles = Article::all()->where('is_qualified', '1')->shuffle()->take(5);
+      $articles_m = Article::all()->where('is_qualified', '1');
+      $videos = Video::all()->shuffle()->take(4);
 
-      $articles = Article::all()->shuffle()->take(5);
-      $articles_m = Article::all();
-      return view('auth.login',['categories'=>$categories, 'articles' => $articles, 'articles_m' => $articles_m]);
+      return view('auth.login',['categories'=>$categories, 'articles' => $articles, 'articles_m' => $articles_m, 'videos' => $videos]);
 
     }
     /**

@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Article;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Database\Eloquent\Builder;
 
 
@@ -24,8 +25,8 @@ class MainController extends HomeController
 	public function getData()
 	{
 		$category = Category::all();
-		$article1 = Article::all()->last();
-		$article2 = Article::all()->where('is_highlight', '1')->take(3);
+		$article1 = Article::all()->where('is_qualified', '1')->last();
+		$article2 = Article::all()->where('is_qualified', '1')->where('is_highlight', '1')->take(3);
 		
 
 		return view('layouts.home.main',[ 'category'=>$category,'article1'=>$article1,'article2'=>$article2]);
@@ -42,34 +43,52 @@ class MainController extends HomeController
 	public function getNewsByCategory($id)
 	{
 		$category1 = Category::find($id);
-		$articles1 = Article::all()->where('category_id', $category1->id);
+		$articles1 = Article::all()->where('is_qualified', '1')->where('category_id', $category1->id);
 
 		return view('layouts.home.news_byCategory', ['articles1' => $articles1, 'category1' => $category1]);
+	}
+
+	public function showVideo($id)
+	{
+		$video = Video::find($id);
+		return view('layouts.home.showVideo', ['video' => $video]);
+	}
+
+	public function videoList()
+	{
+		$videos = Video::all();
+		return view('layouts.home.videos', ['videos' => $videos]);
 	}
 
 	public function search(Request $request)
 	{
 		$search = $request->get('search');//lấy giá trị người dùng gõ vào
-		$search_tolower = strtolower($search);
 		$count = 0;//kết quả tìm được
 
-		$articles = Article::all();
-		
+		$articles = Article::all()->where('is_qualified', '1');
+		$videos = Video::all();
 		$results = array();
-		
+		$results2 = array();
 
 		foreach( $articles as $item )
 		{
-			//kiểm tra xem $child có nằm trong $father hay không		
-			if( strpos( strtolower($item->summary), $search_tolower ) > -1 ) //return the first position of $search in $item->summary
+			if( strpos( strtolower($item->summary), strtolower($search) ) > -1 ) //return the first position of $search in $item->summary
+
 			{
-				$results[] = $item;//chèn ngay giá trị vừa kiểm tra vào cuối $results ($results[] nghĩa là phần tử cuối)
+				$results[] = $item;
 				$count++;
 			}
 		}
 
-		
+		foreach( $videos as $item )
+		{
+			if( strpos( strtolower($item->title), strtolower($search) ) > -1 ) //return the first position of $search in $item->title
+			{
+				$results2[] = $item;
+				$count++;
+			}
+		}
 
-		return view('layouts.home.search', ['search' => $search, 'count' => $count, 'results' => $results, ]);
+		return view('layouts.home.search', ['search' => $search, 'count' => $count, 'results' => $results, 'results2' => $results2]);
 	}
 }

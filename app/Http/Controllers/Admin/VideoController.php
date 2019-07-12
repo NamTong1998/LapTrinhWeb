@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Session;
-use App\Models\Category;
+use App\Models\Video;
+use Illuminate\Support\Facades\Storage;
 
-class CategoryController extends Controller
+class VideoController extends Controller
 {
+    const VIDEO = 'video';
+
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +19,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $acs = Category::all();
-        return view('layouts.admin.categories.list', ['acs' => $acs]);
+        $videos = Video::all();
+        return view('layouts.admin.videos.list', ['videos' => $videos]);
     }
 
     /**
@@ -29,7 +31,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('layouts.admin.categories.create');
+        return view('layouts.admin.videos.create');
     }
 
     /**
@@ -42,15 +44,18 @@ class CategoryController extends Controller
     {
         //
         $request->validate([
-            'name' => 'required|unique:categories',
+            'title' => 'required'
         ]);
 
-        $ac = new Category(); 
-        $ac->name = $request->name;
+        $video = new Video();
+        $video->title = $request->get('title');
 
-        $ac->save();
+        $path = Storage::disk('public')->put(self::VIDEO, $request->file('video'));
+        $video->path = $path;
 
-        return redirect()->route('admin_category_list')->with('success', 'A new Category has been created.');
+        $video->save();
+
+        return redirect()->route('admin_video_list')->with('success', 'A new video has been uploaded.');
     }
 
     /**
@@ -73,8 +78,6 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-        $ac = Category::find($id);
-        return view('layouts.admin.categories.edit', ['ac' => $ac]);
     }
 
     /**
@@ -86,17 +89,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        //
         $request->validate([
-            'name' => 'required|unique:categories',
+            'title' => 'required'
         ]);
-        $ac= Category::find($id);
-        
-        $ac->name = $request->name;
 
-        $ac->save();
+        $video = Video::find($id);
+        $video->title = $request->get('title');
+        $video->path = $video->path;
 
-        return redirect()->route('admin_category_list')->with('success', 'A new Category has been edited.');
+        $video->save();
+
+        return redirect()->route('admin_video_list');
     }
 
     /**
@@ -108,9 +112,11 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
-        $ac = Category::find($id);
-        $ac->delete();
+        $video = Video::find($id);
 
-        return redirect()->route('admin_category_list')->with('success', 'A Category has been removed.');
+        Storage::disk('public')->delete($video->path);
+        $video->delete();
+
+        return redirect()->route('admin_video_list');
     }
 }

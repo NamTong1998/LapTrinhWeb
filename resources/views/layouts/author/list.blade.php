@@ -28,7 +28,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if( Auth::user()->is_admin === 1 )
+                                @if( Auth::user()->role_id === 1001 )
 
                                 @foreach($author as $au)
                                 <tr>
@@ -39,7 +39,7 @@
                                         {{ $au->summary }} 
                                         <p>
                                             @if($au->image !=null)
-                                            <img src="{{asset('')}}upload/{{$au->image}}" width="100px" height="100px" /> 
+                                            <img src="{{ asset('upload/'.$au->image) }}" width="100px" height="100px" /> 
                                             @endif
                                         </p>
                                     </td>
@@ -79,7 +79,7 @@
                                 </tr>
                                 @endforeach
 
-                                @elseif ( (Auth::user()->is_admin === 0) && ( Auth::user()->role->name == "Author" ) )
+                                @elseif (Auth::user()->role_id === 1)
 
                                 @foreach ( $author->where('user_id', Auth::user()->id) as $au )
                                 <tr>
@@ -115,7 +115,7 @@
                                                 <div class="modal-content">
                                                   <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Are you sure delete the category named {{ $au->summary }} ?</h4>
+                                                    <h4 class="modal-title">Are you sure delete the article named {{ $au->summary }} ?</h4>
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

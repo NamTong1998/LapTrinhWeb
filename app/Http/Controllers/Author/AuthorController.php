@@ -14,7 +14,8 @@ use App\Http\Controllers\Admin\NotificationController;
 
 class AuthorController extends Controller
 {
-      const VIDEO = 'video';
+    const IMG_ART = 'image';
+    const VIDEO = 'video';
     /**
      * Display a listing of the resource.
      *
@@ -50,8 +51,8 @@ class AuthorController extends Controller
     {
 
         $request->validate([
-            'summary' => 'required|unique:articles',
-            'content' =>'required|min:20'
+            'summary' => 'required',
+            'content' =>'required'
         ]);
 
         $author = new Article();
@@ -61,7 +62,7 @@ class AuthorController extends Controller
         $author->user_id = Auth::user()->id;
         $author->is_highlight= 0;
 
-          if($request->hasFile('image'))
+        if($request->hasFile('image'))
         {
             $file= $request->file('image');
             $duoi=$file->getClientOriginalExtension();
@@ -86,6 +87,7 @@ class AuthorController extends Controller
         {
             $author->image= "";
         }
+
         if($request->hasFile('video'))
          {
             $video = Storage::disk('public')->put(self::VIDEO, $request->file('video'));
@@ -141,9 +143,9 @@ class AuthorController extends Controller
     public function update(Request $request, $id)
     {
 
-         $request->validate([
-            'summary' => 'required|unique:articles',
-            'content' =>'required|min:20'
+        $request->validate([
+            'summary' => 'required',
+            'content' =>'required'
         ]);
 
         $author= Article::find($id);;
@@ -155,14 +157,35 @@ class AuthorController extends Controller
 
         if($request->hasFile('image'))
         {
-            $path = Storage::disk('public')->put(self::IMG_ART, $request->image);
-            $author->image = $path;
+            $file= $request->file('image');
+            $duoi=$file->getClientOriginalExtension();
+            if( $duoi !='jpg'&& $duoi !='png'&& $duoi !='jpeg')
+            {
+                redirect()->route('admin_article_create')->with('thongbao','Bạn chỉ được thêm ảnh .jpg ,png,jpeg');
+            }
+            $name= $file->getClientOriginalName();//lấy tên ảnh
+            $image=str_random(4)."_".$name;// gán random tên ảnh
+            // khÔng trùng tên ảnh
+            while(file_exists("upload/".$image))
+            {
+                $image=str_random(4)."_".$name;
+
+            }
+
+
+            $file->move('upload',$image);
+            $author->image= $image;
         }
-         if($request->hasFile('video'))
-         {
+        else
+        {
+            $author->image= "";
+        }
+
+        if($request->hasFile('video'))
+        {
             $video = Storage::disk('public')->put(self::VIDEO, $request->file('video'));
             $author->video = $video;
-         }
+        }
 
         $author->save();
 

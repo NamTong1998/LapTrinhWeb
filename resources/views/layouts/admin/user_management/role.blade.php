@@ -1,6 +1,6 @@
 @extends('layouts.admin.layout')
 
-@section('title','User Role Management')
+@section('title','User Management')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
@@ -13,7 +13,7 @@
             <div class="box">
                 <div class="box-header with-border">
                     <div class="col-md-4">
-                        <h3 class="box-title">User Role List</h3>
+                        <h3 class="box-title">User List With Roles</h3>
                     </div>
                     
                 </div>
@@ -25,45 +25,18 @@
                                     <th> ID </th>
                                     <th> Username </th>
                                     <th> Name </th>
-                                    <th> Is Admin </th>
                                     <th> Role </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($users as $user)
-                                
                                 <tr>
                                     <td> {{ $user->id }} </td>
                                     <td> {{ $user->user_name }} </td>
                                     <td> {{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }} </td>
-                                    <td>
-                                        @if( $user->is_admin === 1 )
-                                        <i> Already an Admin </i>
-                                        @else
-                                        <form method="post" action="{{ route('admin_users_setAdmin',['id'=> $user->id ]) }}">
-                                            @csrf
-                                            <div class="modal fade" id="setAdmin_user_{{ $user->id }}" role="dialog">
-                                              <div class="modal-dialog">
-
-                                                <!-- Modal content-->
-                                                <div class="modal-content">
-                                                  <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Are you sure to make user {{ $user->user_name }} a new Admin?</h4>
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Yes</button>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                        </form>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#setAdmin_user_{{ $user->id }}"><i class="fa fa-thumbs-o-up"> {{ __('Make Admin') }} </i></button>
-                                    </td>>
-                                        @endif
                                     </td>
                                     <td>
+                                        @if( $user->id != Auth::user()->id )
                                         <form method="post" action="{{ route('admin_users_setRole',['id'=> $user->id ]) }}">
                                             @csrf
                                             <div class="modal fade" id="setRole_user_{{ $user->id }}" role="dialog">
@@ -97,9 +70,9 @@
                                         @else
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#setRole_user_{{ $user->id }}"> Normal User </button>
                                         @endif
+                                        @endif
                                     </td>
                                 </tr>
-                               
                                 @endforeach
                             </tbody>
                         </table>

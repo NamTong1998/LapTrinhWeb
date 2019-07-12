@@ -48,7 +48,7 @@ class UserManagement extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'affiliation' => ['required', 'string', 'max:255'],
-            'is_admin' => ['required', 'string', 'max:255'],
+          
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -61,7 +61,7 @@ class UserManagement extends Controller
             'gender' => $request->get('gender'),
             'initals' => $request->get('initals'),
             'affiliation' => $request->get('affiliation'),
-            'is_admin'=> $request->get('is_admin'),
+            
             'phone' => $request->get('phone'),
             'fax' => $request->get('fax'),
             'country' => $request->get('country'),
@@ -101,7 +101,11 @@ class UserManagement extends Controller
     public function edit($id)
     {
         //
-        
+
+        $user = User::find($id);
+
+        return view('layouts.admin.user_management.edit', ['user' => $user]);
+
     }
 
     /**
@@ -114,6 +118,8 @@ class UserManagement extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::find($id);
+        return view('layouts.admin.user_management.edit', ['user' => $user]);
     }
 
     /**
@@ -139,18 +145,6 @@ class UserManagement extends Controller
         $users = User::all();
         $roles = Role::all();
         return view('layouts.admin.user_management.role', ['users' => $users, 'roles' => $roles]);
-    }
-
-    public function setAdmin($id)
-    {
-        $user = User::find($id);
-        $user->is_admin = 1;
-        $user->save();
-
-        $noti = new NotificationController();
-        $noti->saveNoti($user->user_name, "was promoted as an Admin", "");
-
-        return redirect()->route('admin_users_role')->with('success', $user->user_name.' has been altered as an Admin.');
     }
 
     public function setRole(Request $request, $id)

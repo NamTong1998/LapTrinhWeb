@@ -68,7 +68,7 @@
                                 </div>
                                
 
-                                @if(Auth::user()->is_admin === 1)
+                                @if(Auth::user()->role_id === 1001)
                                 <div>
                                     <a class="dropdown-item" href="{{ route('admin_index') }}">
                                         <i class="fa  fa-thumbs-o-up"> </i> &nbsp;&nbsp; Go to Admin Page
@@ -77,14 +77,21 @@
                                 @endif
 
 
-                                @if(Auth::user()->role->name === "Author")
+                                @if(Auth::user()->role->id === 1001 || Auth::user()->role->id === 1)
                                 <div>
                                     <a class="dropdown-item" href="{{ route('author_index') }}">
-                                        <i class="fa   fa-pencil"> </i> &nbsp;&nbsp; Go to Author Page
+                                        <i class="fa fa-pencil"> </i> &nbsp;&nbsp; Go to Author Page
                                     </a>
                                 </div>
                                 @endif
 
+                                @if(Auth::user()->role->id === 1001 || Auth::user()->role->id === 2)
+                                <div>
+                                    <a class="dropdown-item" href="{{ route('reviewer_index') }}">
+                                        <i class="fa fa-check-circle"> </i> &nbsp;&nbsp; Go to Review Page
+                                    </a>
+                                </div>
+                                @endif
 
                                 <div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -130,19 +137,31 @@
 
                     @foreach($categories as $category)
                     <li class="has-dropdown">
-                        
-                            <a style="color: white;" href="{{ route('home_news_byCategory', ["id" => $category->id]) }}"> {{ $category->name }} </a> 
-                            <div class="dropdown">
-                                <div class="dropdown-body">
-                                    <ul class="dropdown-list">
-                                        @foreach($articles_m->where('category_id', $category->id)->take(4) as $item )
-                                            <li> <a href="{{route('home_newsDetail', ["id" => $item->id]) }}"> {{$item -> summary}} </a> </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                        <a style="color: white;" href="{{ route('home_news_byCategory', ["id" => $category->id]) }}"> {{ $category->name }} </a>
+                        <div class="dropdown">
+                            <div class="dropdown-body">
+                                <ul class="dropdown-list">
+                                    @foreach($articles_m->where('category_id', $category->id)->take(4) as $item )
+                                        <li> <a href="{{route('home_newsDetail', ["id" => $item->id]) }}"> {{$item -> summary}} </a> </li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        </li>
+                        </div>
+                    </li>
                     @endforeach
+
+                    <li class="has-dropdown">
+                        <a style="color: white;" href="{{ route('home_video_list') }}"> Videos </a>
+                        <div class="dropdown">
+                            <div class="dropdown-body">
+                                <ul class="dropdown-list">
+                                    @foreach( $videos as $video )
+                                        <li> <a href="{{ route('home_video_show', ["id" => $video->id]) }}"> {{ $video->title }} </a> </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
                 <!-- /nav -->
             </div>

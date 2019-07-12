@@ -42,7 +42,7 @@ Create a New  Article
             
             <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
                 <label for="cont"> Content*: </label>
-                <input id="cont" type="text" class="form-control" name="content" required value="{{ $author->content }}">
+                <textarea id="cont" type="text" class="form-control" name="content"> {{ $author->content }} </textarea>
                 @if ($errors->has('content'))
                     <span class="help-block">{{ $errors->first('content') }}</span>
                 @endif

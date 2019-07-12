@@ -46,20 +46,20 @@ Edit a Article
             
             <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
                 <label for="cont"> Content*: </label>
-                <textarea id="cont" type="text" class="form-control" name="content" required value="{{ $article->content }}"> </textarea>
+                <textarea id="cont" type="text" class="form-control" name="content" > {{ $article->content }} </textarea>
                 @if ($errors->has('content'))
                     <span class="help-block">{{ $errors->first('content') }}</span>
                 @endif
             </div>
 
             <div class="form-group">
-                <label> Image</label>
-                <input type="file" name="image" class="form-control"  />
+                <label> Image: </label>
+                <input type="file" name="image" class="form-control" accept="image/*" />
             </div>
 
             <div class="form-group">
-                <label> Video</label>
-                <input type="file" name="video" accept="video/*">
+                <label> Video: </label>
+                <input type="file" name="video" accept="video/*" class="form-control" />
             </div>
 
             <div class="form-group">

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Reviewer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Session;
-use App\Models\Category;
+use App\Models\Article;
 
-class CategoryController extends Controller
+class ReviewerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,9 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $acs = Category::all();
-        return view('layouts.admin.categories.list', ['acs' => $acs]);
+        $articles = Article::all();
+
+        return view('layouts.reviewer.list', ['articles' => $articles]);
     }
 
     /**
@@ -29,7 +29,6 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('layouts.admin.categories.create');
     }
 
     /**
@@ -41,16 +40,6 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'name' => 'required|unique:categories',
-        ]);
-
-        $ac = new Category(); 
-        $ac->name = $request->name;
-
-        $ac->save();
-
-        return redirect()->route('admin_category_list')->with('success', 'A new Category has been created.');
     }
 
     /**
@@ -61,7 +50,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -73,8 +62,6 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-        $ac = Category::find($id);
-        return view('layouts.admin.categories.edit', ['ac' => $ac]);
     }
 
     /**
@@ -86,17 +73,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $request->validate([
-            'name' => 'required|unique:categories',
-        ]);
-        $ac= Category::find($id);
-        
-        $ac->name = $request->name;
-
-        $ac->save();
-
-        return redirect()->route('admin_category_list')->with('success', 'A new Category has been edited.');
+        //
     }
 
     /**
@@ -108,9 +85,27 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
-        $ac = Category::find($id);
-        $ac->delete();
+        $article = Article::find($id);
+        $article->delete();
 
-        return redirect()->route('admin_category_list')->with('success', 'A Category has been removed.');
+        return redirect()->route('reviewer_list')->with('success', 'A Article has been removed.');
+    }
+
+    public function changeQualification($id)
+    {
+        $article = Article::find($id);
+
+        if( $article->is_qualified == 0)
+        {
+            $article->is_qualified = 1;
+        }
+        elseif( $article->is_qualified == 1)
+        {
+            $article->is_qualified = 0;
+        }
+
+        $article->save();
+
+        return redirect()->route('reviewer_list');
     }
 }

@@ -13,7 +13,7 @@
             <div class="box">
                 <div class="box-header with-border">
                     <div class="col-md-4">
-                        <h3 class="box-title">User List</h3>
+                        <h3 class="box-title">Role List</h3>
                     </div>
                     <div class="col-md-2 col-md-offset-6">
                         <a href="{{ route('admin_role_create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Create New Role </a>
@@ -38,10 +38,14 @@
                                     <td> {{ $role->name }} </td>
                                     <td> {{ count($role->users) }} </td>
                                     <td> 
+                                        @if( $role->id != 1001 && $role->id != 1000 && $role->id != 1 && $role->id != 2 )
                                         <a class="btn btn-primary" href="{{ route('admin_role_edit', ['id' => $role->id]) }}"> <i class="fa fa-edit">  </i> </a>
+                                        @else
+                                        <i> Cannot edit this role </i>
+                                        @endif
                                     </td>
                                     <td>
-                                        @if( count($role->users) === 0)
+                                        @if( $role->id != 1001 && $role->id != 1000 && $role->id != 1 && $role->id != 2 )
                                         <form method="post" action="{{ route('admin_role_delete',['id'=> $role->id ]) }}">
                                             @csrf
                                             <div class="modal fade" id="delete_role_{{ $role->id }}" role="dialog">
@@ -63,7 +67,7 @@
                                         </form>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_role_{{ $role->id }}"><i class="fa fa-trash"></i></button>
                                         @else
-                                        <i> Cannot be removed </i>
+                                        <i> Cannot delete this role </i>
                                         @endif
                                     </td>
                                 </tr>

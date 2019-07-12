@@ -33,7 +33,7 @@
                                     <th> Highlight </th>
                                     <th style="width=10px  "> Content </th>
                                     <th> Video</th>
-
+                                    <th> Qualification </th>
                                     <th> Edit </th>
                                     <th> Delete </th>
                                 </tr>
@@ -47,7 +47,7 @@
                                     <td> {{ $ar->category->name }}</td>
                                     <td>
                                     <p>{{ $ar->summary }} </p> 
-                                    <img src="{{asset('')}}upload/{{$ar->image}}" width="100px" width="" ="250px" height="100px" /> 
+                                    <img src="{{ asset('upload/'.$ar->image) }}" width="100px" width="" ="250px" height="100px" /> 
                                     </td>
                                     <td>
                                         @if( $ar->is_highlight === 1 )
@@ -62,6 +62,13 @@
                                             <video style="width: 120px; height: auto;" src="{{ asset('/storage/'.$ar->video) }}" autobuffer autoplay="true" autoloop loop controls 
                                             poster="/images/video.png"> Format Unsupported </video>
                                         
+                                        @endif
+                                      </td>
+                                      <td>
+                                          @if($ar->is_qualified == 1)
+                                        <a class="btn btn-primary" href="{{ route('admin_article_change', ['id' => $ar->id]) }}"> Shown </a>
+                                        @elseif($ar->is_qualified == 0)
+                                        <a class="btn btn-danger" href="{{ route('admin_article_change', ['id' => $ar->id]) }}"> Not Shown </a>
                                         @endif
                                       </td>
                                     <td> 
